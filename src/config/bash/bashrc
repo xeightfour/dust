@@ -1,12 +1,8 @@
-if [[ ! -f ~/git-prompt.sh ]]; then
-    echo '-> Downloading git-prompt bash script'
-    curl --silent --output ~/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh || echo '[ERROR] Failed downloading git-prompt'
-fi
-
 if [[ -f ~/git-prompt.sh ]]; then
     source ~/git-prompt.sh
-    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\w\[\e[0m\]]\[\e[93m\]$(_GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1 " (%s)")\[\e[0m\]\\$ '
+    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\w\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1 " (%s)")\[\e[0m\]\\$ '
 else
+    echo '[WARNING] Did not find ~/git-prompt.sh, reinstall dust!'
     PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\w\[\e[0m\]]\\$ '
 fi
 
