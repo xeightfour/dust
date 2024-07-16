@@ -19,6 +19,12 @@ if [[ ! -f ~/git-prompt.sh ]]; then
     curl -so ~/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh || echo '[ERROR] Failed to download git-prompt'
 fi
 
+# Linking fontconfig
+echo '-> Linking fontconfig'
+[[ -f $CFG/fontconfig ]] && rm -f $CFG/fontconfig
+[[ -d $CFG/fontconfig ]] && rm -Rf $CFG/fontconfig
+ln -sf $SRC/config/fontconfig $CFG/fontconfig
+
 # Linking alacritty configuration
 echo '-> Linking alacritty configuration'
 [[ -f $CFG/alacritty ]] && rm -f $CFG/alacritty
@@ -43,11 +49,11 @@ echo '-> Linking picom configuration'
 [[ -d $CFG/picom ]] && rm -Rf $CFG/picom
 ln -sf $SRC/config/picom $CFG/picom
 
-# Linking fontconfig
-echo '-> Linking fontconfig'
-[[ -f $CFG/fontconfig ]] && rm -f $CFG/fontconfig
-[[ -d $CFG/fontconfig ]] && rm -Rf $CFG/fontconfig
-ln -sf $SRC/config/fontconfig $CFG/fontconfig
+# Linking tmux configuration
+echo '-> Linking tmux configuration'
+[[ -f $CFG/tmux ]] && rm -f $CFG/tmux
+[[ -d $CFG/tmux ]] && rm -Rf $CFG/tmux
+ln -sf $SRC/config/tmux $CFG/tmux
 
 # Linking neovim configuration
 echo '-> Linking neovim configuration'
