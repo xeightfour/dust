@@ -1,4 +1,5 @@
 #!/bin/bash
+
 SRC=$(cd ../ && pwd)/src
 CFG=~/.config
 LCL=~/.local

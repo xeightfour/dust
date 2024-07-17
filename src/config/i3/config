@@ -22,6 +22,9 @@ bindsym $mod+q kill
 # Start dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run
 
+# Toggle floating or tiling
+bindsym $mod+Shift+f floating toggle
+
 # Change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
