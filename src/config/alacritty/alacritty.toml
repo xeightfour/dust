@@ -1,11 +1,9 @@
 import = [ "~/.config/alacritty/catppuccin-mocha.toml" ]
 
 [window]
-padding = { x = 2, y = 2 }
+padding = { x = 4, y = 4 }
 dynamic_padding = true
 
 [font]
 normal = { family = "SF Mono", style = "Medium" }
-size = 12
-offset = { x = 0, y = 1 }
-glyph_offset = { x = 0, y = 1 }
+size = 13
