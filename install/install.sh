@@ -19,6 +19,8 @@ if [[ ! -f ~/git-prompt.sh ]]; then
     echo '-> Downloading git-prompt bash script'
     curl -so ~/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh || echo '[ERROR] Failed to download git-prompt'
 fi
+echo '-> Linking inputrc'
+ln -sf $SRC/config/bash/inputrc ~/.inputrc
 
 # Linking fontconfig
 echo '-> Linking fontconfig'
