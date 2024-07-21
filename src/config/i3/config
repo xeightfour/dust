@@ -123,4 +123,4 @@ exec_always --no-startup-id pkill picom; pidwait picom; picom -b
 bindsym $mod+m exec firefox
 
 # Keyboard layout settings
-exec --no-startup-id "setxkbmap -layout us,ir -option grp:win_space_toggle"
+exec --no-startup-id "setxkbmap -layout us,ir -option grp:alt_shift_toggle"
