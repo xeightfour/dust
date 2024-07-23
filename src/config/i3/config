@@ -1,7 +1,7 @@
 set $mod Mod4
 
 # Set font for title bars and workspace bar
-font pango:SF Mono Heavy 12
+font pango:SX Mono Bold 12
 
 # Use pactl to adjust volume in PulseAudio
 set $refresh_i3status killall -SIGUSR1 i3status

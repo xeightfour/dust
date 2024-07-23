@@ -9,6 +9,7 @@ echo '-> Copying font files'
 mkdir -p $LCL/share/fonts
 cp --force $SRC/assets/fonts/SFMono/* $LCL/share/fonts
 cp --force $SRC/assets/fonts/Iranian/* $LCL/share/fonts
+cp --force $SRC/assets/fonts/SXMono/* $LCL/share/fonts
 
 # Setting up bash
 echo '-> Linking bash configuration'

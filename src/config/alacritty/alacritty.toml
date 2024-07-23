@@ -5,5 +5,5 @@ padding = { x = 4, y = 4 }
 dynamic_padding = true
 
 [font]
-normal = { family = "SF Mono", style = "Medium" }
-size = 13
+normal = { family = "SX Mono", style = "Regular" }
+size = 13.5
