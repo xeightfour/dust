@@ -119,7 +119,7 @@ bar {
 # Restart picom
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
 
-# Startup firefox
+# Key shortcut to start firefox
 bindsym $mod+m exec firefox
 
 # Keyboard layout settings
