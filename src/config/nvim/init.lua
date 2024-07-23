@@ -10,7 +10,7 @@ require("catppuccin").setup({
         light = "latte",
         dark = "mocha",
     },
-    styles = { comments = {}, conditionals = {} },
+    styles = { comments = { "bold" }, conditionals = {} }
 })
 
 vim.cmd.colorscheme "catppuccin"
@@ -21,10 +21,10 @@ opt.cmdheight = 0
 opt.virtualedit = 'all'
 opt.mouse = 'a'
 
-opt.expandtab = true
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
+opt.expandtab = true
 
 opt.cursorlineopt = { 'screenline', 'number' }
 opt.colorcolumn = { 110 }
