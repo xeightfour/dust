@@ -15,5 +15,5 @@ bold_italic = { family = "SX Mono", style = "Bold" }
 # Font size
 size = 13.5
 # Line spacing
-offset = { x = 0, y = 4 }
-glyph_offset = { x = 0, y = 2 }
+offset = { x = 0, y = 2 }
+glyph_offset = { x = 0, y = 1 }
