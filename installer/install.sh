@@ -1,77 +1,76 @@
 #!/usr/bin/env bash
 
-SOURCE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")"/.. &> /dev/null && pwd)
-CONFIG="$HOME/.config"
-LOCAL="$HOME/.local"
+dirHome=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." &> /dev/null && pwd)
+dirConfig="$HOME/.config"
+dirLocal="$HOME/.local"
 
-CP_FAILURE='[ERROR] Failed copying files'
-LN_FAILURE='[ERROR] Linkage failure'
-DL_FAILURE='[ERROR] Download failed'
-MK_FAILURE='[ERROR] Failed making directories'
+dirNeovim="$dirLocal/share/nvim/site/pack/bezzz/start"
 
-pexit() {
+errcp='[ERROR] Failed copying files'
+errln='[ERROR] Linkage failure'
+errdl='[ERROR] Download failed'
+errmk='[ERROR] Failed creating directories'
+
+function kExit() {
     echo "$1"
     exit 1
 }
 
-remove() {
+function kRemove() {
     [[ -f "$1" || -L "$1" ]] && rm -f "$1"
     [[ -d "$1" ]] && rm -Rf "$1"
 }
 
-echo '-> Installing fonts'
-mkdir -p "$LOCAL/share/fonts" || pexit "$MK_FAILURE"
-for i in "$SOURCE"/assets/fonts/*; do
+function kClone() {
+    echo ":: Receiving $1"
+    git clone -q "$2" "$dirNeovim/$1" || kExit "$errdl"
+}
+
+function kInstall() {
+    local update=true
+    if [[ -d "$dirNeovim/$1" ]]; then
+        read -p ">> Some version of $1 is already installed, do you wish to update it? (*YES*/NO): " confirm
+        if [[ "$confirm" == [nN] || "$confirm" == [nN][oO] ]]; then
+            update=false
+        fi
+    fi
+    if [[ "$update" == true ]]; then
+        rm -Rf "$dirNeovim/$1"
+        kClone "$1" "$2"
+    else
+        echo ":: Ok, ignoring $1"
+    fi
+}
+
+mkdir -p "$dirLocal/share/fonts" || kExit "$errmk"
+for i in "$dirHome/assets/fonts"/*; do
     [[ -d "$i" ]] || continue
-    cp -f "$i"/* "$LOCAL/share/fonts" || pexit "$CP_FAILURE"
+    cp -f "$i"/* "$dirLocal/share/fonts" || kExit "$errcp"
 done
 
 if ! [[ -f "$HOME/git-prompt.sh" ]]; then
-    echo '-> Downloading git-prompt bash script'
-    curl -so "$HOME/git-prompt.sh" 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || pexit "$DL_FAILURE"
+    echo ':: Receiving git-prompt.sh script'
+    curl -so "$HOME/git-prompt.sh" 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || kExit "$errdl"
 fi
 
-echo '-> Configuring bash'
-ln -sf "$SOURCE/config/bash/bashrc" "$HOME/bashrc"
+ln -sf "$dirHome/config/bash/bashrc" "$HOME/bashrc" || kExit "$errln"
 if ! grep -Fq 'source ~/bashrc' "$HOME/.bashrc"; then
     echo -e '\n[[ -f ~/bashrc ]] && source ~/bashrc' >> "$HOME/.bashrc"
 fi
 
-echo '-> inputrc'
-ln -sf "$SOURCE/config/bash/inputrc" "$HOME/.inputrc"
+ln -sf "$dirHome/config/bash/inputrc" "$HOME/.inputrc" || kExit "$errln"
 
-CONFIGS=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'picom' 'tmux' 'nvim')
+array=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'picom' 'tmux' 'nvim')
 
-for i in "${CONFIGS[@]}"; do
-    echo "-> Setting up $i"
-    remove "$CONFIG/$i"
-    ln -sf "$SOURCE/config/$i" "$CONFIG/$i"
+for i in "${array[@]}"; do
+    kRemove "$dirConfig/$i"
+    ln -sf "$dirHome/config/$i" "$dirConfig/$i" || kExit "$errln"
 done
 
-echo '-> Installing neovim plugins'
-NEOVIM="$LOCAL/share/nvim/site/pack/bezzz/start"
-mkdir -p "$NEOVIM" || pexit "$MK_FAILURE"
+echo ':: Installing Neovim plugins'
+mkdir -p "$dirNeovim" || kExit "$errmk"
 
-clone() {
-    echo "-> Downloading $1"
-    git clone -q "$2" "$NEOVIM/$1" || pexit "$DL_FAILURE"
-}
+kInstall 'catppuccin' 'https://github.com/catppuccin/nvim.git'
+kInstall 'vim-cpp-modern' 'https://github.com/bfrg/vim-cpp-modern.git'
 
-nvimInstall() {
-    if [[ -d "$NEOVIM/$1" ]]; then
-        read -p ":: A version of $1 is already installed, do you wish to update it? (*YES*/NO): " confirm
-        if ! [[ "$confirm" == [nN] || "$confirm" == [nN][oO] ]]; then
-            rm -Rf "$NEOVIM/$1"
-            clone "$1" "$2"
-        else
-            echo ":: Ok, ignoring $1"
-        fi
-    else
-        clone "$1" "$2"
-    fi
-}
-
-nvimInstall 'catppuccin' 'https://github.com/catppuccin/nvim.git'
-nvimInstall 'vim-cpp-modern' 'https://github.com/bfrg/vim-cpp-modern.git'
-
-echo ':: All set'
+echo ':: All done(:'

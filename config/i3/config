@@ -8,7 +8,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# Move tiling windows via drag & drop
 tiling_drag modifier titlebar
 
 bindsym $mod+Return exec i3-sensible-terminal
@@ -17,7 +16,6 @@ bindsym $mod+q kill
 
 bindsym $mod+d exec --no-startup-id dmenu_run
 
-# Toggle floating or tiling
 bindsym $mod+Shift+f floating toggle
 
 bindsym $mod+h focus left
@@ -30,13 +28,7 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
 
 set $ws1 "1"
 set $ws2 "2"
@@ -72,7 +64,6 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $wsx
 
 bindsym $mod+Shift+c reload
-
 bindsym $mod+Shift+r restart
 
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
@@ -83,25 +74,17 @@ mode "resize" {
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym j resize grow width 10 px or 10 ppt
 
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Up resize grow height 10 px or 10 ppt
-    bindsym Down resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
 
-# Enter resizing mode
 bindsym $mod+r mode "resize"
 
 bar {
     status_command i3status
 }
 
-exec_always --no-startup-id pkill picom; pidwait picom; picom -b
-
 bindsym $mod+m exec firefox
 
 exec --no-startup-id "setxkbmap -layout us,ir -option grp:alt_shift_toggle"
+exec_always --no-startup-id pkill picom; pidwait picom; picom -b

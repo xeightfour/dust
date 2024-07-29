@@ -19,7 +19,7 @@ opt.showcmd = false
 opt.cmdheight = 0
 
 opt.virtualedit = 'all'
-opt.mouse = 'a'
+opt.mouse = ''
 
 opt.tabstop = 4
 opt.softtabstop = 4
