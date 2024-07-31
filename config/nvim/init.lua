@@ -1,19 +1,18 @@
 local opt = vim.opt
--- local g = vim.g
 local cmd = vim.cmd
 
 opt.termguicolors = true
 
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
+require('catppuccin').setup({
+    flavour = 'mocha', -- latte, frappe, macchiato, mocha
     background = {
-        light = "latte",
-        dark = "mocha",
+        light = 'latte',
+        dark = 'mocha',
     },
-    styles = { comments = { "bold" }, conditionals = {} }
+    styles = { comments = { 'bold' }, conditionals = {} }
 })
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme 'catppuccin'
 
 opt.showcmd = false
 opt.cmdheight = 0
@@ -21,6 +20,7 @@ opt.cmdheight = 0
 opt.virtualedit = 'all'
 opt.mouse = ''
 
+opt.smartindent = true
 opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
