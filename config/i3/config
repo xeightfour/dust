@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:Maple Mono Bold 13
+font pango:Maple Mono Bold 11
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
