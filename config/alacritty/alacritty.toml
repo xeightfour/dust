@@ -1,7 +1,7 @@
 import = [ "~/.config/alacritty/catppuccin-mocha.toml" ]
 
 [window]
-padding = { x = 4, y = 4 }
+padding = { x = 3, y = 3 }
 dynamic_padding = true
 dynamic_title = false
 

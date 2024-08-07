@@ -1,18 +1,22 @@
+if [[ -d "$HOME/.local/bin" ]]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 if [[ -f "$HOME/git-prompt.sh" ]]; then
     source "$HOME/git-prompt.sh"
-    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\w\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1 " (%s)")\[\e[0m\]\\$ '
+    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWDIRTYSTATE=1 __git_ps1 " (%s)")\[\e[0m\]\\$ '
 else
     echo '[WARNING] Did not find ~/git-prompt.sh'
-    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\w\[\e[0m\]]\\$ '
+    PS1='[\t][\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\\$ '
 fi
 
 function ass() {
-    name="$(echo "$1" | rev | cut -d "." -f 2- | rev)"
-    g++ $1 -o "$name.out" -std=c++20 -O2 -Wall -Wextra
+    name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
+    g++ -Wall -Wextra -std=c++20 -O2 $1 -o "$name.out"
 }
 
 function run() {
-    name="$(echo "$1" | rev | cut -d "." -f 2- | rev)"
+    name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
     ./"$name.out"
 }
 
