@@ -67,7 +67,7 @@ remove "$HOME/.inputrc"
 ln -sf "$dirHome/config/bash/inputrc" "$HOME/.inputrc" || bounce "$lnERR"
 
 # Link configz
-array=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'picom' 'rofi' 'tmux' 'nvim')
+array=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'i3status' 'picom' 'rofi' 'tmux' 'nvim')
 for i in "${array[@]}"; do
     remove "$dirConfig/$i"
     ln -sf "$dirHome/config/$i" "$dirConfig/$i" || bounce "$lnERR"
