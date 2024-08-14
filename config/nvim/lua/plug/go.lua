@@ -19,19 +19,19 @@ function M.run()
     vim.api.nvim_chan_send(vim.bo.channel, 'go run ' .. name .. '\r')
 end
 
-function M.commands()
+function M.commands(args)
     vim.api.nvim_buf_create_user_command(args.buf, 'Gun', M.run, { nargs = 0 })
     vim.api.nvim_buf_create_user_command(args.buf, 'Guild', M.build, { nargs = 0 })
 end
 
-function M.maps()
+function M.maps(args)
     vim.keymap.set('n', '<space>g', M.run, { buffer = args.buf })
     vim.keymap.set('n', '<space>b', M.build, { buffer = args.buf })
 end
 
 function M.main(args)
-    M.commands()
-    M.maps()
+    M.commands(args)
+    M.maps(args)
 end
 
 function M.setup()
