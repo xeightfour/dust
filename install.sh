@@ -55,9 +55,10 @@ if ! [[ -f "$HOME/git-prompt.sh" ]]; then
 fi
 
 # Link shell stuff
-for i in "$dirHome/bash"/*; do
-    remove "$HOME/.$i"
-    ln -sf "$i" "$HOME/.$i" || bounce "$lnERR"
+for i in "$dirHome/config/bash"/*; do
+    fileName="$(echo "$i" | rev | cut -d '/' -f 1 | rev)"
+    remove "$HOME/.$fileName"
+    ln -sf "$i" "$HOME/.$fileName" || bounce "$lnERR"
 done
 
 # Link configz
