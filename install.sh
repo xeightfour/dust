@@ -54,21 +54,15 @@ if ! [[ -f "$HOME/git-prompt.sh" ]]; then
     curl -so "$HOME/git-prompt.sh" 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || bounce "$dlERR"
 fi
 
-# Source bashrc
-if ! grep -Fq 'source ~/bashrc' "$HOME/.bashrc"; then
-    echo -e '\n[[ -f ~/bashrc ]] && source ~/bashrc' >> "$HOME/.bashrc"
-fi
-# Link bashrc
-remove "$HOME/bashrc"
-ln -sf "$dirHome/config/bash/bashrc" "$HOME/bashrc" || bounce "$lnERR"
-
-# Link inputrc
-remove "$HOME/.inputrc"
-ln -sf "$dirHome/config/bash/inputrc" "$HOME/.inputrc" || bounce "$lnERR"
+# Link shell stuff
+for i in "$dirHome/bash"/*; do
+    remove "$HOME/.$i"
+    ln -sf "$i" "$HOME/.$i" || bounce "$lnERR"
+done
 
 # Link configz
-array=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'i3status' 'picom' 'rofi' 'tmux' 'nvim')
-for i in "${array[@]}"; do
+configz=('fontconfig' 'alacritty' 'gtk-3.0' 'i3' 'i3status' 'picom' 'rofi' 'tmux' 'nvim')
+for i in "${configz[@]}"; do
     remove "$dirConfig/$i"
     ln -sf "$dirHome/config/$i" "$dirConfig/$i" || bounce "$lnERR"
 done
@@ -78,5 +72,6 @@ echo ':: Installing plugins for Neovim'
 mkdir -p "$dirNvim" || bounce "$mkERR"
 nvimInstall 'catppuccin' 'https://github.com/catppuccin/nvim.git'
 nvimInstall 'vim-cpp-modern' 'https://github.com/bfrg/vim-cpp-modern.git'
+nvimInstall 'vim-go-syntax' 'https://github.com/charlespascoe/vim-go-syntax.git'
 
 echo ':: All done(:'

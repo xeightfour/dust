@@ -8,3 +8,4 @@ require('catppuccin').setup({
 })
 
 vim.cmd.colorscheme 'catppuccin'
+vim.g.go_highlight_comma = true

@@ -1,6 +1,10 @@
-if [[ -d "$HOME/.local/bin" ]]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+alias la='ls --color=auto -a'
+alias ll='ls --color=auto -ltrh'
+
+alias grep='grep --color=auto'
 
 if [[ -f "$HOME/git-prompt.sh" ]]; then
     source "$HOME/git-prompt.sh"
@@ -19,6 +23,3 @@ function run() {
     name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
     ./"$name.out"
 }
-
-alias la='ls --color=auto -a'
-alias ll='ls --color=auto -ltrh'
