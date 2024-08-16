@@ -74,5 +74,6 @@ mkdir -p "$dirNvim" || bounce "$mkERR"
 nvimInstall 'catppuccin' 'https://github.com/catppuccin/nvim.git'
 nvimInstall 'vim-cpp-modern' 'https://github.com/bfrg/vim-cpp-modern.git'
 nvimInstall 'vim-go-syntax' 'https://github.com/charlespascoe/vim-go-syntax.git'
+nvimInstall 'nvim-go' 'https://github.com/xeightfour/nvim-go.git'
 
 echo ':: All done(:'

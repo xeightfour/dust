@@ -1,6 +1,6 @@
 function ReloadConfig()
     for name, i in pairs(package.loaded) do
-        if name:match('core/*') or name:match('plug/*') then
+        if name:match('core/*') then
             package.loaded[name] = nil
         end
     end

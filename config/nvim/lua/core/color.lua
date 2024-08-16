@@ -4,8 +4,11 @@ require('catppuccin').setup({
         light = 'latte',
         dark = 'mocha'
     },
-    styles = { comments = { 'italic' }, conditionals = {} }
+    styles = {
+        comments = { 'italic' },
+        conditionals = {}
+    }
 })
 
-vim.cmd.colorscheme 'catppuccin'
+vim.cmd('colorscheme catppuccin')
 vim.g.go_highlight_comma = true

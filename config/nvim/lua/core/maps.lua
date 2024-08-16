@@ -13,7 +13,7 @@ nmap('<c-k>', '<c-w>k')
 nmap(',', ':tabprev<cr>')
 nmap('.', ':tabnext<cr>')
 nmap('<esc>', '')
-nmap('q', '') -- FUQ
+nmap('q', '')
 
 nmap('<space><space>', ':nohlsearch<cr>')
 nmap('<space>tr', ':silent! %s/\\s\\+$//<cr> :nohlsearch<cr>')
