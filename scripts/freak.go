@@ -35,10 +35,12 @@ func main() {
         defer file.Close()
         data, size, err := readFileBytes(file)
         handleError(err)
-        fmt.Printf("%d. Crackin %s\n", i+1, fileName)
+
+        fmt.Printf("%v. Crackin %v\n", i+1, fileName)
         for ind := 0; ind < size; ind++ {
             (*data)[ind] ^= byte('x')
         }
+
         err = os.WriteFile(fileName, *data, 0644)
         handleError(err)
         fmt.Printf("Processed %v bytes\n", len(*data))

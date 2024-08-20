@@ -1,8 +1,21 @@
-nmap('<space>l', ':lua ReloadConfig()<cr>')
+local nmap = function(combo, command)
+    vim.keymap.set('n', combo, command, {})
+end
+local imap = function(combo, command)
+    vim.keymap.set('i', combo, command, {})
+end
+local vmap = function(combo, command)
+    vim.keymap.set('v', combo, command, {})
+end
+local tmap = function(combo, command)
+    vim.keymap.set('t', combo, command, {})
+end
+
+nmap('<space>l', ':ReloadConfig<cr>')
 nmap('<space>v', ':tabnew ~/.config/nvim<cr>')
 
 nmap('<space>w', ':w!<cr>')
-nmap('<space>Q', ':q!<cr>') -- painful
+nmap('<space>Q', ':q!<cr>')
 nmap('<space>x', ':x!<cr>')
 
 nmap('<c-j>', '<c-w>j')
@@ -12,20 +25,21 @@ nmap('<c-k>', '<c-w>k')
 
 nmap(',', ':tabprev<cr>')
 nmap('.', ':tabnext<cr>')
-nmap('<esc>', '')
-nmap('q', '')
 
 nmap('<space><space>', ':nohlsearch<cr>')
 nmap('<space>tr', ':silent! %s/\\s\\+$//<cr> :nohlsearch<cr>')
 
 nmap('j', 'gj')
-nmap('k', 'gk')
 vmap('j', 'gj')
+nmap('k', 'gk')
 vmap('k', 'gk')
 
 nmap('B', '^')
-nmap('E', '$')
 vmap('B', '^')
+nmap('E', '$')
 vmap('E', '$')
 
 tmap('<esc>', '<c-\\><c-n>')
+
+nmap('q', '<nop>')
+nmap('<esc>', '<nop>')

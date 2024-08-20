@@ -9,13 +9,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-tiling_drag modifier titlebar
-
 bindsym $mod+q kill
 
-bindsym $mod+Shift+f floating toggle
 bindsym $mod+f fullscreen toggle
-
+bindsym $mod+Shift+f floating toggle
 bindsym $mod+s layout toggle stacking split
 bindsym $mod+Tab layout toggle tabbed split
 
@@ -85,20 +82,20 @@ bindsym $mod+r mode "resize"
 
 title_align center
 hide_edge_borders both
-focus_follows_mouse no
-
 gaps inner 8px
 smart_gaps on
 
+for_window [all] border normal
 for_window [all] title_format "%class | %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [all] border normal
 for_window [class="(?i)alacritty|firefox|mousepad"] border pixel 1
+
+focus_follows_mouse no
 
 bindsym $mod+m exec firefox
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
-exec_always --no-startup-id "setxkbmap -layout us,ir -option grp:alt_shift_toggle"
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper --no-fehbg

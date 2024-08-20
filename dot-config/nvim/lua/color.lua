@@ -1,3 +1,4 @@
+vim.opt.termguicolors = true
 require('catppuccin').setup({
     flavour = 'mocha', -- latte, frappe, macchiato, mocha
     background = {
@@ -6,9 +7,11 @@ require('catppuccin').setup({
     },
     styles = {
         comments = { 'italic' },
-        conditionals = {}
+        conditionals = { 'italic' }
+    },
+    default_integrations = false,
+    integrations = {
+        treesitter = true
     }
 })
-
 vim.cmd('colorscheme catppuccin')
-vim.g.go_highlight_comma = true

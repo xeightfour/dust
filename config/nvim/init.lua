@@ -1,5 +1,0 @@
-require('core/dev')
-require('core/color')
-require('core/options')
-require('core/maps')
-require('nvim-go').setup()

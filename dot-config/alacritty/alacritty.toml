@@ -1,7 +1,6 @@
 import = [ "~/.config/alacritty/catppuccin-mocha.toml" ]
 
 [window]
-dynamic_title = false
 dynamic_padding = true
 
 [window.padding]
@@ -9,8 +8,7 @@ x = 3
 y = 3
 
 [font]
-size = 13.5
+size = 13
 
 [font.normal]
 family = "Maple Mono"
-style = "Regualr"
