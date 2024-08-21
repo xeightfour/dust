@@ -2,11 +2,11 @@
 [[ $- != *i* ]] && return
 
 if [[ -f ~/git-prompt.sh ]]; then
-    source ~/git-prompt.sh
-    PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]\\$ '
+	source ~/git-prompt.sh
+	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]\\$ '
 else
-    echo '[WARNING] Did not find ~/git-prompt.sh'
-    PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\\$ '
+	echo '[WARNING] Did not find ~/git-prompt.sh'
+	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\\$ '
 fi
 
 alias l='ls --color=never'
@@ -20,10 +20,10 @@ alias vim='nvim'
 
 # Good old friends...
 function ass {
-    name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
-    g++ -Wall -Wextra -std=c++20 -O2 $1 -o "$name.out"
+	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
+	g++ -Wall -Wextra -std=c++20 -O2 $1 -o "$name.out"
 }
 function run {
-    name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
-    ./"$name.out"
+	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
+	./"$name.out"
 }

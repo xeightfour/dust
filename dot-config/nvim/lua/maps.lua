@@ -1,14 +1,14 @@
 local nmap = function(combo, command)
-    vim.keymap.set('n', combo, command, {})
+	vim.keymap.set('n', combo, command, {})
 end
 local imap = function(combo, command)
-    vim.keymap.set('i', combo, command, {})
+	vim.keymap.set('i', combo, command, {})
 end
 local vmap = function(combo, command)
-    vim.keymap.set('v', combo, command, {})
+	vim.keymap.set('v', combo, command, {})
 end
 local tmap = function(combo, command)
-    vim.keymap.set('t', combo, command, {})
+	vim.keymap.set('t', combo, command, {})
 end
 
 nmap('<space>l', ':ReloadConfig<cr>')
@@ -41,5 +41,5 @@ vmap('E', '$')
 
 tmap('<esc>', '<c-\\><c-n>')
 
-nmap('q', '<nop>')
-nmap('<esc>', '<nop>')
+nmap('q', '<>')
+nmap('<esc>', '<>')
