@@ -3,10 +3,10 @@
 
 if [[ -f ~/git-prompt.sh ]]; then
 	source ~/git-prompt.sh
-	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]\\$ '
+	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]❯ '
 else
 	echo '[WARNING] Did not find ~/git-prompt.sh'
-	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\\$ '
+	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]❯ '
 fi
 
 alias l='ls --color=never'
@@ -17,6 +17,7 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 
 alias vim='nvim'
+alias mus='mpv --no-vid --loop-playlist=inf'
 
 # Good old friends...
 function ass {

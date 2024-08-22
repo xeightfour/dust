@@ -1,12 +1,16 @@
 using {
-    name = 'catppuccin',
-    github = 'catppuccin/nvim'
+	name = 'catppuccin',
+	github = 'catppuccin/nvim'
 }
 
 using {
-    github = 'bfrg/vim-cpp-modern'
+	github = 'bfrg/vim-cpp-modern'
 }
 
 using {
-    github = 'charlespascoe/vim-go-syntax'
+	github = 'charlespascoe/vim-go-syntax'
+}
+
+using {
+	github = 'tikhomirov/vim-glsl'
 }
