@@ -2,7 +2,7 @@ include catppuccin-mocha.conf
 
 set $mod Mod4
 
-font pango:Maple Mono Bold 11
+font pango:Martian Mono sWd xBd 12
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
@@ -89,7 +89,7 @@ for_window [all] border normal
 for_window [all] title_format "%class | %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)alacritty|firefox|mousepad"] border pixel 1
+for_window [class="(?i)alacritty|firefox|mousepad"] border pixel 3
 
 focus_follows_mouse no
 

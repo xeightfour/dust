@@ -16,15 +16,22 @@ alias ll='ls --color=auto -ltrh'
 
 alias grep='grep --color=auto'
 
-alias vim='nvim'
-alias mus='mpv --no-vid --loop-playlist=inf'
+alias ply='mpv --no-vid --loop-playlist=inf'
 
 # Good old friends...
 function ass {
 	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
-	g++ -Wall -Wextra -std=c++20 -O2 $1 -o "$name.out"
+	if [[ "$2" ]]; then
+		g++ "$1" -Wall -Wextra "$2" -std=c++23 -O2 -o "$name.out"
+	else
+		g++ "$1" -Wall -Wextra -std=c++23 -O2 -o "$name.out"
+	fi
 }
 function run {
 	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
 	./"$name.out"
+}
+function cnr {
+	ass "$1"
+	run "$1"
 }

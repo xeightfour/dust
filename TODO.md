@@ -1,1 +1,1 @@
-- dot-config/nvim/lua/go.lua
+- ~dot-config/nvim/lua/go.lua~
