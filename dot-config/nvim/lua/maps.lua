@@ -23,8 +23,8 @@ nmap('<c-l>', '<c-w>l')
 nmap('<c-h>', '<c-w>h')
 nmap('<c-k>', '<c-w>k')
 
-nmap(',', ':tabprev<cr>')
-nmap('.', ':tabnext<cr>')
+nmap('H', ':tabprev<cr>')
+nmap('L', ':tabnext<cr>')
 
 nmap('<space><space>', ':nohlsearch<cr>')
 nmap('<space>tr', ':silent! %s/\\s\\+$//<cr> :nohlsearch<cr>')

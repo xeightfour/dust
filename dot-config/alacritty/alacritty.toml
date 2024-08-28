@@ -11,4 +11,4 @@ y = 3
 size = 15
 
 [font.normal]
-family = "monospace"
+family = "JetBrains Mono"

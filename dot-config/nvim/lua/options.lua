@@ -15,5 +15,5 @@ opt.cursorline = true
 opt.number = true
 
 opt.shortmess:append { I = true }
-opt.listchars:append { trail = '·' }
+opt.listchars:append { trail = '·', tab = '│  ' }
 opt.list = true
