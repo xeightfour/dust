@@ -9,6 +9,7 @@ y = 3
 
 [font]
 size = 15
+builtin_box_drawing = false
 
 [font.normal]
 family = "JetBrains Mono"
