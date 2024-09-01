@@ -12,6 +12,7 @@ opt.cinoptions = { '(s', 'm1' }
 opt.cursorlineopt = { 'screenline', 'number' }
 opt.numberwidth = 4
 opt.cursorline = true
+opt.relativenumber = true
 opt.number = true
 
 opt.shortmess:append { I = true }

@@ -20,7 +20,8 @@ end
 M.deleteWin = function(win)
 	if win ~= nil then
 		if vim.api.nvim_win_is_valid(win) == true then
-			vim.api.nvim_buf_delete(vim.api.nvim_win_get_buf(win), { force = true })
+			buf = vim.api.nvim_win_get_buf(win)
+			vim.api.nvim_buf_delete(buf, { force = true })
 		end
 	end
 end
@@ -31,7 +32,7 @@ M.build = function()
 	local win = M.newFixedWin('below', 3, true)
 	prevWin = win.window
 	vim.cmd('edit term://go build ' .. name)
-	vim.cmd('keepalt file Build ' .. name)
+	vim.cmd('keepalt file Building ' .. name)
 end
 
 M.run = function()
@@ -40,7 +41,7 @@ M.run = function()
 	local win = M.newFixedWin('below', 8, true)
 	prevWin = win.window
 	vim.cmd('edit term://go run ' .. name)
-	vim.cmd('keepalt file Run ' .. name)
+	vim.cmd('keepalt file Running ' .. name)
 end
 
 M.createCommands = function(args)

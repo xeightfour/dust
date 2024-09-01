@@ -1,1 +1,0 @@
-- `dot-config/nvim/lua/go.lua`
