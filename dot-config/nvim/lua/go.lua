@@ -44,14 +44,24 @@ M.run = function()
 	vim.cmd('keepalt file Running ' .. name)
 end
 
+M.fmt = function()
+	local name = vim.api.nvim_buf_get_name(0)
+	vim.system({ 'gofmt', '-w', name }, { stdout = false, stdin = false, text = true }, vim.schedule_wrap(function()
+		vim.cmd('e!')
+		vim.notify('Formatted!', vim.log.levels.INFO)
+	end))
+end
+
 M.createCommands = function(args)
+	vim.api.nvim_buf_create_user_command(args.buf, 'GoFmt', M.fmt, { nargs = 0 })
 	vim.api.nvim_buf_create_user_command(args.buf, 'GoRun', M.run, { nargs = 0 })
 	vim.api.nvim_buf_create_user_command(args.buf, 'GoBuild', M.build, { nargs = 0 })
 end
 
 M.createMaps = function(args)
-	vim.keymap.set('n', '<space>g', M.run, { buffer = args.buf })
-	vim.keymap.set('n', '<space>b', M.build, { buffer = args.buf })
+	vim.keymap.set('n', '<space>f', M.fmt, { buffer = true })
+	vim.keymap.set('n', '<space>g', M.run, { buffer = true })
+	vim.keymap.set('n', '<space>b', M.build, { buffer = true })
 end
 
 M.main = function(args)

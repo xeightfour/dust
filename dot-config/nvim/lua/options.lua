@@ -2,7 +2,6 @@ local opt = vim.opt
 
 opt.mouse = ''
 opt.showcmd = false
-opt.cmdheight = 0
 opt.virtualedit = 'all'
 
 opt.tabstop = 4
