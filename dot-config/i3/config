@@ -89,7 +89,7 @@ for_window [all] border normal
 for_window [all] title_format "%class | %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)alacritty|firefox|mousepad"] border pixel 3
+for_window [class="(?i)st-256color|alacritty|firefox|mousepad"] border pixel 3
 
 focus_follows_mouse no
 
