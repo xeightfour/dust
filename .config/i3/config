@@ -85,16 +85,18 @@ hide_edge_borders both
 gaps inner 8px
 smart_gaps on
 
-for_window [all] border normal
 for_window [all] title_format "%class | %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)st-256color|alacritty|firefox|mousepad"] border pixel 3
+
+for_window [all] border normal
+for_window [class="(?i)zathura|st-256color|alacritty|firefox|mousepad"] border pixel 3
 
 focus_follows_mouse no
 
 bindsym $mod+m exec firefox
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+z exec --no-startup-id zathura
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b

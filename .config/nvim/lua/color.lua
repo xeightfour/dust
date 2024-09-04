@@ -1,4 +1,9 @@
 vim.opt.termguicolors = true
+
+require('gruvbox').setup({
+	contrast = 'hard' -- hard, soft or empty string
+})
+
 require('catppuccin').setup({
 	flavour = 'mocha', -- latte, frappe, macchiato, mocha
 	show_end_of_buffer = true,
@@ -12,4 +17,5 @@ require('catppuccin').setup({
 		numbers = { 'bold' }
 	}
 })
-vim.cmd('colorscheme catppuccin')
+
+vim.cmd('colorscheme gruvbox')

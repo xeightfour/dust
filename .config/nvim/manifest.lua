@@ -14,3 +14,8 @@ using {
 using {
 	github = 'tikhomirov/vim-glsl'
 }
+
+using {
+	name = 'gruvbox',
+	github = 'ellisonleao/gruvbox.nvim'
+}

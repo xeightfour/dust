@@ -18,6 +18,7 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 alias ply='mpv --no-vid --loop-playlist=inf'
+alias lck='i3lock -i ~/.wallock -t'
 
 # Good old friends...
 function ass {
