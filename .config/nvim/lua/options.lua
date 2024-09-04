@@ -1,16 +1,18 @@
 local opt = vim.opt
 
-opt.mouse = ''
 opt.showcmd = false
+
 opt.virtualedit = 'all'
+opt.foldmethod = 'marker'
 
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.cinoptions = { '(s', 'm1' }
 
 opt.cursorlineopt = { 'screenline', 'number' }
-opt.numberwidth = 4
 opt.cursorline = true
+
+opt.numberwidth = 4
 opt.relativenumber = true
 opt.number = true
 

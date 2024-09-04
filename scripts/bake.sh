@@ -13,6 +13,6 @@ for i in {0..16}; do
 	fi
 done
 
-echo power | tee /sys/devices/system/cpu/cpufreq/poli*/energy_performance_preference
-echo low | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-echo battery | tee /sys/class/drm/card*/device/power_dpm_state
+echo performance | tee /sys/devices/system/cpu/cpufreq/poli*/energy_performance_preference
+echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
+echo performance | tee /sys/class/drm/card*/device/power_dpm_state
