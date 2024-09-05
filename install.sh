@@ -8,7 +8,7 @@ function bounce() {
 }
 
 # Install shit
-toins=('alacritty' 'bc' 'cups' 'fastfetch' 'feh' 'firefox' 'fmt' 'git' 'glew' 'glfw' 'glm' 'go' 'graphviz' 'hexedit' 'htop' 'i3' 'mousepad' 'mpv' 'nasm' 'neovim' 'net-tools' 'ntfs-3g' 'openssh' 'papirus-icon-theme' 'picom' 'python-pip' 'ranger' 'rofi' 'stow' 'tmux' 'vi' 'vim' 'wget' 'xclip')
+toins=('alacritty' 'bc' 'cups' 'fastfetch' 'feh' 'firefox' 'fmt' 'git' 'glew' 'glfw' 'glm' 'go' 'graphviz' 'hexedit' 'htop' 'i3' 'mousepad' 'mpv' 'nasm' 'neovim' 'net-tools' 'ntfs-3g' 'openssh' 'papirus-icon-theme' 'picom' 'python-pip' 'ranger' 'rofi' 'stow' 'tmux' 'vi' 'vim' 'wget' 'xclip' 'zathura' 'zathura-cb' 'zathura-djvu' 'zathura-pdf-mupdf' 'zathura-ps')
 sudo pacman -Sy "${toins[@]}" || bounce
 
 # Get git-prompt.sh
