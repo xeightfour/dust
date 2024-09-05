@@ -78,7 +78,21 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
+
+mode "move" {
+	bindsym $mod+tab focus right
+
+	bindsym h move left
+	bindsym j move down
+	bindsym k move up
+	bindsym l move right
+
+	bindsym Escape mode "default"
+	bindsym $mod+Shift+m mode "default"
+}
+
 bindsym $mod+r mode "resize"
+bindsym $mod+Shift+m mode "move"
 
 title_align center
 hide_edge_borders both
