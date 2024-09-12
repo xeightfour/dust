@@ -1,4 +1,14 @@
-configuration {
-    show-icons: true;
+@theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+
+window {
+	padding: 8px;
 }
-@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+
+element-icon {
+	size: 1.3ch;
+}
+
+configuration {
+	dpi: 200;
+	show-icons: true;
+}

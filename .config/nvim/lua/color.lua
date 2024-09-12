@@ -18,4 +18,4 @@ require('catppuccin').setup({
 	}
 })
 
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme catppuccin')

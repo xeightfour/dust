@@ -11,7 +11,7 @@ fi
 
 alias l='ls --color=never'
 alias ls='ls --color=auto'
-alias la='ls --color=auto -a'
+alias la='ls --color=auto -A'
 alias ll='ls --color=auto -ltrh'
 
 alias grep='grep --color=auto'
