@@ -2,8 +2,7 @@
 
 import time, os, sys, signal, traceback
 
-passive = 55
-stat = False
+passive = 57
 
 def call(command):
     acpi = open('/proc/acpi/call', 'w')
@@ -19,33 +18,31 @@ def call(command):
 def getTemp():
     return int(call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4], 16)
 
-def updateStat():
-    global stat
-    sit = call('\\_SB.PCI0.SBRG.EC0.RRAM 0xCC 0x30')[:4]
-    stat = sit == '0x95'
+def updateLED():
+    if getTemp() < 45:
+        call('\\_SB.SGOV 0x11 1')
+    if getTemp() >= 45:
+        call('\\_SB.SGOV 0x11 0')
+    if getTemp() < 50:
+        call('\\_SB.SGOV 0x18 1')
+    if getTemp() >= 50:
+        call('\\_SB.SGOV 0x18 0')
 
 def updateFan():
-    global passive, stat
-    if stat and getTemp() <= passive:
-        return
-    if not stat and getTemp() > passive:
-        return
-
-    if stat:
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
-    else:
+    global passive
+    if getTemp() <= passive:
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x95')
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x9b')
-
-    print(getTemp(), '(C)')
-    print(call('\\_SB.PCI0.SBRG.EC0.RRAM 0xCC 0x30'), call('\\_SB.PCI0.SBRG.EC0.RRAM 0xCC 0x37'))
-
-    stat = not stat
+    else:
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
 
 def cleanup(signal = None, frame = None):
     call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
     call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
+
+    call('\\_SB.SGOV 0x11 1')
+    call('\\_SB.SGOV 0x18 1')
 
     print('Reset fan control to automatic. Exiting...')
     sys.exit(0)
@@ -54,7 +51,7 @@ def main():
     signal.signal(signal.SIGTERM, cleanup)
     try:
         while True:
-            updateStat()
+            updateLED()
             updateFan()
             time.sleep(4)
     except:

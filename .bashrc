@@ -37,3 +37,8 @@ function cnr {
 	ass "$1"
 	run "$1"
 }
+
+function call {
+	echo "$1" | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call
+	echo
+}
