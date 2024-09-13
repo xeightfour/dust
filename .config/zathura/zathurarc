@@ -1,5 +1,5 @@
 include catppuccin-mocha
 set recolor-keephue true
+set font "JetBrains Mono 16"
 
 set scroll-step 100
-set font "JetBrains Mono 16"

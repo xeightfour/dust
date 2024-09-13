@@ -17,6 +17,7 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
+alias xin='echo xin && ~/scripts/setup.sh && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
 
@@ -39,6 +40,5 @@ function cnr {
 }
 
 function call {
-	echo "$1" | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call
-	echo
+	echo "$1" | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call; echo
 }

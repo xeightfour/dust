@@ -1,6 +1,6 @@
 general {
-    colors = true
-    interval = 10
+	colors = true
+	interval = 10
 }
 
 order += "ipv6"
@@ -14,41 +14,42 @@ order += "memory"
 order += "tztime local"
 
 wireless _first_ {
-    format_up = "W: (%quality at %essid) %ip"
-    format_down = "W: down"
+	format_up = "W: (%quality at %essid) %ip"
+	format_down = "W: down"
 }
 
 ethernet _first_ {
-    format_up = "E: %ip (%speed)"
-    format_down = "E: down"
+	format_up = "E: %ip (%speed)"
+	format_down = "E: down"
 }
 
 volume master {
-    format = "%volume"
-    format_muted = "Muted (%volume)"
-    device = "default"
-    mixer = "Master"
-    mixer_idx = 0
+	format = "%volume"
+	format_muted = "Muted (%volume)"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
 }
 
 battery all {
-    format = "%status %percentage %remaining"
+	format = "%status %percentage %remaining"
+	last_full_capacity = true
 }
 
 disk "/" {
-    format = "%avail"
+	format = "%avail"
 }
 
 load {
-    format = "%1min"
+	format = "%1min"
 }
 
 memory {
-    format = "%used / %available"
-    threshold_degraded = "1G"
-    format_degraded = "MEMORY < %available"
+	format = "%used / %available"
+	threshold_degraded = "1G"
+	format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-    format = "%Y-%m-%d %H:%M:%S"
+	format = "%Y-%m-%d %H:%M:%S"
 }

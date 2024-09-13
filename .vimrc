@@ -49,7 +49,5 @@ vnoremap B ^
 nnoremap E $
 vnoremap E $
 
-tnoremap <esc> <c-\><c-n>
-
-nnoremap q <nop>
 nnoremap <esc> <nop>
+tnoremap <esc> <c-\><c-n>
