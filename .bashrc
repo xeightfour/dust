@@ -17,7 +17,7 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-alias xin='echo xin && ~/scripts/setup.sh && { sudo ~/scripts/parre.py & } && startx'
+alias xin='echo xin && sudo ~/scripts/setup.sh && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
 
