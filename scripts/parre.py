@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import time, os, sys, signal, traceback
+import time, os, sys, signal, traceback, setproctitle
 
 passive = 58
 
@@ -29,10 +29,6 @@ def cleanup(signal = None, frame = None):
     sys.exit(0)
 
 def updateLED():
-    if getTemp() < 45:
-        call('\\_SB.SGOV 0x18 1')
-    if getTemp() >= 45:
-        call('\\_SB.SGOV 0x18 0')
     if getTemp() < 50:
         call('\\_SB.SGOV 0x11 1')
     if getTemp() >= 50:
@@ -41,8 +37,8 @@ def updateLED():
 def updateFan():
     global passive
     if getTemp() <= passive:
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x95')
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x9b')
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
     else:
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
@@ -50,6 +46,7 @@ def updateFan():
 def main():
     signal.signal(signal.SIGTERM, cleanup)
     print('Now parre controls fans <:')
+    call('\\_SB.SGOV 0x18 0')
     try:
         while True:
             updateLED()
@@ -61,4 +58,5 @@ def main():
         cleanup()
 
 if __name__ == '__main__':
+    setproctitle.setproctitle('parre')
     main()
