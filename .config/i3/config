@@ -151,5 +151,7 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x exec --no-startup-id rofi -show run
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
-exec_always --no-startup-id pkill picom; pidwait picom; picom -b
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper --no-fehbg
