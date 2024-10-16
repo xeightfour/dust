@@ -129,6 +129,7 @@ bar {
 	}
 }
 
+focus_follows_mouse no
 floating_minimum_size 75 x 50
 
 title_align center
@@ -146,13 +147,12 @@ for_window [all] title_window_icon padding 6px
 for_window [all] border normal 3
 for_window [class="(?i)zathura|st-256color|alacritty|firefox|mousepad"] border pixel 3
 
-focus_follows_mouse no
-
 bindsym $mod+m exec firefox
 bindsym $mod+z exec --no-startup-id zathura
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x exec --no-startup-id rofi -show run
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Escape exec --no-startup-id i3lock -i ~/.wallock -t
 
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
