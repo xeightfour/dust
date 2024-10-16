@@ -25,9 +25,9 @@ alias lck='i3lock -i ~/.wallock -t'
 function ass {
 	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
 	if [[ "$2" ]]; then
-		g++ "$1" -Wall -Wextra "$2" -std=c++23 -O2 -o "$name.out"
+		g++ "$1" -Wall -Wextra "$2" -std=c++20 -O2 -o "$name.out"
 	else
-		g++ "$1" -Wall -Wextra -std=c++23 -O2 -o "$name.out"
+		g++ "$1" -Wall -Wextra -std=c++20 -O2 -o "$name.out"
 	fi
 }
 function run {
