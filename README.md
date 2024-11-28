@@ -10,5 +10,4 @@ cd dust
 
 TODO
 ----
-- [x] `Better process handling for parre and other startup scripts`
 - [ ] `Neovim bundle support for dependencies`
