@@ -7,7 +7,7 @@ opt.foldmethod = 'marker'
 
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.cinoptions = { '(s', 'm1' }
+opt.cinoptions = { 'g0', '(s', 'm1' }
 
 opt.cursorlineopt = { 'screenline', 'number' }
 opt.cursorline = true

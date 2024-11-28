@@ -92,13 +92,14 @@ mode "move" {
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+m mode "move"
 
-# Minimized catppuccin-mocah <:
+# Minimized catppuccin-mocha <:
 set $rosewater #f5e0dc
 set $peach #fab387
 set $green #a6e3a1
 set $blue #89b4fa
 set $lavender #b4befe
 set $text #cdd6f4
+set $maroon #eba0ac
 set $overlay0 #6c7086
 set $surface1 #45475a
 set $base #1e1e2e
@@ -120,7 +121,7 @@ bar {
 		background $base
 		statusline $text
 		focused_statusline $text
-		focused_separator $peach
+		focused_separator $maroon
 		focused_workspace $base $base $green
 		active_workspace $base $base $blue
 		inactive_workspace $base $base $surface1
@@ -130,7 +131,7 @@ bar {
 }
 
 focus_follows_mouse no
-floating_minimum_size 75 x 50
+floating_minimum_size 1000 x 800
 
 title_align center
 hide_edge_borders both
@@ -140,12 +141,15 @@ smart_gaps off
 workspace 2 gaps inner 0px
 workspace 2 gaps outer 0px
 
-for_window [all] title_format "%class | %title"
+for_window [all] title_format "%class · %title"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
 
-for_window [all] border normal 3
-for_window [class="(?i)zathura|st-256color|alacritty|firefox|mousepad"] border pixel 3
+for_window [all] border normal 2
+for_window [class="(?i)sioyek|zathura|st-256color|alacritty|firefox|mousepad|chromium"] border pixel 2
+for_window [floating] move position center
+
+bindsym $mod+c move position center
 
 bindsym $mod+m exec firefox
 bindsym $mod+z exec --no-startup-id zathura

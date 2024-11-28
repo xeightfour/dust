@@ -1,6 +1,6 @@
 syn on
 
-color darkblue
+color habamax
 
 set noshowcmd
 

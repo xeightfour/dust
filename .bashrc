@@ -20,6 +20,10 @@ alias diff='diff --color=auto'
 alias xin='echo xin && sudo ~/scripts/setup.sh && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
+alias stp='~/dust/scripts/setup.sh'
+
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
 
 # Good old friends...
 function ass {
@@ -35,8 +39,12 @@ function run {
 	./"$name.out"
 }
 function cnr {
-	ass "$1"
-	run "$1"
+	ass "$1" && run "$1"
+}
+function gen {
+	for var in "$@"; do
+		cp -f ~/codoin/gp/templates/main.cpp ./"$var"
+	done
 }
 
 function call {

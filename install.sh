@@ -2,7 +2,7 @@
 
 dust=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
-function bounce() {
+function bounce {
 	echo '[ERROR] Encountered errors while performing operation >:'
 	exit 1
 }
