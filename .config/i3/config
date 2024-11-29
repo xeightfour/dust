@@ -2,8 +2,8 @@ set $mod Mod4
 
 font pango:JetBrains Mono ExtraBold 13
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
@@ -146,7 +146,7 @@ for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
 
 for_window [all] border normal 2
-for_window [class="(?i)sioyek|zathura|st-256color|alacritty|firefox|mousepad|chromium"] border pixel 2
+for_window [class="(?i)telegram|sioyek|zathura|st-256color|alacritty|firefox|mousepad|chromium"] border pixel 2
 for_window [floating] move position center
 
 bindsym $mod+c move position center

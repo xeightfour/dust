@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-import time, os, sys, signal, traceback, setproctitle
+import time, os, sys, signal, traceback, setproctitle, psutil
 
-passive = 58
+passive = 56
 
 def call(command):
     acpi = open('/proc/acpi/call', 'w')
@@ -33,6 +33,7 @@ def updateLED():
         call('\\_SB.SGOV 0x11 1')
     if getTemp() >= 50:
         call('\\_SB.SGOV 0x11 0')
+        os.system('/home/soheil/scripts/setup.sh')
 
 def updateFan():
     global passive
@@ -58,5 +59,10 @@ def main():
         cleanup()
 
 if __name__ == '__main__':
+    for i, p in enumerate(psutil.process_iter()):
+        s = p.name()
+        if 'parre' in s.lower():
+            print('parre is already running >:')
+            exit()
     setproctitle.setproctitle('parre')
     main()

@@ -8,7 +8,7 @@ function bounce {
 }
 
 # Install shit
-inst=('alacritty' 'bash-completion' 'bc' 'cups' 'fastfetch' 'feh' 'firefox' 'fmt' 'git' 'glew' 'glfw' 'glm' 'go' 'graphviz' 'hexedit' 'htop' 'i3' 'mousepad' 'mpv' 'nasm' 'neovim' 'net-tools' 'ntfs-3g' 'openssh' 'papirus-icon-theme' 'picom' 'python-pip' 'ranger' 'rofi' 'stow' 'tmux' 'vi' 'vim' 'wget' 'xclip' 'zathura' 'zathura-cb' 'zathura-djvu' 'zathura-pdf-mupdf' 'zathura-ps')
+inst=('alacritty' 'bash-completion' 'bc' 'cups' 'fastfetch' 'feh' 'firefox' 'fmt' 'git' 'glew' 'glfw' 'glm' 'go' 'graphviz' 'hexedit' 'htop' 'i3' 'mousepad' 'mpv' 'nasm' 'neovim' 'net-tools' 'ntfs-3g' 'openssh' 'papirus-icon-theme' 'picom' 'python-pip' 'ranger' 'rofi' 'stow' 'tmux' 'vi' 'vim' 'wget' 'xclip' 'flatpak' 'python-psutil')
 sudo pacman -S "${inst[@]}" || bounce
 
 # Get git-prompt.sh
