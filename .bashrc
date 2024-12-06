@@ -17,7 +17,7 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-alias xin='echo xin && sudo ~/scripts/setup.sh && { sudo ~/scripts/parre.py & } && startx'
+alias xin='echo xin && sudo ~/scripts/setup.sh 1 && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
 alias stp='~/dust/scripts/setup.sh'
@@ -29,23 +29,29 @@ export GDK_DPI_SCALE=0.5
 function ass {
 	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
 	if [[ "$2" ]]; then
-		g++ "$1" -Wall -Wextra "$2" -std=c++20 -O2 -o "$name.out"
+		g++ "$1" -Wall -Wextra "$2" -std=c++20 -O2 -o "${name}.out"
 	else
-		g++ "$1" -Wall -Wextra -std=c++20 -O2 -o "$name.out"
+		g++ "$1" -Wall -Wextra -std=c++20 -O2 -o "${name}.out"
 	fi
 }
 function run {
 	name="$(echo "$1" | rev | cut -d '.' -f 2- | rev)"
-	./"$name.out"
+	./"${name}.out"
 }
 function cnr {
 	ass "$1" && run "$1"
 }
 function gen {
 	for var in "$@"; do
-		cp -f ~/codoin/gp/templates/main.cpp ./"$var"
+		ext="$(echo "$var" | rev | cut -d '.' -f 1 | rev)"
+		cp ~/codoin/gp/templates/"main.$ext" ./"$var" -f
 	done
 }
+
+export -f ass
+export -f run
+export -f cnr
+export -f gen
 
 function call {
 	echo "$1" | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call; echo
