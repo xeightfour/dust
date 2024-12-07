@@ -10,4 +10,5 @@ cd dust
 
 TODO
 ----
-- [ ] `Neovim bundle support for dependencies`
+- [ ] `Neovim bundle: Add support for dependency management`
+- [ ] `install.sh: Update package list`
