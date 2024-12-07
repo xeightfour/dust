@@ -1,7 +1,7 @@
 #!/usr/bin/sudo bash
 
 # Kill Bluetooth on startup
-if [[ $# == 1 && $1 == 1 ]]; then
+if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
 	echo 'Turning Bluetooth off!'
 	rfkill block bluetooth
 fi

@@ -1,10 +1,9 @@
 #!/bin/bash
 
-dust=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+dust=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
 
 function bounce {
-	echo '[ERROR] Encountered errors while performing operation >:'
-	exit 1
+	echo '[ERROR] Encountered errors while performing operation >:' && exit 1
 }
 
 # Install shit

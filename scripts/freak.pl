@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
-use v5.35;
+
+use 5.040;
 
 my $key = 'x';
 
@@ -14,7 +15,7 @@ foreach (@ARGV) {
 
 	open my $out, '>:raw', $_ or die "Can't write to $_";
 	binmode $out;
-	print $out "$data";
+	print $out $data;
 	close $out;
 
 	print "Processed $bytes bytes from $_\n";
