@@ -17,13 +17,9 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-alias xin='echo xin && sudo ~/scripts/setup.sh 1 && { sudo ~/scripts/parre.py & } && startx'
+alias xin='echo xin && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
-alias stp='~/dust/scripts/setup.sh'
-
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
 
 # Good old friends...
 function ass {

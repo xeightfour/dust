@@ -163,4 +163,4 @@ bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
-exec_always --no-startup-id feh --bg-center ~/.wallpaper --no-fehbg
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper --no-fehbg

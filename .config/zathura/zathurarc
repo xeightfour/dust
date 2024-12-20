@@ -1,0 +1,5 @@
+include catppuccin-mocha
+set recolor-keephue true
+
+set scroll-step 100
+set font "JetBrains Mono 14"
