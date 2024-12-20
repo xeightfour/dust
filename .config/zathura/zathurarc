@@ -1,4 +1,4 @@
-include catppuccin-mocha
+include gruvbox-dark-soft
 set recolor-keephue true
 
 set scroll-step 100

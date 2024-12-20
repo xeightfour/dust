@@ -20,6 +20,7 @@ alias diff='diff --color=auto'
 alias xin='echo xin && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/.wallock -t'
+alias shw='watch -n 0.5 "sensors | head -n 24 && sensors | tail -n 8"'
 
 # Good old friends...
 function ass {

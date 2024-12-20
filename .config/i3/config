@@ -14,6 +14,8 @@ bindsym $mod+Shift+f floating toggle
 bindsym $mod+s layout toggle stacking split
 bindsym $mod+Tab layout toggle tabbed split
 
+bindsym $mod+Shift+t split toggle
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
