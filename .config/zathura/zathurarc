@@ -1,0 +1,4 @@
+include gruvbox-dark-soft
+
+set font 'JetBrains Mono 16'
+set scroll-step 350

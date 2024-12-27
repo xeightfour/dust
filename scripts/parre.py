@@ -8,11 +8,9 @@ def call(command):
     acpi = open('/proc/acpi/call', 'w')
     acpi.write(command)
     acpi.close()
-
     acpi = open('/proc/acpi/call')
     response = acpi.read()
     acpi.close()
-
     return response
 
 def getTemp():

@@ -19,7 +19,6 @@ alias diff='diff --color=auto'
 
 alias xin='echo xin && sudo ~/scripts/setup.sh 1 && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
-alias lck='i3lock -i ~/.wallock -t'
 alias stp='~/dust/scripts/setup.sh'
 
 export GDK_SCALE=2
