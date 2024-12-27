@@ -5,11 +5,11 @@ import = [ "~/.config/alacritty/catppuccin-mocha.toml" ]
 dynamic_padding = true
 
 [window.padding]
-x = 1
-y = 1
+x = 2
+y = 2
 
 [font]
-size = 15.5
+size = 16
 
 [font.normal]
 family = "JetBrains Mono"
