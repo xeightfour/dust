@@ -7,10 +7,10 @@ if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
 fi
 
 # CPU
-echo power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+echo balance_power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
 
 # GPU
-echo low | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
+echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
 echo battery | tee /sys/class/drm/card*/device/power_dpm_state
 
 # CPU & GPU
