@@ -1,5 +1,4 @@
 include gruvbox-dark-soft
-set recolor-keephue true
 
-set scroll-step 100
-set font "JetBrains Mono 14"
+set font 'JetBrains Mono 14'
+set scroll-step 350

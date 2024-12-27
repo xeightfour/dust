@@ -1,6 +1,8 @@
 # Check if ran interactively
 [[ $- != *i* ]] && return
 
+shopt -s histappend
+
 if [[ -f ~/git-prompt.sh ]]; then
 	source ~/git-prompt.sh
 	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]❯ '
@@ -19,7 +21,6 @@ alias diff='diff --color=auto'
 
 alias xin='echo xin && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
-alias lck='i3lock -i ~/.wallock -t'
 alias shw='watch -n 0.5 "sensors | head -n 24 && sensors | tail -n 8"'
 
 # Good old friends...
@@ -49,7 +50,3 @@ export -f ass
 export -f run
 export -f cnr
 export -f gen
-
-function call {
-	echo $1 | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call; echo
-}
