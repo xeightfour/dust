@@ -26,7 +26,7 @@ alias diff='diff --color=auto'
 
 alias xin='echo xin && sudo ~/scripts/setup.sh 1 && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
-alias stp='~/dust/scripts/setup.sh'
+alias stp='~/scripts/setup.sh'
 
 # Good old friends...
 function ass {
