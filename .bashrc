@@ -24,9 +24,26 @@ alias ll='ls --color=auto -ltrh'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
-alias xin='echo xin && sudo ~/scripts/setup.sh 1 && { sudo ~/scripts/parre.py & } && startx'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias stp='~/scripts/setup.sh'
+
+function xin {
+	if (( $EUID == 0 )); then
+		echo 'Why are you root?<:'
+		return -1
+	fi
+	echo xin
+	dust=$(cat ~/.dust)
+	cd dust
+	if ! [[ -z $1 ]] && [[ $1 == 'hi' ]]; then
+		git checkout high-horse
+	else
+		git checkout main
+	fi
+	sudo ~/scripts/setup.sh 1
+	sudo ~/scripts/parre.py &
+	cd ~ && startx
+}
 
 # Good old friends...
 function ass {
