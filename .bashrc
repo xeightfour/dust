@@ -34,7 +34,7 @@ function xin {
 	fi
 	echo xin
 	dust=$(cat ~/.dust)
-	cd dust
+	cd $dust
 	if ! [[ -z $1 ]] && [[ $1 == 'hi' ]]; then
 		git checkout high-horse
 	else
