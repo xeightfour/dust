@@ -36,8 +36,10 @@ function xin {
 	dust=$(cat ~/.dust)
 	cd $dust
 	if ! [[ -z $1 ]] && [[ $1 == 'hi' ]]; then
+		git stash
 		git checkout high-horse
 	else
+		git stash
 		git checkout main
 	fi
 	sudo ~/scripts/setup.sh 1
