@@ -16,4 +16,4 @@ family = "JetBrains Mono"
 style = "Medium"
 
 [font.bold]
-style = "ExtraBold"
+style = "ExtraBold Italic"

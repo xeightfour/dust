@@ -1,1 +1,3 @@
 .dust
+scripts/setup.sh
+.config/picom/picom.conf

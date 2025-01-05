@@ -26,6 +26,7 @@ alias diff='diff --color=auto'
 
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias stp='~/scripts/setup.sh'
+alias dset='~/scripts/dset.sh'
 
 function xin {
 	if (( $EUID == 0 )); then
