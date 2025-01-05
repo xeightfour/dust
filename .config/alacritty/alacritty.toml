@@ -13,3 +13,7 @@ size = 16
 
 [font.normal]
 family = "JetBrains Mono"
+style = "Medium"
+
+[font.bold]
+style = "ExtraBold"
