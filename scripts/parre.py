@@ -27,6 +27,7 @@ def cleanup(signal = None, frame = None):
     sys.exit(0)
 
 def updateLED():
+    call('\\_SB.SGOV 0x18 0')
     if getTemp() < 50:
         call('\\_SB.SGOV 0x11 1')
     if getTemp() >= 50:
@@ -45,7 +46,6 @@ def updateFan():
 def main():
     signal.signal(signal.SIGTERM, cleanup)
     print('Now parre controls fans <:')
-    call('\\_SB.SGOV 0x18 0')
     try:
         while True:
             updateLED()
