@@ -11,5 +11,4 @@ if ! [[ -f ~/git-prompt.sh ]]; then
 	curl -so ~/git-prompt.sh 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || bounce
 fi
 
-echo $dust > $dust/.dust
 echo 'All done <:'
