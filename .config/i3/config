@@ -163,8 +163,7 @@ bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -t
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 
-bindcode Mod1+Shift+10 exec --no-startup-id setxkbmap -layout us && killall i3bar && i3bar --bar_id=bar-0
-bindcode Mod1+Shift+11 exec --no-startup-id setxkbmap -layout ir && killall i3bar && i3bar --bar_id=bar-0
+bindcode Mod1+49 exec --no-startup-id ~/scripts/change-layout.sh && killall i3bar && i3bar
 
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
 exec_always --no-startup-id feh --bg-scale ~/assets/wallpaper.jpg --no-fehbg
