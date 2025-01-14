@@ -1,8 +1,8 @@
 # Check if ran interactively
 [[ $- != *i* ]] && return
 
-HISTSIZE=1024
-HISTFILESIZE=6000
+HISTSIZE=4000
+HISTFILESIZE=10000
 shopt -s histappend
 
 export GDK_SCALE=2

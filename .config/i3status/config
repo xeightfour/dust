@@ -1,6 +1,7 @@
 general {
+	output_format = i3bar
 	colors = true
-	interval = 15
+	interval = 20
 }
 
 order += "ipv6"
@@ -33,8 +34,9 @@ volume master {
 }
 
 battery all {
-	format = "%status %percentage %remaining"
+	format = "%status %percentage %remaining~%consumption"
 	last_full_capacity = true
+	low_threshold = 60
 }
 
 disk "/" {
@@ -50,11 +52,11 @@ load {
 }
 
 memory {
-	format = "%used~%percentage_used / %available"
+	format = "%used~%percentage_used - %available"
 	threshold_degraded = "1G"
 	format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-	format = "%Y-%m-%d %H:%M:%S"
+	format = "%b/%d %H:%M:%S"
 }

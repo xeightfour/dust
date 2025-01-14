@@ -112,7 +112,7 @@ client.placeholder $overlay0 $base $text $overlay0 $overlay0
 client.background $base
 
 bar {
-	status_command i3status
+	status_command ~/scripts/i3status-wrapper.sh
 	separator_symbol "|"
 	mode hide
 	modifier Mod4
@@ -141,12 +141,13 @@ smart_gaps off
 workspace 2 gaps inner 0px
 workspace 2 gaps outer 0px
 
-for_window [all] title_format "%class · %title"
+for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
 
-for_window [all] border normal 2
-for_window [class="(?i)telegram|sioyek|zathura|st-256color|alacritty|firefox|mousepad|chromium"] border pixel 2
+default_border normal 2
+for_window [class="(?i)telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium"] border pixel 2
+for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
 bindsym $mod+c move position center
@@ -162,7 +163,8 @@ bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -t
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 
+bindcode Mod1+Shift+10 exec --no-startup-id setxkbmap -layout us && killall i3bar && i3bar --bar_id=bar-0
+bindcode Mod1+Shift+11 exec --no-startup-id setxkbmap -layout ir && killall i3bar && i3bar --bar_id=bar-0
+
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
 exec_always --no-startup-id feh --bg-scale ~/assets/wallpaper.jpg --no-fehbg
-exec_always --no-startup-id setxkbmap -layout us,ir -option grp:alt_shift_toggle
-
