@@ -1,5 +1,5 @@
 [general]
-import = [ "~/.config/alacritty/catppuccin-mocha.toml" ]
+import = [ '~/.config/alacritty/abstract-dark.toml' ]
 
 [window]
 dynamic_padding = true
@@ -12,8 +12,8 @@ y = 2
 size = 16
 
 [font.normal]
-family = "JetBrains Mono"
-style = "Medium"
+family = 'JetBrains Mono'
+style = 'Medium'
 
 [font.bold]
-style = "ExtraBold Italic"
+style = 'ExtraBold Italic'
