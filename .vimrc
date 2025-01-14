@@ -9,7 +9,7 @@ set foldmethod=marker
 
 set tabstop=4
 set shiftwidth=4
-set cinoptions=(s,m1
+set cinoptions=g0,(s,m1
 
 set cursorlineopt=screenline,number
 set cursorline

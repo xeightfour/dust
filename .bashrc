@@ -27,7 +27,7 @@ alias diff='diff --color=auto'
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias stp='~/scripts/setup.sh'
 alias dset='~/scripts/dset.sh'
-alias lck='i3lock -i ~/assets/lockscreen.png -t'
+alias lck='i3lock -i ~/assets/lockscreen.png -tk'
 
 function xin {
 	if (( $EUID == 0 )); then
@@ -35,8 +35,8 @@ function xin {
 		return -1
 	fi
 	echo xin
-	sudo ~/scripts/setup.sh 1 || return
-	sudo ~/scripts/parre.py &
+	sudo ~/scripts/setup.sh 1 || return 1
+	{ sudo ~/scripts/parre.py & } || return 1
 	cd ~ && startx
 }
 
