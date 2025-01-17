@@ -135,11 +135,10 @@ floating_minimum_size 1000 x 800
 
 title_align center
 hide_edge_borders both
-gaps inner 8px
+gaps inner 0px
 smart_gaps off
 
-workspace 2 gaps inner 0px
-workspace 2 gaps outer 0px
+workspace 1 gaps inner 8px
 
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
@@ -149,6 +148,8 @@ default_border normal 2
 for_window [class="(?i)telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium"] border pixel 2
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
+
+bindsym XF86TouchpadToggle exec --no-startup-id ~/scripts/touchpad.sh
 
 bindsym $mod+c move position center
 

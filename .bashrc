@@ -28,6 +28,7 @@ alias ply='mpv --no-vid --loop-playlist=inf'
 alias stp='~/scripts/setup.sh'
 alias dset='~/scripts/dset.sh'
 alias lck='i3lock -i ~/assets/lockscreen.png -tk'
+alias tch='~/scripts/touchpad.sh'
 
 function xin {
 	if (( $EUID == 0 )); then
