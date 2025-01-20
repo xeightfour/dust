@@ -135,10 +135,13 @@ floating_minimum_size 1000 x 800
 
 title_align center
 hide_edge_borders both
-gaps inner 0px
+gaps inner 8px
 smart_gaps off
 
-workspace 1 gaps inner 8px
+workspace 2 gaps inner 0px
+workspace 2 gaps outer 0px
+workspace 3 gaps inner 0px
+workspace 3 gaps outer 0px
 
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
