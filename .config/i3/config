@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:JetBrains Mono ExtraBold 14
+font pango:Envy Code R 16
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -11,7 +11,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f floating toggle
-bindsym $mod+s layout toggle stacking split
+bindsym $mod+Shift+s layout toggle stacking split
 bindsym $mod+Tab layout toggle tabbed split
 
 bindsym $mod+h focus left
@@ -23,6 +23,9 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+bindsym $mod+period focus next
+bindsym $mod+comma focus prev
 
 set $ws1 "1"
 set $ws2 "2"
@@ -73,24 +76,21 @@ mode "resize" {
 	bindsym Shift+k resize shrink down 10 px or 5 ppt
 	bindsym Shift+j resize shrink up 10 px or 5 ppt
 
+	bindsym Control+h resize grow left 80 px or 40 ppt
+	bindsym Control+l resize grow right 80 px or 40 ppt
+	bindsym Control+k resize grow up 80 px or 40 ppt
+	bindsym Control+j resize grow down 80 px or 40 ppt
+
+	bindsym Control+Shift+h resize shrink right 80 px or 40 ppt
+	bindsym Control+Shift+l resize shrink left 80 px or 40 ppt
+	bindsym Control+Shift+k resize shrink down 80 px or 40 ppt
+	bindsym Control+Shift+j resize shrink up 80 px or 40 ppt
+
 	bindsym Escape mode "default"
 	bindsym $mod+r mode "default"
 }
 
-mode "move" {
-	bindsym $mod+tab focus right
-
-	bindsym h move left
-	bindsym j move down
-	bindsym k move up
-	bindsym l move right
-
-	bindsym Escape mode "default"
-	bindsym $mod+Shift+m mode "default"
-}
-
 bindsym $mod+r mode "resize"
-bindsym $mod+Shift+m mode "move"
 
 # Minimized catppuccin-mocha <:
 set $rosewater #f5e0dc
@@ -133,6 +133,7 @@ bar {
 focus_follows_mouse no
 floating_minimum_size 1000 x 800
 
+default_border normal 2
 title_align center
 hide_edge_borders both
 gaps inner 8px
@@ -146,26 +147,30 @@ workspace 3 gaps outer 0px
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-
-default_border normal 2
-for_window [class="(?i)telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium"] border pixel 2
+for_window [class="(?i)telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
-bindsym XF86TouchpadToggle exec --no-startup-id ~/scripts/touchpad.sh
+bindsym Print exec ~/scripts/screenshot
+bindsym Shift+Print exec ~/scripts/screenshot -s
+
+bindsym $mod+s split toggle
 
 bindsym $mod+c move position center
 
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
 bindsym $mod+m exec firefox
-bindsym $mod+z exec --no-startup-id zathura
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x exec --no-startup-id rofi -show run
 bindsym $mod+t exec --no-startup-id telegram-desktop
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
+bindsym XF86TouchpadToggle exec --no-startup-id ~/scripts/touchpad.sh
 
-bindsym $mod+bracketright workspace next
-bindsym $mod+bracketleft workspace prev
+bindsym $mod+Shift+n exec --no-startup-id xrandr --output eDP --gamma 1.0:0.88:0.76
+bindsym $mod+Shift+d exec --no-startup-id xrandr --output eDP --gamma 1:1:1
 
 exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b

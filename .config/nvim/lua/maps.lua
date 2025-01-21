@@ -39,6 +39,5 @@ vmap('B', '^')
 nmap('E', '$')
 vmap('E', '$')
 
-nmap('q', '<>')
 nmap('<esc>', '<>')
 tmap('<esc>', '<c-\\><c-n>')

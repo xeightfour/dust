@@ -1,0 +1,13 @@
+#!/bin/bash
+
+scdir="$HOME/Pictures/Screenshots"
+mkdir -p "$scdir"
+
+fileName="$scdir/screenshot_$(date +'%Y-%b-%d_%H-%M-%S').jpg"
+
+# Take a screenshot using maim
+if [[ $1 == '--select' ]] || [[ $1 == '-s' ]]; then
+	maim -m 8 -s -D "$fileName" && xclip -selection clipboard -t image/jpeg -i "$fileName"
+else
+	maim -m 8 "$fileName" && xclip -selection clipboard -t image/jpeg -i "$fileName"
+fi
