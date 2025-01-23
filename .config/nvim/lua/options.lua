@@ -13,9 +13,11 @@ opt.cursorlineopt = { 'screenline', 'number' }
 opt.cursorline = true
 
 opt.numberwidth = 4
-opt.relativenumber = true
+opt.relativenumber = false
 opt.number = true
 
 opt.shortmess:append { I = true }
 opt.listchars:append { trail = '·', tab = '│  ' }
 opt.list = true
+
+opt.lazyredraw = true

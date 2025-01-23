@@ -7,7 +7,7 @@ if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
 fi
 
 # CPU
-echo balance_power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+echo balance_performance | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
 
 # GPU
 echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level

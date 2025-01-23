@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:Envy Code R 16
+font pango:Departure Mono 14
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%

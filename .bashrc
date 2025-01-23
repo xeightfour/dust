@@ -49,7 +49,7 @@ function hibernate {
 
 # Good old friends...
 function ass {
-	name=$(echo $1 | rev | cut -d '.' -f 2- | rev)
+	name=$(echo "$1" | rev | cut -d '.' -f 2- | rev)
 	if ! [[ -z $2 ]]; then
 		g++ $1 -Wall -Wextra "$2" -std=c++20 -O2 -o "$name.out"
 	else
@@ -57,15 +57,15 @@ function ass {
 	fi
 }
 function run {
-	name=$(echo $1 | rev | cut -d '.' -f 2- | rev)
+	name=$(echo "$1" | rev | cut -d '.' -f 2- | rev)
 	./"$name.out"
 }
 function cnr {
-	ass $1 && run $1
+	ass "$1" && run "$1"
 }
 function gen {
 	for name in $@; do
-		ext=$(echo $name | rev | cut -d '.' -f 1 | rev)
+		ext=$(echo "$name" | rev | cut -d '.' -f 1 | rev)
 		cp -f ~/codoin/gp/templates/"main.$ext" ./"$name"
 	done
 }
@@ -76,5 +76,5 @@ export -f cnr
 export -f gen
 
 function call {
-	echo $1 | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call; echo
+	echo "$1" | sudo tee /proc/acpi/call > /dev/null && sudo cat /proc/acpi/call; echo
 }

@@ -5,15 +5,11 @@ import = [ '~/.config/alacritty/abstract-dark.toml' ]
 dynamic_padding = true
 
 [window.padding]
-x = 2
-y = 2
+x = 0
+y = 0
 
 [font]
-size = 16
+size = 17
 
 [font.normal]
-family = 'JetBrains Mono'
-style = 'Medium'
-
-[font.bold]
-style = 'ExtraBold Italic'
+family = 'Departure Mono'

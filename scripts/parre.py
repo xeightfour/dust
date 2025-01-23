@@ -2,7 +2,7 @@
 
 import time, os, sys, signal, traceback, setproctitle, psutil
 
-passive = 56
+passive = 55
 
 def call(command):
     acpi = open('/proc/acpi/call', 'w')
