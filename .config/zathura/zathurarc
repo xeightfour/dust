@@ -35,5 +35,5 @@ set index-active-fg '#d4d4d4'
 set notification-bg '#3a3a3a'
 set notification-fg '#d4d4d4'
 
-set font 'Departure Mono 18'
+set font 'Departure Mono 16'
 set scroll-step 125

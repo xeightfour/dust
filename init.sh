@@ -9,10 +9,6 @@ if ! [[ -f ~/git-prompt.sh ]]; then
 	curl -so ~/git-prompt.sh 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || bounce
 fi
 
-dust=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
-chmod +x "$dust"/scripts/*
-"$dust"/scripts/dset.sh || bounce
-
 # TODO install packages
 
 echo 'All done <:'

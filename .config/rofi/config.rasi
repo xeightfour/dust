@@ -9,6 +9,6 @@ element-icon {
 }
 
 configuration {
-	dpi: 300;
+	dpi: 150;
 	show-icons: true;
 }

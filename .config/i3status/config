@@ -1,14 +1,13 @@
 general {
 	output_format = i3bar
 	colors = true
-	interval = 20
+	interval = 5
 }
 
 order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
 order += "volume master"
-order += "battery all"
 order += "disk /"
 order += "cpu_temperature 0"
 order += "load"
@@ -31,12 +30,6 @@ volume master {
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
-}
-
-battery all {
-	format = "%status %percentage %remaining~%consumption"
-	last_full_capacity = true
-	low_threshold = 60
 }
 
 disk "/" {

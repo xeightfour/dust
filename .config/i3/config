@@ -147,7 +147,7 @@ workspace 3 gaps outer 0px
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
+for_window [class="(?i)nemo|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
@@ -167,10 +167,9 @@ bindsym $mod+x exec --no-startup-id rofi -show run
 bindsym $mod+t exec --no-startup-id telegram-desktop
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
-bindsym XF86TouchpadToggle exec --no-startup-id ~/scripts/touchpad.sh
 
-bindsym $mod+Shift+n exec --no-startup-id xrandr --output eDP --gamma 1.0:0.88:0.76
-bindsym $mod+Shift+d exec --no-startup-id xrandr --output eDP --gamma 1:1:1
+bindsym $mod+Shift+n exec --no-startup-id xrandr --output HDMI-A-3 --gamma 1.0:0.88:0.76
+bindsym $mod+Shift+d exec --no-startup-id xrandr --output HDMI-A-3 --gamma 1:1:1
 
 exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id pkill picom; pidwait picom; picom -b
