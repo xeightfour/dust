@@ -147,7 +147,7 @@ workspace 3 gaps outer 0px
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)nemo|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
+for_window [class="(?i)google-chrome|nemo|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
