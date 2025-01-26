@@ -161,10 +161,10 @@ bindsym $mod+c move position center
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
 
-bindsym $mod+m exec firefox
+bindsym $mod+Shift+m exec firefox
+bindsym $mod+m exec --no-startup-id google-chrome-stable
 bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+x exec --no-startup-id rofi -show run
-bindsym $mod+t exec --no-startup-id telegram-desktop
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
 
