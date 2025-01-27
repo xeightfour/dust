@@ -1,6 +1,10 @@
 # Check if ran interactively
 [[ $- != *i* ]] && return
 
+if [[ ":$PATH:" != *":$HOME/scripts:"* ]]; then
+	export PATH="$HOME/scripts:$PATH"
+fi
+
 HISTSIZE=4000
 HISTFILESIZE=10000
 shopt -s histappend
