@@ -6,8 +6,8 @@ uniform float op; // Opacity
 uniform float t; // Time
 
 // Scanline settings
-uniform float sf = 0.9; // Scanline frequency
-uniform float si = 0.4; // Scanline intensity
+uniform float sf = 0.6; // Scanline frequency
+uniform float si = 0.2; // Scanline intensity
 uniform bool gd = false; // Grid on x-axis
 
 // Distortion settings
