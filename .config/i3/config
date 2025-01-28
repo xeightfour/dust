@@ -151,8 +151,8 @@ for_window [class="(?i)google-chrome|nemo|telegram|sioyek|zathura|alacritty|fire
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
-bindsym Print exec ~/scripts/screenshot
-bindsym Shift+Print exec ~/scripts/screenshot -s
+bindsym Print exec screenshot
+bindsym Shift+Print exec screenshot -s
 
 bindsym $mod+s split toggle
 
