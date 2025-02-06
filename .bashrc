@@ -27,6 +27,7 @@ alias diff='diff --color=auto'
 
 alias ply='mpv --no-vid --loop-playlist=inf'
 alias lck='i3lock -i ~/assets/lockscreen.png -tk'
+alias slp='echo mem | sudo tee /sys/power/state'
 
 function xin {
 	if (( $EUID == 0 )); then
