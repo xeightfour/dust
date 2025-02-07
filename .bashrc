@@ -9,9 +9,6 @@ HISTSIZE=4000
 HISTFILESIZE=10000
 shopt -s histappend
 
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
-
 if [[ -f ~/git-prompt.sh ]]; then
 	source ~/git-prompt.sh
 	PS1='[\[\e[92m\]\u@\h\[\e[0m\] \[\e[94;1m\]\W\[\e[0m\]]\[\e[93m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]❯ '
