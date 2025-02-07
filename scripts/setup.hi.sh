@@ -9,11 +9,11 @@ fi
 # CPU
 echo balance_performance | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
 echo 400000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
-echo 3000000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+echo 2500000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
 echo 1 | tee /sys/devices/system/cpu/cpufreq/boost
 
 # GPU
-echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
+echo low | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
 echo battery | tee /sys/class/drm/card*/device/power_dpm_state
 
 # CPU & GPU
