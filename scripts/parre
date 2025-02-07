@@ -32,7 +32,7 @@ def updateLED():
         call('\\_SB.SGOV 0x11 1')
     if getTemp() >= 50:
         call('\\_SB.SGOV 0x11 0')
-        os.system('/home/soheil/scripts/setup.sh')
+        os.system('/home/soheil/scripts/setup')
 
 def updateFan():
     global passive

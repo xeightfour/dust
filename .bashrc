@@ -39,8 +39,6 @@ function xin {
 		return -1
 	fi
 	echo xin
-	sudo ~/scripts/setup 1 || return 1
-	{ sudo ~/scripts/parre & } || return 1
 	cd ~ && startx
 }
 

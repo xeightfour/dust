@@ -8,6 +8,9 @@ fi
 
 # CPU
 echo balance_performance | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+echo 400000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
+echo 3000000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+echo 1 | tee /sys/devices/system/cpu/cpufreq/boost
 
 # GPU
 echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
@@ -17,4 +20,4 @@ echo battery | tee /sys/class/drm/card*/device/power_dpm_state
 echo 3 | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
 # Limit max charge level
-echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold

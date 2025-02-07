@@ -1,10 +1,15 @@
-#!/usr/bin/sudo bash
-
-# Kill Bluetooth on startup
-if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
-	echo 'Turning Bluetooth off!'
-	rfkill block bluetooth
-fi
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
 
 # CPU
 echo power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
@@ -21,3 +26,7 @@ echo 3 | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
 # Limit max charge level
 echo 80 | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+
+/home/soheil/scripts/parre &
+
+exit 0
