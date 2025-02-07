@@ -11,6 +11,13 @@
 #
 # By default this script does nothing.
 
+exec > /var/log/rc.local.log 2>&1
+set -x
+
+# Bluetooth
+echo 'Turning Bluetooth off!'
+rfkill block bluetooth
+
 # CPU
 echo power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
 echo 400000 | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq

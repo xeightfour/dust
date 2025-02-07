@@ -50,7 +50,7 @@ def main():
         while True:
             updateLED()
             updateFan()
-            time.sleep(4)
+            time.sleep(5)
     except:
         pass
     finally:
