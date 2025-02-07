@@ -174,4 +174,4 @@ bindsym $mod+Shift+d exec --no-startup-id xrandr --output eDP --gamma 1:1:1
 
 exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id picom -b || pkill -SIGUSR1 picom
-exec_always --no-startup-id feh --bg-scale ~/assets/wallpaper.jpg --no-fehbg
+exec_always --no-startup-id feh --bg-scale ~/assets/wallpaper --no-fehbg
