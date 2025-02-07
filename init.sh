@@ -11,7 +11,7 @@ fi
 
 dust=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
 chmod +x "$dust"/scripts/*
-"$dust"/scripts/dset.sh || bounce
+"$dust"/scripts/dset || bounce
 
 # TODO install packages
 

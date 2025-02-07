@@ -7,10 +7,10 @@ if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
 fi
 
 # Reset values
-echo balance_power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference &> /dev/null
+echo performance | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference &> /dev/null
 echo auto | tee /sys/class/drm/card*/device/power_dpm_force_performance_level &> /dev/null
 echo balanced | tee /sys/class/drm/card*/device/power_dpm_state &> /dev/null
-sleep 0.5
+sleep 1.0
 
 # CPU
 echo power | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference

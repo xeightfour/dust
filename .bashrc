@@ -1,6 +1,10 @@
 # Check if ran interactively
 [[ $- != *i* ]] && return
 
+if [[ ":$PATH:" != *":$HOME/scripts:"* ]]; then
+	export PATH="$HOME/scripts:$PATH"
+fi
+
 HISTSIZE=4000
 HISTFILESIZE=10000
 shopt -s histappend
@@ -25,10 +29,9 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 
 alias ply='mpv --no-vid --loop-playlist=inf'
-alias stp='~/scripts/setup.sh'
-alias dset='~/scripts/dset.sh'
+alias stp='setup'
 alias lck='i3lock -i ~/assets/lockscreen.png -tk'
-alias tch='~/scripts/touchpad.sh'
+alias tch='touchpad'
 
 function xin {
 	if (( $EUID == 0 )); then
@@ -36,8 +39,8 @@ function xin {
 		return -1
 	fi
 	echo xin
-	sudo ~/scripts/setup.sh 1 || return 1
-	{ sudo ~/scripts/parre.py & } || return 1
+	sudo ~/scripts/setup 1 || return 1
+	{ sudo ~/scripts/parre & } || return 1
 	cd ~ && startx
 }
 
