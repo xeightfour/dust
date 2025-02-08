@@ -1,14 +1,10 @@
 @theme "/usr/share/rofi/themes/Arc-Dark.rasi"
 
-window {
-	padding: 8px;
-}
-
 element-icon {
-	size: 1.5ch;
+	size: 1.8ch;
 }
 
 configuration {
-	dpi: 300;
+	dpi: 175;
 	show-icons: true;
 }
