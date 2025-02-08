@@ -5,6 +5,8 @@ if [[ ":$PATH:" != *":$HOME/scripts:"* ]]; then
 	export PATH="$HOME/scripts:$PATH"
 fi
 
+export QT_QPA_PLATFORMTHEME=gtk3
+
 HISTSIZE=4000
 HISTFILESIZE=10000
 shopt -s histappend
