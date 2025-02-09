@@ -36,4 +36,4 @@ set recolor-keephue true
 set recolor true
 
 set font 'Departure Mono 18'
-set scroll-step 125
+set scroll-step 110

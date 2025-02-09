@@ -4,4 +4,4 @@
 ^/README.*
 
 init.sh
-rc.local
+misc/*
