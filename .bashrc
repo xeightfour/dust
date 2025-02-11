@@ -7,6 +7,7 @@ fi
 
 export QT_QPA_PLATFORMTHEME=gtk3
 
+export HISTCONTROL=ignoredups:erasedups
 HISTSIZE=4000
 HISTFILESIZE=10000
 shopt -s histappend

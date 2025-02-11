@@ -15,6 +15,7 @@ echo 0 | tee /sys/devices/system/cpu/cpufreq/boost
 # GPU
 echo low | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
 echo battery | tee /sys/class/drm/card*/device/power_dpm_state
+echo 1 | tee /sys/class/drm/card*/device/pp_power_profile_mode
 
 # CPU & GPU
 echo 3 | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
