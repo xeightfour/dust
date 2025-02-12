@@ -19,10 +19,10 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 128px
+bindsym $mod+Shift+j move down 128px
+bindsym $mod+Shift+k move up 128px
+bindsym $mod+Shift+l move right 128px
 
 bindsym $mod+period focus next
 bindsym $mod+comma focus prev
@@ -157,6 +157,7 @@ bindsym Shift+Print exec screenshot -s
 bindsym $mod+s split toggle
 
 bindsym $mod+c move position center
+bindsym $mod+Shift+d move absolute position 1840 px 1120 px
 
 bindsym $mod+bracketright workspace next
 bindsym $mod+bracketleft workspace prev
@@ -169,8 +170,8 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
 bindsym XF86TouchpadToggle exec --no-startup-id touchpad
 
-bindsym $mod+Shift+n exec --no-startup-id xrandr --output eDP --gamma 1.0:0.88:0.76
-bindsym $mod+Shift+d exec --no-startup-id xrandr --output eDP --gamma 1:1:1
+bindsym $mod+Shift+n exec --no-startup-id xrandr --output eDP-1 --gamma 1.0:0.88:0.76
+bindsym $mod+Shift+b exec --no-startup-id xrandr --output eDP-1 --gamma 1:1:1
 
 exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id picom -b || pkill -SIGUSR1 picom
