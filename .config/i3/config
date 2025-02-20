@@ -131,12 +131,14 @@ bar {
 }
 
 focus_follows_mouse no
+floating_maximum_size 1920 x 1200
+
 default_border normal 2
 title_align center
 hide_edge_borders both
+
 gaps inner 8px
 smart_gaps off
-
 workspace 2 gaps inner 0px
 workspace 2 gaps outer 0px
 workspace 3 gaps inner 0px

@@ -5,6 +5,9 @@ if [[ ":$PATH:" != *":$HOME/scripts:"* ]]; then
 	export PATH="$HOME/scripts:$PATH"
 fi
 
+export GTK_THEME=Skeuos-Blue-Dark
+export ICON_THEME=elementary
+export FONT_NAME='Noto Sans 12'
 export QT_QPA_PLATFORMTHEME=gtk3
 
 export HISTCONTROL=ignoredups:erasedups
