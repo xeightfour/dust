@@ -14,6 +14,7 @@
 exec > /var/log/rc.local.log 2>&1
 set -x
 
+sleep 5
 /home/soheil/scripts/setup 1
 /home/soheil/scripts/parre &
 
