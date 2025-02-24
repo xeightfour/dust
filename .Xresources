@@ -1,5 +1,7 @@
 Xft.dpi: 96
 
+Xcursor.size: 30
+
 Sxiv.font: departure mono-16
 Sxiv.background: #1e1e2e
 Sxiv.foreground: #cdd6f4
