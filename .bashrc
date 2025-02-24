@@ -5,6 +5,12 @@ if [[ ":$PATH:" != *":$HOME/scripts:"* ]]; then
 	export PATH="$HOME/scripts:$PATH"
 fi
 
+export EDITOR=nvim
+export VISUAL=nvim
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+
 export GTK_THEME=Skeuos-Blue-Dark
 export ICON_THEME=elementary
 export FONT_NAME='Noto Sans 12'
