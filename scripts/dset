@@ -2,15 +2,19 @@
 
 cwd=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
 
+rm -f $cwd/setup $cwd/../.config/picom/picom.conf
 read -p 'Low or high? [L/h]' stat
 if [[ $stat == [Hh] ]]; then
-	cp "$cwd"/setup.hi.sh "$cwd"/setup
-	"$cwd"/setup
-	cp "$cwd"/../.config/picom/picom.hi.conf "$cwd"/../.config/picom/picom.conf
+	ln -s $cwd/setup-hi.sh $cwd/setup
+	$cwd/setup
+	ln -s $cwd/../.config/picom/picom-hi.conf $cwd/../.config/picom/picom.conf
 else
-	cp "$cwd"/setup.lo.sh "$cwd"/setup
-	"$cwd"/setup
-	cp "$cwd"/../.config/picom/picom.lo.conf "$cwd"/../.config/picom/picom.conf
+	ln -s $cwd/setup-lo.sh $cwd/setup
+	$cwd/setup
+	ln -s $cwd/../.config/picom/picom-lo.conf $cwd/../.config/picom/picom.conf
 fi
+
+# Refresh picom
+pkill -SIGUSR1 picom
 
 echo 'All done <:'

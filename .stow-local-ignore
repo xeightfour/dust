@@ -1,7 +1,7 @@
 \.git
 \.gitignore
 
-^/README.*
+^README.*
 
-init.sh
-misc/*
+^init.sh
+^misc

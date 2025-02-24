@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function bounce {
-	echo '[ERROR] donno what happened >:' && exit 1
+	echo '[ERROR] Something went wrong ):' && exit 1
 }
 
 if ! [[ -f ~/git-prompt.sh ]]; then
@@ -10,9 +10,7 @@ if ! [[ -f ~/git-prompt.sh ]]; then
 fi
 
 dust=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
-chmod +x "$dust"/scripts/*
-"$dust"/scripts/dset || bounce
-
-# TODO install packages
+chmod +x $dust/scripts/*
+$dust/scripts/dset || bounce
 
 echo 'All done <:'
