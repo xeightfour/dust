@@ -5,11 +5,11 @@ cwd=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
 rm -f $cwd/setup $cwd/../.config/picom/picom.conf
 read -p 'Low or high? [L/h]' stat
 if [[ $stat == [Hh] ]]; then
-	ln -s $cwd/setup-hi.sh $cwd/setup
+	ln -s $cwd/setup-hi $cwd/setup
 	$cwd/setup
 	ln -s $cwd/../.config/picom/picom-hi.conf $cwd/../.config/picom/picom.conf
 else
-	ln -s $cwd/setup-lo.sh $cwd/setup
+	ln -s $cwd/setup-lo $cwd/setup
 	$cwd/setup
 	ln -s $cwd/../.config/picom/picom-lo.conf $cwd/../.config/picom/picom.conf
 fi
