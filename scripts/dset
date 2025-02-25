@@ -29,4 +29,4 @@ fi
 # Refresh picom
 pkill -SIGUSR1 picom || bounce 'Failed to refresh picom'
 
-echo '[DSET] All done <:'
+echo 'Updated all configurations <:'

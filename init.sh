@@ -28,4 +28,4 @@ fi
 echo 'Running dset script...'
 "$dust/scripts/dset" || bounce
 
-echo 'All done <:'
+echo 'Initialization was successful!'
