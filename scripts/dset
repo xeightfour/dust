@@ -1,20 +1,32 @@
 #!/bin/bash
 
-cwd=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") &> /dev/null && pwd)
+# Function to handle errors and exit with a message
+function bounce {
+	echo "[ERROR] $1"
+	exit 1
+}
 
-rm -f $cwd/setup $cwd/../.config/picom/picom.conf
-read -p 'Low or high? [L/h]' stat
+# Get the directory of the current script
+cwd=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd) || bounce 'Failed to determine script directory'
+
+# Remove existing setup and picom configuration links
+rm -f "$cwd/setup" "$cwd/../.config/picom/picom.conf" || bounce 'Failed to remove existing setup and picom.conf'
+
+# Prompt the user to choose between low or high settings
+read -p 'Low or high? [L/h] ' stat
+
+# Determine which setup and picom configuration to use based on user input
 if [[ $stat == [Hh] ]]; then
-	ln -s $cwd/setup-hi $cwd/setup
-	$cwd/setup
-	ln -s $cwd/../.config/picom/picom-hi.conf $cwd/../.config/picom/picom.conf
+	ln -s "$cwd/setup-hi" "$cwd/setup" || bounce 'Failed to create symlink for setup-hi'
+	"$cwd/setup" || bounce 'setup-hi failed'
+	ln -s "$cwd/../.config/picom/picom-hi.conf" "$cwd/../.config/picom/picom.conf" || bounce 'Failed to create symlink for picom-hi.conf'
 else
-	ln -s $cwd/setup-lo $cwd/setup
-	$cwd/setup
-	ln -s $cwd/../.config/picom/picom-lo.conf $cwd/../.config/picom/picom.conf
+	ln -s "$cwd/setup-lo" "$cwd/setup" || bounce 'Failed to create symlink for setup-lo'
+	"$cwd/setup" || bounce 'setup-lo failed'
+	ln -s "$cwd/../.config/picom/picom-lo.conf" "$cwd/../.config/picom/picom.conf" || bounce 'Failed to create symlink for picom-lo.conf'
 fi
 
 # Refresh picom
-pkill -SIGUSR1 picom
+pkill -SIGUSR1 picom || bounce 'Failed to refresh picom'
 
 echo 'All done <:'

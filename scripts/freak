@@ -1,22 +1,53 @@
 #!/usr/bin/env perl
-
 use 5.040;
+use strict;
+use warnings;
 
+# Define the key for XOR operation
 my $key = 'x';
 
-foreach (@ARGV) {
-	open my $in, '<:raw', $_ or die "Can't open $_";
+# Function to handle errors and exit with a message
+sub bounce {
+	my ($message) = @_;
+	print "[ERROR] $message\n";
+	exit 1;
+}
+
+# Check if at least one argument is provided
+if (@ARGV == 0) {
+	bounce 'No files provided. Please specify one or more files to process.';
+}
+
+# Iterate over each file provided as an argument
+foreach my $file (@ARGV) {
+	# Open the input file for reading in raw mode
+	open my $in, '<:raw', $file or bounce "Can't open $file for reading";
+
+	# Set binary mode for the input file
 	binmode $in;
+
+	# Read up to 128 million bytes from the file
 	my $data = '';
 	my $bytes = read $in, $data, 128_000_000;
-	close $in;
 
-	$data ^.= $key x $bytes;
+	# Close the input file
+	close $in or bounce "Can't close $file after reading";
 
-	open my $out, '>:raw', $_ or die "Can't write to $_";
+	# Perform XOR operation on the data with the key
+	$data ^.= ($key x $bytes);
+
+	# Open the output file for writing in raw mode
+	open my $out, '>:raw', $file or bounce "Can't open $file for writing";
+
+	# Set binary mode for the output file
 	binmode $out;
-	print $out $data;
-	close $out;
 
-	print "Processed $bytes bytes from $_\n";
+	# Write the modified data back to the file
+	print $out $data or bounce "Can't write to $file";
+
+	# Close the output file
+	close $out or bounce "Can't close $file after writing";
+
+	# Print the number of bytes processed
+	print "Processed $bytes bytes from $file\n";
 }

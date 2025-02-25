@@ -2,65 +2,96 @@
 
 import time, os, sys, signal, traceback, setproctitle, psutil
 
-passive = 55
+# Define the passive temperature threshold
+PASSIVE_TEMP_THRESHOLD = 55
 
+# Function to send a command to /proc/acpi/call
 def call(command):
-    acpi = open('/proc/acpi/call', 'w')
-    acpi.write(command)
-    acpi.close()
-    acpi = open('/proc/acpi/call')
-    response = acpi.read()
-    acpi.close()
-    return response
+    try:
+        with open('/proc/acpi/call', 'w') as acpi:
+            acpi.write(command)
+        with open('/proc/acpi/call', 'r') as acpi:
+            response = acpi.read().strip()
+        return response
+    except IOError as e:
+        print(f"[ERROR] Failed to communicate with /proc/acpi/call: {e}")
+        sys.exit(1)
 
-def getTemp():
-    return int(call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4], 16)
+# Function to get the CPU temperature
+def get_temp():
+    try:
+        temp_hex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
+        return int(temp_hex, 16)
+    except ValueError as e:
+        print(f"[ERROR] Failed to parse temperature: {e}")
+        sys.exit(1)
 
-def cleanup(signal = None, frame = None):
-    call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
-    call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
-
-    call('\\_SB.SGOV 0x11 1')
-    call('\\_SB.SGOV 0x18 1')
-
-    print('Reset fan control to automatic. Exiting...')
-    sys.exit(0)
-
-def updateLED():
-    call('\\_SB.SGOV 0x18 0')
-    if getTemp() < 50:
-        call('\\_SB.SGOV 0x11 1')
-    if getTemp() >= 50:
-        call('\\_SB.SGOV 0x11 0')
-        os.system('/home/soheil/scripts/setup')
-
-def updateFan():
-    global passive
-    if getTemp() <= passive:
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
-        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
-    else:
+# Function to reset fan control to automatic and exit
+def cleanup(signal=None, frame=None):
+    try:
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
+        call('\\_SB.SGOV 0x11 1')
+        call('\\_SB.SGOV 0x18 1')
+        print('Reset fan control to automatic. Exiting...')
+    except Exception as e:
+        print(f"[ERROR] Failed to reset fan control: {e}")
+    finally:
+        sys.exit(0)
 
+# Function to update LED based on temperature
+def update_led():
+    try:
+        call('\\_SB.SGOV 0x18 0')
+        temp = get_temp()
+        if temp < 50:
+            call('\\_SB.SGOV 0x11 1')
+        else:
+            call('\\_SB.SGOV 0x11 0')
+            home_dir = os.path.expanduser('~')
+            os.system(f'{home_dir}/scripts/setup')
+    except Exception as e:
+        print(f"[ERROR] Failed to update LED: {e}")
+
+# Function to update fan speed based on temperature
+def update_fan():
+    global PASSIVE_TEMP_THRESHOLD
+    try:
+        temp = get_temp()
+        if temp <= PASSIVE_TEMP_THRESHOLD:
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
+        else:
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
+    except Exception as e:
+        print(f"[ERROR] Failed to update fan: {e}")
+
+# Main function to run the fan control loop
 def main():
+    # Register cleanup function for SIGTERM
     signal.signal(signal.SIGTERM, cleanup)
     print('Now parre controls fans <:')
+
     try:
         while True:
-            updateLED()
-            updateFan()
+            update_led()
+            update_fan()
             time.sleep(5)
-    except:
-        pass
+    except KeyboardInterrupt:
+        print("Interrupted by user. Cleaning up...")
+    except Exception as e:
+        print(f"[ERROR] Unexpected error: {e}")
     finally:
         cleanup()
 
+# Check if another instance of parre is already running
 if __name__ == '__main__':
-    for i, p in enumerate(psutil.process_iter()):
-        s = p.name()
-        if 'parre' in s.lower():
+    for proc in psutil.process_iter(['pid', 'name']):
+        if 'parre' in proc.info['name'].lower() and proc.info['pid'] != os.getpid():
             print('parre is already running >:')
-            exit()
+            sys.exit(1)
+
+    # Set the process title
     setproctitle.setproctitle('parre')
     main()
