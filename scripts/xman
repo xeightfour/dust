@@ -18,13 +18,13 @@ function call {
 	fi
 	cat /proc/acpi/call
 	if [[ $? -ne 0 ]]; then
-		echo "Failed to read from /proc/acpi/call"
+		echo 'Failed to read from /proc/acpi/call'
 		exit 1
 	fi
 }
 
 # Function to kill and wait for a process
-function killp {
+function kill_wait {
 	local process_name="$1"
 	pkill "$process_name"
 	if [[ $? -ne 0 ]]; then
@@ -41,8 +41,8 @@ function killp {
 # Main script execution
 check_root
 
-# Kill and wait for the 'parre' process
-killp 'parre'
+# Kill and wait for the `parre` process
+kill_wait 'parre'
 
 # Call ACPI methods
 call '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85' > /dev/null

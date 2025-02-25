@@ -63,7 +63,7 @@ function xin {
 }
 
 function hibernate {
-	echo 'Hibernating...'
+	sudo echo 'Hibernating...'
 	lck
 	sudo systemctl hibernate
 }
@@ -76,7 +76,7 @@ function ass {
 		g++ "$1" -Wall -Wextra -std=c++20 -O2 -o "${name}.out"
 	fi
 	if [[ $? -ne 0 ]]; then
-		echo "Compilation failed."
+		echo 'Compilation failed.'
 		return 1
 	fi
 }
