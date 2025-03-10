@@ -3,51 +3,35 @@ use 5.040;
 use strict;
 use warnings;
 
-# Define the key for XOR operation
+# Define the XOR key
 my $key = 'x';
 
 # Function to handle errors and exit with a message
 sub bounce {
-	my ($message) = @_;
-	print "[ERROR] $message\n";
+	say "[ERROR] $_[0]";
 	exit 1;
 }
 
-# Check if at least one argument is provided
-if (@ARGV == 0) {
-	bounce 'No files provided. Please specify one or more files to process.';
-}
+# Ensure at least one file argument is provided
+@ARGV or bounce 'No files provided. Please specify one or more files to process.';
 
-# Iterate over each file provided as an argument
-foreach my $file (@ARGV) {
-	# Open the input file for reading in raw mode
-	open my $in, '<:raw', $file or bounce "Can't open $file for reading";
-
-	# Set binary mode for the input file
+# Process each file
+for my $file (@ARGV) {
+	# Read file contents
+	open my $in, '<:raw', $file or bounce "Can't open $file for reading >=";
 	binmode $in;
+	my $data = do { local $/; <$in> };
+	close $in or bounce "Can't close $file after reading >=";
 
-	# Read up to 128 million bytes from the file
-	my $data = '';
-	my $bytes = read $in, $data, 128_000_000;
+	# Perform XOR operation
+	$data ^.= ($key x length $data);
 
-	# Close the input file
-	close $in or bounce "Can't close $file after reading";
-
-	# Perform XOR operation on the data with the key
-	$data ^.= ($key x $bytes);
-
-	# Open the output file for writing in raw mode
-	open my $out, '>:raw', $file or bounce "Can't open $file for writing";
-
-	# Set binary mode for the output file
+	# Write modified data back to the file
+	open my $out, '>:raw', $file or bounce "Can't open $file for writin >=";
 	binmode $out;
-
-	# Write the modified data back to the file
-	print $out $data or bounce "Can't write to $file";
-
-	# Close the output file
-	close $out or bounce "Can't close $file after writing";
+	print $out $data or bounce "Can't write to $file >=";
+	close $out or bounce "Can't close $file after writing >=";
 
 	# Print the number of bytes processed
-	print "Processed $bytes bytes from $file\n";
+	say "Processed ", length($data), " bytes from $file <:";
 }

@@ -1,51 +1,14 @@
 #!/bin/bash
 
-# Function to check if the script is run as root
-function check_root {
-	if [[ $(id -u) -ne 0 ]]; then
-		echo 'This script requires root privileges. Elevating privileges...'
-		exec sudo "$0" "$@"
-	fi
-}
+# Ensure script runs as root
+[[ $(id -u) -ne 0 ]] && exec sudo "$0" "$@"
 
-# Function to call ACPI method
-function call {
-	local command="$1"
-	echo "$command" | tee /proc/acpi/call > /dev/null
-	if [[ $? -ne 0 ]]; then
-		echo "Failed to write to /proc/acpi/call with command: $command"
-		exit 1
-	fi
-	cat /proc/acpi/call
-	if [[ $? -ne 0 ]]; then
-		echo 'Failed to read from /proc/acpi/call'
-		exit 1
-	fi
-}
-
-# Function to kill and wait for a process
-function kill_wait {
-	local process_name="$1"
-	pkill "$process_name"
-	if [[ $? -ne 0 ]]; then
-		echo "No process named '$process_name' found to kill."
-	else
-		echo "Killed process '$process_name'. Waiting for it to terminate..."
-		while pgrep -x "$process_name" > /dev/null; do
-			sleep 0.1
-		done
-		echo "Process '$process_name' terminated."
-	fi
-}
-
-# Main script execution
-check_root
-
-# Kill and wait for the `parre` process
-kill_wait 'parre'
+# Kill parre process if running
+pkill parre && { echo 'Killed parre, waiting...'; while pgrep -x parre > /dev/null; do sleep 0.1; done; }
 
 # Call ACPI methods
-call '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85' > /dev/null
-call '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b' > /dev/null
+for cmd in '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85' '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b'; do
+	echo "$cmd" | tee /proc/acpi/call > /dev/null || { echo "Failed to execute: $cmd >="; exit 1; }
+done
 
 echo 'BIOS/ACPI Mode set successfully <:'

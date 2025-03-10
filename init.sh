@@ -1,31 +1,41 @@
 #!/bin/bash
 
-# Function to handle errors and exit with a message
-function bounce {
-    echo '[ERROR] Something went wrong ):'
-    exit 1
+# Exit on any error
+set -e
+
+# Base directory of the script
+dust="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)" || {
+	echo '[ERROR] Failed to determine script directory >=' >&2
+	exit 1
 }
 
-# Check if git-prompt.sh exists, if not, download it
+# Download git-prompt.sh if it doesn't exist
 if ! [[ -f ~/git-prompt.sh ]]; then
-    echo 'Receiving git-prompt.sh...'
-    curl -so ~/git-prompt.sh 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || bounce
+	echo 'Downloading git-prompt.sh...'
+	curl -so ~/git-prompt.sh 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || {
+		echo '[ERROR] Failed to download git-prompt.sh >=' >&2
+		exit 1
+	}
 fi
 
-# Get the directory of the current script
-dust=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd) || bounce
-
-# Ensure the scripts directory exists and contains executable scripts
-if [[ -d "$dust/scripts" ]]; then
-    echo "Making scripts in $dust/scripts executable..."
-    chmod +x "$dust/scripts"/* || bounce
+# Check and make scripts executable
+scripts="$dust/scripts"
+if [[ -d $scripts ]]; then
+	echo "Making scripts in $scripts executable..."
+	chmod +x "$scripts"/* || {
+		echo '[ERROR] Failed to make scripts executable >=' >&2
+		exit 1
+	}
 else
-    echo "[ERROR] Scripts directory not found at $dust/scripts"
-    bounce
+	echo "[ERROR] Directory not found: $scripts" >&2
+	exit 1
 fi
 
-# Run the dset script
+# Run dset script
 echo 'Running dset script...'
-"$dust/scripts/dset" || bounce
+"$scripts/dset" || {
+	echo '[ERROR] dset script failed >=' >&2
+	exit 1
+}
 
 echo 'Initialization was successful!'

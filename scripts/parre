@@ -3,7 +3,7 @@
 import time, os, sys, signal, traceback, setproctitle, psutil
 
 # Define the passive temperature threshold
-PASSIVE_TEMP_THRESHOLD = 55
+psv = 55
 
 # Function to send a command to /proc/acpi/call
 def call(command):
@@ -14,16 +14,16 @@ def call(command):
             response = acpi.read().strip()
         return response
     except IOError as e:
-        print(f"[ERROR] Failed to communicate with /proc/acpi/call: {e}")
+        print(f"[ERROR] Failed to communicate with /proc/acpi/call: {e} >=")
         sys.exit(1)
 
 # Function to get the CPU temperature
-def get_temp():
+def getTemp():
     try:
-        temp_hex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
-        return int(temp_hex, 16)
+        tempHex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
+        return int(tempHex, 16)
     except ValueError as e:
-        print(f"[ERROR] Failed to parse temperature: {e}")
+        print(f"[ERROR] Failed to parse temperature: {e} >=")
         sys.exit(1)
 
 # Function to reset fan control to automatic and exit
@@ -35,37 +35,37 @@ def cleanup(signal=None, frame=None):
         call('\\_SB.SGOV 0x18 1')
         print('Reset fan control to automatic. Exiting...')
     except Exception as e:
-        print(f"[ERROR] Failed to reset fan control: {e}")
+        print(f"[ERROR] Failed to reset fan control: {e} >=")
     finally:
         sys.exit(0)
 
 # Function to update LED based on temperature
-def update_led():
+def updateLED():
     try:
         call('\\_SB.SGOV 0x18 0')
-        temp = get_temp()
+        temp = getTemp()
         if temp < 50:
             call('\\_SB.SGOV 0x11 1')
         else:
             call('\\_SB.SGOV 0x11 0')
-            home_dir = os.path.expanduser('~')
-            os.system(f'{home_dir}/scripts/setup')
+            homeDir = os.path.expanduser('~')
+            os.system(f'{homeDir}/scripts/setup')
     except Exception as e:
-        print(f"[ERROR] Failed to update LED: {e}")
+        print(f"[ERROR] Failed to update LED: {e} >=")
 
 # Function to update fan speed based on temperature
-def update_fan():
-    global PASSIVE_TEMP_THRESHOLD
+def updateFan():
+    global psv
     try:
-        temp = get_temp()
-        if temp <= PASSIVE_TEMP_THRESHOLD:
+        temp = getTemp()
+        if temp <= psv:
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
         else:
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
     except Exception as e:
-        print(f"[ERROR] Failed to update fan: {e}")
+        print(f"[ERROR] Failed to update fan: {e} >=")
 
 # Main function to run the fan control loop
 def main():
@@ -75,8 +75,8 @@ def main():
 
     try:
         while True:
-            update_led()
-            update_fan()
+            updateLED()
+            updateFan()
             time.sleep(5)
     except KeyboardInterrupt:
         print("Interrupted by user. Cleaning up...")
@@ -89,7 +89,7 @@ def main():
 if __name__ == '__main__':
     for proc in psutil.process_iter(['pid', 'name']):
         if 'parre' in proc.info['name'].lower() and proc.info['pid'] != os.getpid():
-            print('parre is already running >:')
+            print('parre is already running!')
             sys.exit(1)
 
     # Set the process title

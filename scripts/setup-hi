@@ -1,68 +1,45 @@
 #!/bin/bash
 
-# Function to check if the script is run as root
-function check_root {
-	if [[ $(id -u) -ne 0 ]]; then
-		echo 'This script requires root privileges. Elevating privileges...'
-		exec sudo "$0" "$@"
-	fi
-}
+# Ensure script runs as root
+if [[ $(id -u) -ne 0 ]]; then
+	echo 'This script requires root privileges. Elevating...'
+	exec sudo "$0" "$@"
+fi
 
-# Function to turn off Bluetooth
-function turn_off_bluetooth {
-	if [[ $# -eq 1 ]] && [[ $1 -eq 1 ]]; then
-		echo 'Turning Bluetooth off!'
-		rfkill block bluetooth
-		if [[ $? -ne 0 ]]; then
-			echo 'Failed to turn off Bluetooth ):'
-			exit 1
-		fi
-	fi
-}
+# Turn off Bluetooth if argument is 1
+if [[ $1 -eq 1 ]]; then
+	echo 'Turning off Bluetooth...'
+	rfkill block bluetooth || { echo 'Failed to disable Bluetooth >:'; exit 1; }
+fi
 
-# Function to reset values
-function reset_values {
-	echo 'Resetting values...'
-	echo 'balance_performance' | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
-	echo '800000' | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
-	echo '2000000' | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
-	echo '0' | tee /sys/devices/system/cpu/cpufreq/boost
-	echo 'auto' | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-	echo 'balanced' | tee /sys/class/drm/card*/device/power_dpm_state
-	echo '3' | tee /sys/class/drm/card*/device/pp_power_profile_mode
-	echo '1' | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
-	if [[ $? -ne 0 ]]; then
-		echo "Failed to reset values."
-		exit 1
-	fi
-}
+# Reset system performance values
+echo 'Resetting values...'
+tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'balance_performance'
+tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '800000'
+tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq <<< '2000000'
+tee /sys/devices/system/cpu/cpufreq/boost <<< '0'
 
-# Function to apply new settings
-function apply_new_settings {
-	echo 'Applying new settings...'
-	# CPU
-	echo 'balance_power' | tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
-	echo '400000' | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
-	echo '2500000' | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
-	echo '1' | tee /sys/devices/system/cpu/cpufreq/boost
-	# GPU
-	echo 'low' | tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-	echo 'battery' | tee /sys/class/drm/card*/device/power_dpm_state
-	echo '1' | tee /sys/class/drm/card*/device/pp_power_profile_mode
-	# CPU & GPU
-	echo '3' | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
-	# Limit max charge level
-	echo '80' | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
-	if [[ $? -ne 0 ]]; then
-		echo 'Failed to apply new settings.'
-		exit 1
-	fi
-}
+tee /sys/class/drm/card*/device/power_dpm_force_performance_level <<< 'auto'
+tee /sys/class/drm/card*/device/power_dpm_state <<< 'balanced'
+tee /sys/class/drm/card*/device/pp_power_profile_mode <<< '3'
 
-# Main script execution
-check_root
-turn_off_bluetooth "$1"
-reset_values
-sleep 1.6
-apply_new_settings
-echo 'All settings applied successfully <:'
+tee /sys/class/thermal/thermal_zone0/cdev*/cur_state <<< '1'
+
+sleep 1.101
+
+# Apply new settings
+echo 'Applying new settings...'
+tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'balance_power'
+tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '400000'
+tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq <<< '2600000'
+tee /sys/devices/system/cpu/cpufreq/boost <<< '1'
+
+tee /sys/class/drm/card*/device/power_dpm_force_performance_level <<< 'low'
+tee /sys/class/drm/card*/device/power_dpm_state <<< 'battery'
+tee /sys/class/drm/card*/device/pp_power_profile_mode <<< '1'
+
+tee /sys/class/thermal/thermal_zone0/cdev*/cur_state <<< '3'
+
+tee /sys/class/power_supply/BAT0/charge_control_end_threshold <<< '80'
+
+echo 'Hardware settings applied successfully <:'
