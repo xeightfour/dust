@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Exit on any error
 set -e
 
-# Check for required tools
 for cmd in maim xclip; do
 	command -v "$cmd" &>/dev/null || {
 		echo "$cmd not found. Please install it first!" >&2
@@ -11,7 +9,6 @@ for cmd in maim xclip; do
 	}
 done
 
-# Screenshot directory and filename
 scdir="$HOME/Pictures/Screenshots"
 mkdir -p "$scdir" || {
 	echo "Failed to create directory: $scdir >=" >&2
@@ -19,7 +16,6 @@ mkdir -p "$scdir" || {
 }
 fileName="$scdir/screenshot_$(date +'%Y-%b-%d_%H-%M-%S').jpg"
 
-# Take screenshot (with optional selection)
 if [[ "$1" == "--select" || "$1" == "-s" ]]; then
 	maim -m 8 -s -D "$fileName" || {
 		echo 'Failed to take selection screenshot >=' >&2
@@ -32,7 +28,6 @@ else
 	}
 fi
 
-# Confirm screenshot and copy to clipboard
 [[ -f "$fileName" ]] && echo "Screenshot saved to $fileName <:" || {
 	echo 'Screenshot file not created >=' >&2
 	exit 1

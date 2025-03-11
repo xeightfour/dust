@@ -2,10 +2,8 @@
 
 import time, os, sys, signal, traceback, setproctitle, psutil
 
-# Define the passive temperature threshold
-psv = 55
+passive = 55
 
-# Function to send a command to /proc/acpi/call
 def call(command):
     try:
         with open('/proc/acpi/call', 'w') as acpi:
@@ -17,48 +15,44 @@ def call(command):
         print(f"[ERROR] Failed to communicate with /proc/acpi/call: {e} >=")
         sys.exit(1)
 
-# Function to get the CPU temperature
-def getTemp():
+def get_temp():
     try:
-        tempHex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
-        return int(tempHex, 16)
+        temp_hex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
+        return int(temp_hex, 16)
     except ValueError as e:
         print(f"[ERROR] Failed to parse temperature: {e} >=")
         sys.exit(1)
 
-# Function to reset fan control to automatic and exit
 def cleanup(signal=None, frame=None):
     try:
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
         call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
         call('\\_SB.SGOV 0x11 1')
         call('\\_SB.SGOV 0x18 1')
-        print('Reset fan control to automatic. Exiting...')
+        print('Resetting fan control to automatic...')
     except Exception as e:
         print(f"[ERROR] Failed to reset fan control: {e} >=")
     finally:
         sys.exit(0)
 
-# Function to update LED based on temperature
-def updateLED():
+def update_led():
     try:
         call('\\_SB.SGOV 0x18 0')
-        temp = getTemp()
+        temp = get_temp()
         if temp < 50:
             call('\\_SB.SGOV 0x11 1')
         else:
             call('\\_SB.SGOV 0x11 0')
-            homeDir = os.path.expanduser('~')
-            os.system(f'{homeDir}/scripts/setup')
+            home_dir = os.path.expanduser('~')
+            os.system(f'{home_dir}/scripts/setup')
     except Exception as e:
         print(f"[ERROR] Failed to update LED: {e} >=")
 
-# Function to update fan speed based on temperature
-def updateFan():
-    global psv
+def update_fan():
+    global passive
     try:
-        temp = getTemp()
-        if temp <= psv:
+        temp = get_temp()
+        if temp <= passive:
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
         else:
@@ -67,31 +61,27 @@ def updateFan():
     except Exception as e:
         print(f"[ERROR] Failed to update fan: {e} >=")
 
-# Main function to run the fan control loop
 def main():
-    # Register cleanup function for SIGTERM
     signal.signal(signal.SIGTERM, cleanup)
-    print('Now parre controls fans <:')
+    print('Now parre controls the fans!')
 
     try:
         while True:
-            updateLED()
-            updateFan()
+            update_led()
+            update_fan()
             time.sleep(5)
     except KeyboardInterrupt:
         print("Interrupted by user. Cleaning up...")
     except Exception as e:
-        print(f"[ERROR] Unexpected error: {e}")
+        print(f"[ERROR] Unexpected error: {e} >=")
     finally:
         cleanup()
 
-# Check if another instance of parre is already running
 if __name__ == '__main__':
     for proc in psutil.process_iter(['pid', 'name']):
         if 'parre' in proc.info['name'].lower() and proc.info['pid'] != os.getpid():
             print('parre is already running!')
             sys.exit(1)
 
-    # Set the process title
     setproctitle.setproctitle('parre')
     main()

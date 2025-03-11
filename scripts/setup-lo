@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Ensure script runs as root
 if [[ $(id -u) -ne 0 ]]; then
 	echo 'This script requires root privileges. Elevating...'
 	exec sudo "$0" "$@"
 fi
 
-# Turn off Bluetooth if argument is 1
 if [[ $1 -eq 1 ]]; then
 	echo 'Turning off Bluetooth...'
 	rfkill block bluetooth || { echo 'Failed to disable Bluetooth >:'; exit 1; }
 fi
 
-# Reset system performance values
 echo 'Resetting values...'
 tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'balance_performance'
 tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '800000'
@@ -27,7 +24,6 @@ tee /sys/class/thermal/thermal_zone0/cdev*/cur_state <<< '1'
 
 sleep 1.101
 
-# Apply new settings
 echo 'Applying new settings...'
 tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'power'
 tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '400000'

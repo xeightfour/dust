@@ -9,7 +9,11 @@ x = 0
 y = 0
 
 [font]
-size = 20
+size = 21
 
 [font.normal]
-family = 'MD IO Trial'
+family = 'Agave'
+
+[font.offset]
+x = 0
+y = 2

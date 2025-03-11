@@ -1,21 +1,15 @@
 #!/bin/bash
 
-# Function to handle errors and exit with a message
 bounce() {
 	echo "[ERROR] $1" &>2
 	exit 1
 }
 
-# Get the directory of the current script
-cwd="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)" || bounce 'Failed to determine script directory >='
+scripts="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)" || bounce 'Failed to determine script directory >='
 
-# Remove existing setup and picom configuration links
-rm -f "$cwd/setup" "$cwd/../.config/picom/picom.conf" || bounce 'Failed to remove existing setup and picom.conf >='
+rm -f "$scripts/setup" "$scripts/../.config/picom/picom.conf" || bounce 'Failed to remove existing setup and picom.conf >='
 
-# Prompt the user to choose between low or high settings
 read -p 'Low or high? [L/h] ' stat
-
-# Determine which setup and picom configuration to use based on user input
 if [[ $stat == [Hh] ]]; then
 	setup='setup-hi'
 	picom='picom-hi.conf'
@@ -24,11 +18,10 @@ else
 	picom='picom-lo.conf'
 fi
 
-ln -s "$cwd/$setup" "$cwd/setup" || bounce "Failed to create symlink for $setup >="
-"$cwd/setup" || bounce "$setup failed >="
-ln -s "$cwd/../.config/picom/$picom" "$cwd/../.config/picom/picom.conf" || bounce "Failed to create symlink for $picom >="
+ln -s "$scripts/$setup" "$scripts/setup" || bounce "Failed to create symlink for $setup >="
+"$scripts/setup" || bounce "$setup failed >="
 
-# Refresh picom
+ln -s "$scripts/../.config/picom/$picom" "$scripts/../.config/picom/picom.conf" || bounce "Failed to create symlink for $picom >="
 pkill -SIGUSR1 picom || bounce 'Failed to refresh picom >='
 
 echo 'dsetted <:'

@@ -3,35 +3,27 @@ use 5.040;
 use strict;
 use warnings;
 
-# Define the XOR key
 my $key = 'x';
 
-# Function to handle errors and exit with a message
 sub bounce {
 	say "[ERROR] $_[0]";
 	exit 1;
 }
 
-# Ensure at least one file argument is provided
 @ARGV or bounce 'No files provided. Please specify one or more files to process.';
 
-# Process each file
 for my $file (@ARGV) {
-	# Read file contents
 	open my $in, '<:raw', $file or bounce "Can't open $file for reading >=";
 	binmode $in;
 	my $data = do { local $/; <$in> };
 	close $in or bounce "Can't close $file after reading >=";
 
-	# Perform XOR operation
 	$data ^.= ($key x length $data);
 
-	# Write modified data back to the file
 	open my $out, '>:raw', $file or bounce "Can't open $file for writin >=";
 	binmode $out;
 	print $out $data or bounce "Can't write to $file >=";
 	close $out or bounce "Can't close $file after writing >=";
 
-	# Print the number of bytes processed
-	say "Processed ", length($data), " bytes from $file <:";
+	say "Processed ", length($data), " bytes from $file.";
 }

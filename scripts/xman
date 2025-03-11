@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Ensure script runs as root
 [[ $(id -u) -ne 0 ]] && exec sudo "$0" "$@"
 
-# Kill parre process if running
-pkill parre && { echo 'Killed parre, waiting...'; while pgrep -x parre > /dev/null; do sleep 0.1; done; }
+pkill parre && {
+	echo 'Killed parre, waiting...'
+	while pgrep -x parre > /dev/null; do
+		sleep 0.1
+	done
+}
 
-# Call ACPI methods
 for cmd in '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85' '\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b'; do
 	echo "$cmd" | tee /proc/acpi/call > /dev/null || { echo "Failed to execute: $cmd >="; exit 1; }
 done

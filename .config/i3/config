@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Font settings
-font pango:MD IO Trial 16
+font pango:cascadia code 17
 
 # Volume and audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%

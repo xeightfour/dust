@@ -8,7 +8,7 @@ if [[ -z "$deviceId" ]]; then
 	exit 1
 fi
 
-state=$(xinput list-props "$deviceId" | grep 'Device Enabled' | grep -o '[01]$')
+state="$(xinput list-props "$deviceId" | grep 'Device Enabled' | grep -o '[01]$')"
 
 if [[ $state -eq 1 ]]; then
 	xinput --disable "$deviceId"

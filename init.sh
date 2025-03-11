@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Exit on any error
 set -e
 
-# Base directory of the script
 dust="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)" || {
 	echo '[ERROR] Failed to determine script directory >=' >&2
 	exit 1
@@ -18,7 +16,6 @@ if ! [[ -f ~/git-prompt.sh ]]; then
 	}
 fi
 
-# Check and make scripts executable
 scripts="$dust/scripts"
 if [[ -d $scripts ]]; then
 	echo "Making scripts in $scripts executable..."
@@ -27,15 +24,14 @@ if [[ -d $scripts ]]; then
 		exit 1
 	}
 else
-	echo "[ERROR] Directory not found: $scripts" >&2
+	echo "[ERROR] Directory not found: $scripts >=" >&2
 	exit 1
 fi
 
-# Run dset script
 echo 'Running dset script...'
 "$scripts/dset" || {
 	echo '[ERROR] dset script failed >=' >&2
 	exit 1
 }
 
-echo 'Initialization was successful!'
+echo 'Initialization was successful <:'
