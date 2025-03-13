@@ -1,22 +1,29 @@
 #!/usr/bin/env perl
-
 use 5.040;
+use strict;
+use warnings;
 
 my $key = 'x';
 
-foreach (@ARGV) {
-	open my $in, '<:raw', $_ or die "Can't open $_";
+sub bounce {
+	say "[ERROR] $_[0]";
+	exit 1;
+}
+
+@ARGV or bounce 'No files provided. Please specify one or more files to process.';
+
+for my $file (@ARGV) {
+	open my $in, '<:raw', $file or bounce "Can't open $file for reading >=";
 	binmode $in;
-	my $data = '';
-	my $bytes = read $in, $data, 128_000_000;
-	close $in;
+	my $data = do { local $/; <$in> };
+	close $in or bounce "Can't close $file after reading >=";
 
-	$data ^.= $key x $bytes;
+	$data ^.= ($key x length $data);
 
-	open my $out, '>:raw', $_ or die "Can't write to $_";
+	open my $out, '>:raw', $file or bounce "Can't open $file for writin >=";
 	binmode $out;
-	print $out $data;
-	close $out;
+	print $out $data or bounce "Can't write to $file >=";
+	close $out or bounce "Can't close $file after writing >=";
 
-	print "Processed $bytes bytes from $_\n";
+	say "Processed ", length($data), " bytes from $file.";
 }

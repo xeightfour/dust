@@ -1,13 +1,38 @@
 #!/bin/bash
 
-scdir="$HOME/Pictures/Screenshots"
-mkdir -p "$scdir"
+set -e
 
+for cmd in maim xclip; do
+	command -v "$cmd" &>/dev/null || {
+		echo "$cmd not found. Please install it first!" >&2
+		exit 1
+	}
+done
+
+scdir="$HOME/Pictures/Screenshots"
+mkdir -p "$scdir" || {
+	echo "Failed to create directory: $scdir >=" >&2
+	exit 1
+}
 fileName="$scdir/screenshot_$(date +'%Y-%b-%d_%H-%M-%S').jpg"
 
-# Take a screenshot using maim
-if [[ $1 == '--select' ]] || [[ $1 == '-s' ]]; then
-	maim -m 8 -s -D "$fileName" && xclip -selection clipboard -t image/jpeg -i "$fileName"
+if [[ "$1" == "--select" || "$1" == "-s" ]]; then
+	maim -m 8 -s -D "$fileName" || {
+		echo 'Failed to take selection screenshot >=' >&2
+		exit 1
+	}
 else
-	maim -m 8 "$fileName" && xclip -selection clipboard -t image/jpeg -i "$fileName"
+	maim -m 8 "$fileName" || {
+		echo 'Failed to take full screenshot >=' >&2
+		exit 1
+	}
 fi
+
+[[ -f "$fileName" ]] && echo "Screenshot saved to $fileName <:" || {
+	echo 'Screenshot file not created >=' >&2
+	exit 1
+}
+xclip -selection clipboard -t image/jpeg -i "$fileName" && echo 'Screenshot copied to clipboard <:' || {
+	echo 'Failed to copy screenshot to clipboard >=' >&2
+	exit 1
+}

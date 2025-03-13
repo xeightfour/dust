@@ -1,5 +1,6 @@
-Xft.dpi: 100
+Xcursor.size: 32
+Xcursor.theme: Banana
 
-Sxiv.font: departure mono-14
+Sxiv.font: Cascadia Code-13
 Sxiv.background: #1e1e2e
 Sxiv.foreground: #cdd6f4
