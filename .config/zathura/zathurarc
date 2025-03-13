@@ -31,6 +31,6 @@ set recolor-darkcolor '#ecf6f2'
 set recolor true
 set recolor-keephue true
 
-set font 'Departure Mono 18'
+set font 'Cascadia Code 18'
 set scroll-step 108
 set pages-per-row 1
