@@ -146,12 +146,13 @@ bar {
 # Mouse settings and misc
 focus_follows_mouse no
 default_border normal 2
-floating_maximum_size 1000 x 800
+floating_maximum_size 960 x 600
+floating_minimum_size -1 x -1
 title_align center
 hide_edge_borders both
 
 # Gaps settings
-gaps inner 8px
+gaps inner 5px
 smart_gaps off
 workspace 2 gaps inner 0px
 workspace 2 gaps outer 0px
@@ -162,7 +163,7 @@ workspace 3 gaps outer 0px
 for_window [all] title_format "%class · %title · %instance"
 for_window [all] title_window_icon on
 for_window [all] title_window_icon padding 6px
-for_window [class="(?i)sublime_text|google-chrome|nemo|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
+for_window [class="(?i)oblivion-desktop|sublime_text|google-chrome|nemo|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
 for_window [instance="(?i)firefox"] border none
 for_window [floating] move position center
 
