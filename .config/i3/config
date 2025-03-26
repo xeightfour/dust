@@ -127,9 +127,6 @@ client.background $base
 bar {
 	status_command i3status
 	separator_symbol "|"
-	mode hide
-	modifier Mod4
-	hidden_state hide
 	colors {
 		background $base
 		statusline $text
