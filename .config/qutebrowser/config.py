@@ -12,7 +12,7 @@ config.set("tabs.position", "right")
 config.set("tabs.favicons.scale", 0.8)
 config.set("tabs.show", "switching")
 config.set("tabs.show_switching_delay", 1400)
-config.set("tabs.title.format_pinned", "{audio}*{index}*: {current_title}")
+config.set("tabs.title.format_pinned", "{audio}{index}: {current_title}")
 
 # Dark mode
 config.set("colors.webpage.bg", "black")
@@ -43,6 +43,6 @@ config.set("fonts.completion.entry", "14pt Monolisa Trial")
 config.set("fonts.completion.category", "14pt Monolisa Trial")
 
 # Key bindings
-config.bind("<space>r", "config-source ;; message-info "Reloaded!"")
+config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
 config.bind("<space>h", "clear-messages")
 config.bind("q", "nop")
