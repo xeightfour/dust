@@ -146,10 +146,11 @@ bar {
 # Mouse settings and misc
 focus_follows_mouse no
 default_border normal 2
-floating_maximum_size 1920 x 1080
-floating_minimum_size -1 x -1
 title_align center
 hide_edge_borders both
+floating_maximum_size 1920 x 1080
+floating_minimum_size -1 x -1
+floating_modifier $mod
 
 # Gaps settings
 gaps inner 5px
@@ -161,7 +162,6 @@ workspace 3 gaps outer 0px
 
 # Window class and behavior
 for_window [all] title_format "%class · %title · %instance"
-for_window [all] border pixel 2
 for_window [floating] move position center
 
 # Screenshot bindings
