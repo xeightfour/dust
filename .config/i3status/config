@@ -1,0 +1,56 @@
+general {
+	output_format = i3bar
+	colors = true
+	interval = 5
+}
+
+order += "wireless _first_"
+order += "volume master"
+order += "battery all"
+order += "disk /"
+order += "cpu_temperature 0"
+order += "load"
+order += "memory"
+order += "tztime local"
+
+wireless _first_ {
+	format_up = "W: (%quality at %essid) %ip"
+	format_down = "W: down"
+	format_quality = "%d%s"
+}
+
+volume master {
+	format = "%volume"
+	format_muted = "Muted (%volume)"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+}
+
+battery all {
+	format = "%status %percentage %remaining~%consumption"
+	last_full_capacity = true
+	low_threshold = 60
+}
+
+disk "/" {
+	format = "%avail"
+}
+
+cpu_temperature 0 {
+	max_threshold = 50
+}
+
+load {
+	format = "%1min"
+}
+
+memory {
+	format = "%used~%percentage_used - %available"
+	threshold_degraded = "1G"
+	format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+	format = "%b/%d %H:%M:%S"
+}

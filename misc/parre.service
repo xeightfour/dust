@@ -1,0 +1,15 @@
+[Unit]
+Description=Run Parre Script at Startup
+After=network.target
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 15
+ExecStart=/home/soheil/scripts/parre
+StandardOutput=file:/var/log/parre.log
+StandardError=file:/var/log/parre.log
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
