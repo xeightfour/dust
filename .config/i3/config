@@ -142,7 +142,7 @@ bar {
 
 # Mouse settings and misc
 focus_follows_mouse no
-default_border normal 2
+default_border pixel 3
 title_align center
 hide_edge_borders both
 floating_maximum_size 1920 x 1080
