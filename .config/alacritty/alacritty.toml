@@ -1,0 +1,23 @@
+[general]
+import = [ '~/.config/alacritty/abstract-dark.toml' ]
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 0
+y = 0
+
+[font]
+size = 15
+
+[font.normal]
+family = 'Agave'
+
+[font.offset]
+x = 0
+y = 2
+
+[font.glyph_offset]
+x = 0
+y = 1

@@ -1,0 +1,14 @@
+@theme "/usr/share/rofi/themes/Monokai.rasi"
+
+window {
+	padding: 8px;
+}
+
+element-icon {
+	size: 1.5ch;
+}
+
+configuration {
+	dpi: 125;
+	show-icons: true;
+}
