@@ -5,8 +5,8 @@ import = [ "~/.config/alacritty/abstract-dark.toml" ]
 dynamic_padding = true
 
 [window.padding]
-x = 0
-y = 0
+x = 5
+y = 1
 
 [font]
 size = 15
