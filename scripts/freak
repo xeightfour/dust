@@ -7,23 +7,24 @@ my $key = 'x';
 
 sub bounce {
 	say "$_[0]";
+	say 'Proceeding files will be ignored!';
 	exit 1;
 }
 
 @ARGV or bounce 'Specify one or more files to process!';
 
 for my $file (@ARGV) {
-	open my $in, '<:raw', $file or bounce "Can't open $file for reading >=";
+	open my $in, '<:raw', $file or bounce "Can't open $file for reading >:";
 	binmode $in;
 	my $data = do { local $/; <$in> };
-	close $in or bounce "Can't close $file after reading >=";
+	close $in or bounce "Can't close $file after reading >:";
 
 	$data ^.= ($key x length $data);
 
-	open my $out, '>:raw', $file or bounce "Can't open $file for writin >=";
+	open my $out, '>:raw', $file or bounce "Can't open $file for writing >:";
 	binmode $out;
-	print $out $data or bounce "Can't write to $file >=";
-	close $out or bounce "Can't close $file after writing >=";
+	print $out $data or bounce "Can't write to $file >:";
+	close $out or bounce "Can't close $file after writing >:";
 
-	say 'Processed ', length($data), " bytes from $file.";
+	say 'Processed ', length($data), " bytes from $file <:";
 }
