@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Font settings
-font pango:Monolisa Trial 13
+font pango: Departure Mono 10
 
 # Volume and audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -125,6 +125,7 @@ client.background $base
 
 # Bar settings
 bar {
+	font pango: Monolisa Trial 13
 	status_command i3status
 	separator_symbol "|"
 	colors {
@@ -140,11 +141,15 @@ bar {
 	}
 }
 
-# Mouse settings and misc
 focus_follows_mouse no
+
+# Window border
 default_border pixel 3
+bindsym $mod+b border toggle
 title_align center
 hide_edge_borders both
+
+# Floating windows
 floating_maximum_size 1920 x 1080
 floating_minimum_size -1 x -1
 floating_modifier $mod
@@ -158,7 +163,7 @@ workspace 3 gaps inner 0px
 workspace 3 gaps outer 0px
 
 # Window class and behavior
-for_window [all] title_format "%class · %title · %instance"
+for_window [all] title_format "[%class] · %title"
 for_window [floating] move position center
 
 # Screenshot bindings
