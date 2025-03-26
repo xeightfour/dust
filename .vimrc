@@ -1,6 +1,6 @@
-let dataDir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(dataDir . '/autoload/plug.vim'))
-	silent execute '!curl -fLo ' . dataDir . '/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+let dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(dir . '/autoload/plug.vim'))
+	silent execute '!curl -fLo ' . dir . '/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 

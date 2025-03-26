@@ -1,9 +1,7 @@
 #!/bin/bash
 
-set -e
-
 bounce() {
-	echo "$1" >&2
+	echo -e "$1 \e[31m):\e[0m"
 	exit 1
 }
 
@@ -11,10 +9,9 @@ dust="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 
 scripts="$dust/scripts"
 if [[ -d "$scripts" ]]; then
-	echo "Making scripts in $scripts executable..."
-	chmod +x "$scripts"/* || bounce 'Failed to make scripts executable >:'
+	chmod +x "$scripts"/* || bounce "Whoops, couldn’t make those scripts runnable"
 else
-	bounce "Directory not found: $scripts >:"
+	bounce "Oops, $scripts is playing hide and seek"
 fi
 
-echo 'Initialization was successful <:'
+echo "All set, ready to roll."

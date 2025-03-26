@@ -161,8 +161,6 @@ workspace 3 gaps outer 0px
 
 # Window class and behavior
 for_window [all] title_format "%class · %title · %instance"
-for_window [all] title_window_icon on
-for_window [all] title_window_icon padding 6px
 for_window [all] border pixel 2
 for_window [floating] move position center
 
@@ -186,7 +184,7 @@ bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
 bindsym $mod+Shift+n exec --no-startup-id xrandr --output HDMI-A-3 --gamma 1.0:0.88:0.76
 bindsym $mod+Shift+d exec --no-startup-id xrandr --output HDMI-A-3 --gamma 1:1:1
 
-# Start programs
+# Launch programs
 exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id picom -b || pkill -SIGUSR1 picom
 exec_always --no-startup-id feh --bg-fill ~/assets/wallpaper --no-fehbg

@@ -16,7 +16,7 @@ M.newFixedWin = function(side, size, focus)
 		win = 0,
 		split = side,
 		height = size,
-		style = 'minimal'
+		style = "minimal"
 	}, focus)
 end
 
@@ -37,12 +37,12 @@ M.build = function()
 	M.deleteWin(prevWin) -- Clean up any existing build window
 	local name = vim.api.nvim_buf_get_name(0)
 	if not vim.fn.filereadable(name) then
-		vim.notify('File not readable: ' .. name, vim.log.levels.ERROR)
+		vim.notify("File not readable: " .. name, vim.log.levels.ERROR)
 		return
 	end
-	prevWin = M.newFixedWin('below', 3, true).window
-	vim.cmd('edit term://go build ' .. vim.fn.shellescape(name)) -- Escape filename for safety
-	vim.cmd('keepalt file Building ' .. name)
+	prevWin = M.newFixedWin("below", 3, true).window
+	vim.cmd("edit term://go build " .. vim.fn.shellescape(name)) -- Escape filename for safety
+	vim.cmd("keepalt file Building " .. name)
 end
 
 -- Runs the current Go file in a terminal window
@@ -50,43 +50,43 @@ M.run = function()
 	M.deleteWin(prevWin) -- Clean up any existing run window
 	local name = vim.api.nvim_buf_get_name(0)
 	if not vim.fn.filereadable(name) then
-		vim.notify('File not readable: ' .. name, vim.log.levels.ERROR)
+		vim.notify("File not readable: " .. name, vim.log.levels.ERROR)
 		return
 	end
-	prevWin = M.newFixedWin('below', 8, true).window
-	vim.cmd('edit term://go run ' .. vim.fn.shellescape(name)) -- Escape filename for safety
-	vim.cmd('keepalt file Running ' .. name)
+	prevWin = M.newFixedWin("below", 8, true).window
+	vim.cmd("edit term://go run " .. vim.fn.shellescape(name)) -- Escape filename for safety
+	vim.cmd("keepalt file Running " .. name)
 end
 
 -- Formats the current Go file using 'gofmt'
 M.fmt = function()
 	local name = vim.api.nvim_buf_get_name(0)
-	if not vim.fn.executable('gofmt') then
-		vim.notify('gofmt not found!', vim.log.levels.ERROR)
+	if not vim.fn.executable("gofmt") then
+		vim.notify("gofmt not found!", vim.log.levels.ERROR)
 		return
 	end
 	if not vim.fn.filereadable(name) then
-		vim.notify('File not readable: ' .. name, vim.log.levels.ERROR)
+		vim.notify("File not readable: " .. name, vim.log.levels.ERROR)
 		return
 	end
-	vim.system({ 'gofmt', '-w', name }, { stdout = false, stdin = false, text = true }, vim.schedule_wrap(function()
-		vim.cmd('e!') -- Reload the buffer to reflect changes
-		vim.notify('Formatted!', vim.log.levels.INFO)
+	vim.system({ "gofmt", "-w", name }, { stdout = false, stdin = false, text = true }, vim.schedule_wrap(function()
+		vim.cmd("e!") -- Reload the buffer to reflect changes
+		vim.notify("Formatted!", vim.log.levels.INFO)
 	end))
 end
 
 -- Creates user-defined commands for Go-related actions
 M.createCommands = function(args)
-	vim.api.nvim_buf_create_user_command(args.buf, 'GoFmt', M.fmt, { nargs = 0 })
-	vim.api.nvim_buf_create_user_command(args.buf, 'GoRun', M.run, { nargs = 0 })
-	vim.api.nvim_buf_create_user_command(args.buf, 'GoBuild', M.build, { nargs = 0 })
+	vim.api.nvim_buf_create_user_command(args.buf, "GoFmt", M.fmt, { nargs = 0 })
+	vim.api.nvim_buf_create_user_command(args.buf, "GoRun", M.run, { nargs = 0 })
+	vim.api.nvim_buf_create_user_command(args.buf, "GoBuild", M.build, { nargs = 0 })
 end
 
 -- Sets up key mappings for Go-related actions
 M.createMaps = function(args)
-	vim.keymap.set('n', '<space>f', M.fmt, { buffer = args.buf, desc = 'Format Go File' })
-	vim.keymap.set('n', '<space>g', M.run, { buffer = args.buf, desc = 'Run Go File' })
-	vim.keymap.set('n', '<space>b', M.build, { buffer = args.buf, desc = 'Build Go File' })
+	vim.keymap.set("n", "<space>f", M.fmt, { buffer = args.buf, desc = "Format Go File" })
+	vim.keymap.set("n", "<space>g", M.run, { buffer = args.buf, desc = "Run Go File" })
+	vim.keymap.set("n", "<space>b", M.build, { buffer = args.buf, desc = "Build Go File" })
 end
 
 -- Initializes the plugin by setting up commands and keymaps for Go files
@@ -97,14 +97,14 @@ end
 
 -- Configures autocommands for Go files and terminal windows
 M.setup = function()
-	local group = vim.api.nvim_create_augroup('nvim-go', { clear = true })
-	vim.api.nvim_create_autocmd({ 'FileType' }, {
-		pattern = 'go',
+	local group = vim.api.nvim_create_augroup("nvim-go", { clear = true })
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		pattern = "go",
 		callback = function() M.main({ buf = 0 }) end, -- Pass current buffer explicitly
 		group = group
 	})
-	vim.api.nvim_create_autocmd({ 'TermOpen' }, {
-		command = 'setlocal wrap!',
+	vim.api.nvim_create_autocmd({ "TermOpen" }, {
+		command = "setlocal wrap!",
 		group = group
 	})
 end
