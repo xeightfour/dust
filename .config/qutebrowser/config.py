@@ -34,13 +34,13 @@ config.set("url.searchengines", {
 })
 
 # Fonts
-config.set("fonts.default_size", "14pt")
-config.set("fonts.statusbar", "14pt Monolisa Trial")
-config.set("fonts.tabs.selected", "14pt Monolisa Trial")
-config.set("fonts.tabs.unselected", "14pt Monolisa Trial")
-config.set("fonts.hints", "14pt Monolisa Trial")
-config.set("fonts.completion.entry", "14pt Monolisa Trial")
-config.set("fonts.completion.category", "14pt Monolisa Trial")
+config.set("fonts.default_size", "13pt")
+config.set("fonts.statusbar", "13pt Monolisa Trial")
+config.set("fonts.tabs.selected", "13pt Monolisa Trial")
+config.set("fonts.tabs.unselected", "13pt Monolisa Trial")
+config.set("fonts.hints", "13pt Monolisa Trial")
+config.set("fonts.completion.entry", "13pt Monolisa Trial")
+config.set("fonts.completion.category", "13pt Monolisa Trial")
 
 # Key bindings
 config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
