@@ -1,8 +1,12 @@
+import os
 import catppuccin
 
 config.load_autoconfig(True)
 
 catppuccin.setup(c, "mocha", True)
+
+homeDir = os.path.expanduser('~')
+downDir = os.path.join(homeDir, 'Downloads')
 
 config.set("zoom.default", "125%")
 config.set("statusbar.padding", { "bottom": 2, "left": 0, "right": 0, "top": 0 })
@@ -43,6 +47,16 @@ config.set("fonts.completion.entry", "13pt Monolisa Trial")
 config.set("fonts.completion.category", "13pt Monolisa Trial")
 
 # Key bindings
+config.bind("<space>Q", "quit")
 config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
-config.bind("<space>h", "clear-messages")
+config.bind("<space><space>", "clear-messages")
+config.bind("<space>m", "spawn bash -c \"yt-dlp --cookies-from-browser firefox --limit-rate 70K -f 18 -o - {url} | mpv -\"")
+config.bind("<space>d", "spawn bash -c \"yt-dlp --cookies-from-browser firefox -f 18 -o '" + downDir + "/%(title)s.%(ext)s' '{url}'\"")
+config.bind("<space>a", "spawn bash -c \"yt-dlp --cookies-from-browser firefox -f 140/250 -o '" + downDir + "/%(title)s.%(ext)s' '{url}'\"")
 config.bind("q", "nop")
+
+# Spell check
+config.set("spellcheck.languages", [ "en-US" ])
+
+# Brave adblock
+config.set("content.blocking.method", "both")
