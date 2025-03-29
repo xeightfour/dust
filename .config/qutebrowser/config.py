@@ -55,6 +55,8 @@ config.set("fonts.completion.category", "13pt Monolisa Trial")
 config.bind("<space>Q", "quit")
 config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
 config.bind("<space><space>", "clear-messages")
+config.bind("<ctrl-shift-j>", "tab-move +")
+config.bind("<ctrl-shift-k>", "tab-move -")
 config.bind(
     "<space>m",
     'spawn bash -c "yt-dlp --cookies-from-browser firefox --limit-rate 70K -f'
