@@ -52,6 +52,7 @@ config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
 config.bind("<space><space>", "clear-messages")
 config.bind("<space>m", "spawn bash -c \"yt-dlp --cookies-from-browser firefox --limit-rate 70K -f 18 -o - {url} | mpv -\"")
 config.bind("<space>d", "spawn bash -c \"yt-dlp --cookies-from-browser firefox -f 18 -o '" + downDir + "/%(title)s.%(ext)s' '{url}'\"")
+config.bind("<space>h", "spawn bash -c \"yt-dlp --cookies-from-browser firefox -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' -o '" + downDir + "/%(title)s.%(ext)s' '{url}'\"")
 config.bind("<space>a", "spawn bash -c \"yt-dlp --cookies-from-browser firefox -f 140/250 -o '" + downDir + "/%(title)s.%(ext)s' '{url}'\"")
 config.bind("q", "nop")
 
