@@ -48,7 +48,8 @@
 	<style name="def:comment" foreground="overlay"/>
 	<style name="def:number" foreground="peach"/>
 	<style name="def:string" foreground="yellow"/>
-	<style name="def:net-address-in-comment" foreground="blue" italic="true" underline="true"/>
+	<style name="def:net-address-in-comment" foreground="blue" italic="true"
+		underline="true"/>
 	<style name="def:underlined" italic="true" underline="true"/>
 	<style name="def:note" foreground="blue" background="base" bold="true"/>
 	<style name="def:error" foreground="red" bold="true"/>
@@ -81,7 +82,8 @@
 	<style name="def:deletion" foreground="red" strikethrough="true"/>
 	<style name="def:link-text" foreground="blue"/>
 	<style name="def:link-symbol" foreground="blue" bold="true"/>
-	<style name="def:link-destination" foreground="teal" italic="true" underline="single"/>
+	<style name="def:link-destination" foreground="teal" italic="true"
+		underline="single"/>
 	<style name="def:heading" foreground="green" bold="true"/>
 	<style name="def:thematic-break" foreground="peach" bold="true"/>
 	<style name="def:preformatted-section" foreground="blue"/>

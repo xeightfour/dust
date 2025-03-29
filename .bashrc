@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if ran interactively
 [[ $- != *i* ]] && return
 
@@ -27,7 +25,9 @@ shopt -s histappend
 gitPrompt="/usr/share/git/completion/git-prompt.sh"
 if [[ -r "$gitPrompt" ]]; then
 	source "$gitPrompt"
-	PS1='[\[\e[32m\]\u@\h\[\e[0m\] \[\e[34;1m\]\W\[\e[0m\]]\[\e[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]\$ '
+	PS1='[\[\e[32m\]\u@\h\[\e[0m\] \[\e[34;1m\]\W\[\e[0m\]]'
+	PS1+='\[\e[33m\]$(GIT_PS1_SHOWUNTRACKEDFILES=1; '
+	PS1+='GIT_PS1_SHOWDIRTYSTATE=1; __git_ps1 " (%s)")\[\e[0m\]\$ '
 else
 	PS1='[\[\e[32m\]\u@\h\[\e[0m\] \[\e[34;1m\]\W\[\e[0m\]]\$ '
 fi
