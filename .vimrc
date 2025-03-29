@@ -10,6 +10,8 @@ Plug 'bfrg/vim-c-cpp-modern'
 
 call plug#end()
 
+autocmd BufNewFile,BufRead *.mac set filetype=maxima
+
 filetype plugin on
 syn on
 
@@ -27,11 +29,12 @@ set smartindent
 
 set tabstop=4
 set shiftwidth=4
-set cinoptions=g0,(0,m1
+set cinoptions=g0,(s,us,U1,ks,m1
 set noexpandtab
 
 set cursorlineopt=screenline,number
 set cursorline
+set colorcolumn=80
 
 set numberwidth=4
 set relativenumber

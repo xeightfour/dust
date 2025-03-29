@@ -3,17 +3,21 @@ local opt = vim.opt
 vim.cmd("set notermguicolors")
 vim.cmd("color sorbet")
 
-opt.showcmd = false
+opt.showcmd = true
 
 opt.virtualedit = "all"
 opt.foldmethod = "marker"
 
+opt.autoindent = true
+opt.smartindent = true
+
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.cinoptions = { "g0", "(0", "m1" }
+opt.cinoptions = { "g0", "(s", "us", "U1", "ks", "m1" }
 
 opt.cursorlineopt = { "screenline", "number" }
 opt.cursorline = true
+opt.colorcolumn = { 80 }
 
 opt.numberwidth = 4
 opt.relativenumber = false
