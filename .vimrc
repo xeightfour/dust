@@ -40,7 +40,9 @@ set numberwidth=4
 set relativenumber
 set number
 
+set incsearch
 set hlsearch
+
 set ignorecase
 set smartcase
 
