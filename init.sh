@@ -1,15 +1,18 @@
-#!/bin/bash
+#!/bin/sh
+
+set -u
 
 bounce() {
-	echo -e "$1 \e[31m):\e[0m"
+	printf "$1 \e[31m):\e[0m\n"
 	exit 1
 }
 
-dust="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
-
+dust="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)"
 scripts="$dust/scripts"
-if [[ -d "$scripts" ]]; then
-	chmod +x "$scripts"/* || bounce "Whoops, couldn’t make those scripts runnable"
+
+if [ -d "$scripts" ]; then
+	chmod +x "$scripts"/* ||
+		bounce "Whoops, couldn’t make those scripts runnable"
 else
 	bounce "Oops, $scripts is playing hide and seek"
 fi
