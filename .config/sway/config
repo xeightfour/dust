@@ -184,5 +184,8 @@ bar 1 {
 	status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 }
 
+# Run programs
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
 ### Misc
 include /etc/sway/config.d/*
