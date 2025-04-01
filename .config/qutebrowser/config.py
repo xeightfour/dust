@@ -34,7 +34,7 @@ config.set("session.lazy_restore", True)
 config.set(
     "url.searchengines",
     {
-        "DEFAULT": "https://www.duckduckgo.com/search?q={}",
+        "DEFAULT": "https://www.google.com/search?q={}",
         "g": "https://www.google.com/search?q={}",
         "pkg": (
             "https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged="
