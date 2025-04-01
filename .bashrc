@@ -16,6 +16,11 @@ export ICON_THEME="Flat-Remix-Yellow-Dark"
 export FONT_NAME="IBM Plex Sans 11"
 export QT_QPA_PLATFORMTHEME="gtk3"
 
+# Wayland
+export XDG_SESSION_TYPE=wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+
 # Bash history
 export HISTCONTROL="ignoredups:erasedups"
 export HISTSIZE=5000
@@ -51,8 +56,8 @@ xin() {
 		bounce "Oh no, we don't have permission"
 		return 1
 	fi
-	echo "Launching X session..."
-	cd ~ && startx
+	echo "Launching Wayland session..."
+	cd ~ && sway
 }
 
 hibernate() {
