@@ -177,6 +177,8 @@ bindsym --locked XF86AudioMicMute exec \
 	pactl set-source-mute \@DEFAULT_SOURCE@ toggle
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked Print exec grim
+bindsym --locked Shift+Print exec slurp -d | grim -g -
 
 ### Status Bar
 bar 1 {
