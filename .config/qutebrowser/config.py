@@ -21,9 +21,9 @@ config.set("tabs.title.format_pinned", "{audio}{index}: {current_title}")
 # Dark mode
 config.set("colors.webpage.bg", "black")
 config.set("colors.webpage.darkmode.enabled", True)
-config.set("colors.webpage.darkmode.policy.images", "never")
-config.set("colors.webpage.darkmode.threshold.foreground", 168)
-config.set("colors.webpage.darkmode.threshold.background", 88)
+config.set("colors.webpage.darkmode.policy.images", "smart")
+config.set("colors.webpage.darkmode.threshold.foreground", 176)
+config.set("colors.webpage.darkmode.threshold.background", 80)
 config.set("colors.webpage.preferred_color_scheme", "dark")
 
 # Session management
@@ -52,11 +52,13 @@ config.set("fonts.completion.entry", "13pt Monolisa Trial")
 config.set("fonts.completion.category", "13pt Monolisa Trial")
 
 # Key bindings
-config.bind("<space>Q", "quit")
+config.bind("j", "cmd-run-with-count 4 scroll down")
+config.bind("k", "cmd-run-with-count 4 scroll up")
 config.bind("<space>r", "config-source ;; message-info 'Reloaded!'")
 config.bind("<space><space>", "clear-messages")
 config.bind("<ctrl-shift-j>", "tab-move +")
 config.bind("<ctrl-shift-k>", "tab-move -")
+config.bind("<space>Q", "quit")
 config.bind(
     "<space>m",
     'spawn bash -c "yt-dlp --cookies-from-browser firefox --limit-rate 70K -f'
