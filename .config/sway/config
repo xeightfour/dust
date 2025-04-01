@@ -1,5 +1,5 @@
 ### Theme
-include colors
+include theme
 
 ### Variables
 set $mod Mod4
@@ -190,6 +190,9 @@ bar 1 {
 
 # Run programs
 exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
+### Cursor theme
+seat seat0 xcursor_theme Banana 32
 
 ### Misc
 include /etc/sway/config.d/*
