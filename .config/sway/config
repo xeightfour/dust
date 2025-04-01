@@ -26,7 +26,7 @@ input * {
 
 ### Options
 # Font
-font pango:MonoLisa Trial 11
+font pango:Departure Mono 10
 
 # Mouse
 focus_follows_mouse no
@@ -182,8 +182,10 @@ bindsym --locked Shift+Print exec slurp -d | grim -g -
 
 ### Status Bar
 bar 1 {
+	font pango: MonoLisa Trial 13
 	position top
-	status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+	status_command i3status-rs
+	separator_symbol "|"
 }
 
 # Run programs
