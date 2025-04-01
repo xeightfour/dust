@@ -9,6 +9,7 @@ endif
 call plug#begin()
 
 Plug 'bfrg/vim-c-cpp-modern'
+Plug 'jasonccox/vim-wayland-clipboard'
 
 call plug#end()
 
