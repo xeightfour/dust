@@ -1,11 +1,11 @@
 return {
 	{
-		'catppuccin/nvim',
-		name = 'catppuccin',
+		"catppuccin/nvim",
+		name = "catppuccin",
 		lazy = true,
 		config = true,
 		opts = {
-			flavour = 'mocha', -- latte, frappe, macchiato, mocha
+			flavour = "mocha", -- latte, frappe, macchiato, mocha
 			integrations = {
 				treesitter = true,
 				lsp = false,
@@ -14,48 +14,48 @@ return {
 			},
 			show_end_of_buffer = true,
 			background = {
-				light = 'latte',
-				dark = 'mocha',
+				light = "latte",
+				dark = "mocha",
 			},
 			styles = {
-				comments = { 'italic' },
-				conditionals = { 'italic' },
-				numbers = { 'bold' },
+				comments = { "italic" },
+				conditionals = { "italic" },
+				numbers = { "bold" },
 			},
 		},
 	},
 
 	{
-		'ellisonleao/gruvbox.nvim',
-		name = 'gruvbox',
+		"ellisonleao/gruvbox.nvim",
+		name = "gruvbox",
 		lazy = true,
 		config = true,
 		opts = {
-			contrast = 'hard', -- hard, soft, or empty string
+			contrast = "hard", -- hard, soft, or empty string
 		},
 	},
 
 	{
-		'lewpoly/sherbet.nvim',
-		name = 'sherbet',
+		"lewpoly/sherbet.nvim",
+		name = "sherbet",
 		lazy = false,
 	},
 
 	{
-		'bfrg/vim-cpp-modern',
+		"bfrg/vim-c-cpp-modern",
 		lazy = true,
-		ft = { 'cpp', 'cxx', 'c', 'h', 'hpp' },
+		ft = { "cpp", "cxx", "c", "h", "hpp" },
 	},
 
 	{
-		'charlespascoe/vim-go-syntax',
+		"charlespascoe/vim-go-syntax",
 		lazy = true,
-		ft = 'go'
+		ft = "go"
 	},
 
 	{
-		'tikhomirov/vim-glsl',
+		"tikhomirov/vim-glsl",
 		lazy = true,
-		ft = 'glsl'
+		ft = "glsl"
 	},
 }

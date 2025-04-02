@@ -1,10 +1,10 @@
-package.loaded['options'] = nil
-package.loaded['maps'] = nil
-package.loaded['go'] = nil
+package.loaded["options"] = nil
+package.loaded["maps"] = nil
+package.loaded["go"] = nil
 
-require('options')
-require('maps')
+require("options")
+require("maps")
 
-require('config.lazy')
+require("config.lazy")
 
-require('go')
+require("go")

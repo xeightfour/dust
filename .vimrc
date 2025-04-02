@@ -1,30 +1,50 @@
+let dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(dir . '/autoload/plug.vim'))
+	silent execute '!curl -fLo ' . dir . '/autoload/plug.vim --create-dirs ' .
+				\  'https://raw.githubusercontent.com/junegunn/vim-plug/' .
+				\  'master/plug.vim'
+	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'bfrg/vim-c-cpp-modern'
+
+call plug#end()
+
+autocmd BufNewFile,BufRead *.mac set filetype=maxima
+
+filetype plugin on
 syn on
 
+set notermguicolors
 color sorbet
 
-set noshowcmd
+set showcmd
 
 set virtualedit=all
 set foldmethod=marker
 
 filetype indent on
-
 set autoindent
 set smartindent
 
 set tabstop=4
 set shiftwidth=4
+set cinoptions=g0,(s,us,U1,ks,m1
 set noexpandtab
-set cinoptions=g0,(0,m1
 
 set cursorlineopt=screenline,number
 set cursorline
+set colorcolumn=80
 
 set numberwidth=4
 set relativenumber
 set number
 
+set incsearch
 set hlsearch
+
 set ignorecase
 set smartcase
 
