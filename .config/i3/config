@@ -1,38 +1,37 @@
-# Mod key
+include theme
+
 set $mod Mod4
 
-# Font settings
-font pango:Intel One Mono 17
+font pango: MonoLisa Trial 17
 
 # Volume and audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id \
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id \
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id \
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id \
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Window management
 bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+f floating toggle
-bindsym $mod+Shift+s layout toggle stacking split
-bindsym $mod+Tab layout toggle tabbed split
 
 # Window focus navigation
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+bindsym $mod+u focus mode_toggle
 
 # Window movement
-bindsym $mod+Shift+h move left 128px
-bindsym $mod+Shift+j move down 128px
-bindsym $mod+Shift+k move up 128px
-bindsym $mod+Shift+l move right 128px
+bindsym $mod+Shift+h move left 100 px
+bindsym $mod+Shift+j move down 100 px
+bindsym $mod+Shift+k move up 100 px
+bindsym $mod+Shift+l move right 100 px
 bindsym $mod+c move position center
-bindsym $mod+Shift+d move absolute position 1840 px 1120 px
-
-bindsym $mod+period focus next
-bindsym $mod+comma focus prev
 
 set $ws1 "1"
 set $ws2 "2"
@@ -43,7 +42,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $wsx "0"
+set $wsx "10"
 
 # Workspace navigation
 bindsym $mod+1 workspace number $ws1
@@ -75,7 +74,10 @@ bindsym $mod+bracketleft workspace prev
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec \
+	"i3-nagbar -t warning -m 'You pressed the exit shortcut. \
+	Do you really want to exit i3? This will end your X session.' \
+	-B 'Yes, exit i3' 'i3-msg exit'"
 
 # Resize mode
 mode "resize" {
@@ -102,76 +104,46 @@ mode "resize" {
 	bindsym Escape mode "default"
 	bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
-# Colorscheme
-set $rosewater #f5e0dc
-set $peach #fab387
-set $green #a6e3a1
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $maroon #eba0ac
-set $overlay0 #6c7086
-set $surface1 #45475a
-set $base #1e1e2e
-
-client.focused $lavender $base $text $rosewater $lavender
-client.focused_inactive $overlay0 $base $text $rosewater $overlay0
-client.unfocused $overlay0 $base $text $rosewater $overlay0
-client.urgent $peach $base $peach $overlay0 $peach
-client.placeholder $overlay0 $base $text $overlay0 $overlay0
-client.background $base
-
-# Bar settings
-bar {
-	status_command i3status
-	separator_symbol "|"
-	mode hide
-	modifier Mod4
-	hidden_state hide
-	colors {
-		background $base
-		statusline $text
-		focused_statusline $text
-		focused_separator $maroon
-		focused_workspace $base $base $green
-		active_workspace $base $base $blue
-		inactive_workspace $base $base $surface1
-		urgent_workspace $base $base $surface1
-		binding_mode $base $base $surface1
-	}
-}
-
-# Mouse settings and misc
+# Just getting rid of useless stuff<:
 focus_follows_mouse no
-floating_maximum_size 1920 x 1200
-default_border normal 2
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Window border
 title_align center
-hide_edge_borders both
+default_border pixel 3
+hide_edge_borders smart_no_gaps
+bindsym $mod+b border toggle
+
+# Floating windows
+floating_maximum_size 1900 x 1000
+floating_minimum_size -1 x -1
+floating_modifier $mod
 
 # Gaps settings
-gaps inner 8px
+gaps outer 1
+gaps inner 5
 smart_gaps off
-workspace 2 gaps inner 0px
-workspace 2 gaps outer 0px
-workspace 3 gaps inner 0px
-workspace 3 gaps outer 0px
+workspace 2 gaps outer 0
+workspace 2 gaps inner 0
+workspace 3 gaps outer 0
+workspace 3 gaps inner 0
 
 # Window class and behavior
-for_window [all] title_format "%class · %title · %instance"
-for_window [all] title_window_icon on
-for_window [all] title_window_icon padding 6px
-for_window [class="(?i)sublime_text|telegram|sioyek|zathura|alacritty|firefox|mousepad|chromium|mpv"] border pixel 2
-for_window [instance="(?i)firefox"] border none
+for_window [all] title_format "[%class] · %title"
 for_window [floating] move position center
 
 # Screenshot bindings
 bindsym Print exec screenshot
 bindsym Shift+Print exec screenshot -s
 
-# Split window toggle
+# Layout stuff
+bindsym $mod+Shift+s layout toggle stacking split
+bindsym $mod+Tab layout toggle tabbed split
 bindsym $mod+s split toggle
 
 # Launch applications
@@ -185,11 +157,14 @@ bindsym $mod+Escape exec --no-startup-id i3lock -i ~/assets/lockscreen.png -tk
 # Disable/Enable touchpad
 bindsym XF86TouchpadToggle exec --no-startup-id touchpad
 
-# Screen Brightness and night light
-bindsym $mod+Shift+n exec --no-startup-id xrandr --output eDP-1 --gamma 1.0:0.9:0.8
-bindsym $mod+Shift+b exec --no-startup-id xrandr --output eDP-1 --gamma 1:1:1
+# Night light
+bindsym $mod+Shift+n exec --no-startup-id \
+	xrandr --output eDP-1 --gamma 1.0:0.88:0.76
+bindsym $mod+Shift+d exec --no-startup-id \
+	xrandr --output eDP-1 --gamma 1:1:1
 
-# Start programs
-exec_always --no-startup-id setxkbmap -option grp:alt_shift_toggle -layout us,ir
+# Run programs
+exec_always --no-startup-id \
+	setxkbmap -option grp:alt_shift_toggle -layout us,ir
 exec_always --no-startup-id picom -b || pkill -SIGUSR1 picom
 exec_always --no-startup-id feh --bg-fill ~/assets/wallpaper --no-fehbg
