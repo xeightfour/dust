@@ -1,3 +1,5 @@
+# vim: set ft=systemd:
+
 [Unit]
 Description=Run Parre Script at Startup
 After=network.target
