@@ -20,6 +20,22 @@ driver = "sway"
 idle_fg = "#89B4FA"
 
 [[block]]
+block = "temperature"
+format = " C $max "
+interval = 2
+chip = "coretemp-isa-*"
+info = 50
+warning = 65
+
+[[block]]
+block = "temperature"
+format = " G $max "
+interval = 2
+chip = "amdgpu-pci-*"
+info = 50
+warning = 65
+
+[[block]]
 block = "net"
 format = " $icon $ip "
 interval = 5
