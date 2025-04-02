@@ -67,6 +67,7 @@ nnoremap <c-k> <c-w>k
 nnoremap H :tabprev<cr>
 nnoremap L :tabnext<cr>
 
+nnoremap <space>s :set spell!<cr>
 nnoremap <space><space> :nohlsearch<cr>
 nnoremap <space>tr :silent! %s/\s\+$//<cr> :nohlsearch<cr>
 
