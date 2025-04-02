@@ -59,6 +59,7 @@ bindsym $mod+d exec $menu
 bindsym $mod+x exec rofi -show run
 bindsym $mod+q exec qutebrowser
 bindsym $mod+n exec nemo
+bindsym $mod+t exec telegram-desktop
 bindsym $mod+Escape exec swaylock -i ~/assets/lockscreen.png
 
 # Manage windows
@@ -190,6 +191,7 @@ bar 1 {
 
 # Run programs
 exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+exec wlsunset -l 29.61 -L 52.53
 
 ### Cursor theme
 seat seat0 xcursor_theme Banana 32

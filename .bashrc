@@ -50,14 +50,14 @@ bounce() {
 	echo -e "$1 \e[31m):\e[0m"
 }
 
-# Starting the X session
+# Start the Wayland session
 xin() {
 	if (( $EUID == 0 )); then
 		bounce "Oh no, we don't have permission"
 		return 1
 	fi
 	echo "Launching Wayland session..."
-	cd ~ && sway
+	cd ~ && exec sway
 }
 
 hibernate() {

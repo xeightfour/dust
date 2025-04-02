@@ -41,7 +41,7 @@ bar 1 {
 		background $base
 		statusline $text
 		focused_statusline $text
-		focused_separator $surface1
+		focused_separator $overlay0
 
 		focused_workspace $base $mauve $crust
 		active_workspace $base $surface2 $text
