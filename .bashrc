@@ -44,7 +44,7 @@ alias la="ls --color=auto -A"
 alias ll="ls --color=auto -ltrh"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
-alias lck="i3lock -i ~/assets/lockscreen.png -tk"
+alias lck="swaylock -i ~/assets/lockscreen.png"
 
 bounce() {
 	echo -e "$1 \e[31m):\e[0m"
