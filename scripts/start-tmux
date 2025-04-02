@@ -1,14 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
-tmux kill-session -t toodej
-tmux new-session -d -s toodej -n bash
+set -e
 
-tmux split-window -h -b -t toodej:0
+if ! tmux has -t toodej 2>/dev/null; then
+	tmux new -d -s toodej -n bash \; \
+		splitw -h -b -t toodej:0 \; \
+		neww -t toodej:1 -n ranger bash -c "ranger ; bash" \; \
+		neww -t toodej:2 -n temp \; \
+		selectw -t toodej:0
+fi
 
-tmux new-window -t toodej:1 -n ranger bash -c 'ranger ; bash'
-tmux new-window -t toodej:2 -n oblivion
-tmux new-window -t toodej:3 -n tmp
-
-tmux select-window -t toodej:0
-
-tmux attach-session -t toodej
+tmux attach -t toodej

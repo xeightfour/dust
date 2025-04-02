@@ -12,7 +12,7 @@ def call(command):
             response = acpi.read().strip()
         return response
     except IOError as e:
-        print(f'[ERROR] Failed to communicate with /proc/acpi/call: {e} >=')
+        print(f'[ERROR] Failed to communicate with /proc/acpi/call: {e}')
         sys.exit(1)
 
 def get_temp():
@@ -20,7 +20,7 @@ def get_temp():
         temp_hex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
         return int(temp_hex, 16)
     except ValueError as e:
-        print(f'[ERROR] Failed to parse temperature: {e} >=')
+        print(f'[ERROR] Failed to parse temperature: {e}')
         sys.exit(1)
 
 def cleanup(signal=None, frame=None):
@@ -31,7 +31,7 @@ def cleanup(signal=None, frame=None):
         call('\\_SB.SGOV 0x18 1')
         print('Resetting fan control to automatic...')
     except Exception as e:
-        print(f'[ERROR] Failed to reset fan control: {e} >=')
+        print(f'[ERROR] Failed to reset fan control: {e}')
     finally:
         sys.exit(0)
 
@@ -46,7 +46,7 @@ def update_led():
             home_dir = os.path.expanduser('~')
             os.system(f'{home_dir}/scripts/setup')
     except Exception as e:
-        print(f'[ERROR] Failed to update LED: {e} >=')
+        print(f'[ERROR] Failed to update LED: {e}')
 
 def update_fan():
     global passive
@@ -59,7 +59,7 @@ def update_fan():
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
             call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
     except Exception as e:
-        print(f'[ERROR] Failed to update fan: {e} >=')
+        print(f'[ERROR] Failed to update fan: {e}')
 
 def main():
     signal.signal(signal.SIGTERM, cleanup)
@@ -73,7 +73,7 @@ def main():
     except KeyboardInterrupt:
         print('Interrupted by user. Cleaning up...')
     except Exception as e:
-        print(f'[ERROR] Unexpected error: {e} >=')
+        print(f'[ERROR] Unexpected error: {e}')
     finally:
         cleanup()
 

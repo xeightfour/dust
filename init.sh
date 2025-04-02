@@ -1,37 +1,24 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
+set -u
 
-dust="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)" || {
-	echo '[ERROR] Failed to determine script directory >=' >&2
+bounce() {
+	printf "$1 \e[31m):\e[0m\n"
 	exit 1
 }
 
-# Download git-prompt.sh if it doesn't exist
-if ! [[ -f ~/git-prompt.sh ]]; then
-	echo 'Downloading git-prompt.sh...'
-	curl -so ~/git-prompt.sh 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh' || {
-		echo '[ERROR] Failed to download git-prompt.sh >=' >&2
-		exit 1
-	}
-fi
-
+dust="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)"
 scripts="$dust/scripts"
-if [[ -d $scripts ]]; then
-	echo "Making scripts in $scripts executable..."
-	chmod +x "$scripts"/* || {
-		echo '[ERROR] Failed to make scripts executable >=' >&2
-		exit 1
-	}
+
+if [ -d "$scripts" ]; then
+	chmod +x "$scripts"/* ||
+		bounce "Whoops, couldn’t make those scripts runnable"
 else
-	echo "[ERROR] Directory not found: $scripts >=" >&2
-	exit 1
+	bounce "Oops, $scripts is playing hide and seek"
 fi
 
-echo 'Running dset script...'
-"$scripts/dset" || {
-	echo '[ERROR] dset script failed >=' >&2
-	exit 1
-}
+echo "Running dset script..."
+"$scripts/dset"
 
-echo 'Initialization was successful <:'
+echo "All set, ready to roll."

@@ -1,41 +1,52 @@
-#!/bin/bash
+#!/bin/sh
 
-if [[ $(id -u) -ne 0 ]]; then
-	echo 'This script requires root privileges. Elevating...'
+set -u
+
+bounce() {
+	printf "$1 \e[31m):\e[0m\n"
+	exit 1
+}
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "This script requires root privileges. Elevating..."
 	exec sudo "$0" "$@"
 fi
 
-if [[ $1 -eq 1 ]]; then
-	echo 'Turning off Bluetooth...'
-	rfkill block bluetooth || { echo 'Failed to disable Bluetooth >:'; exit 1; }
+if [ "$1" -eq 1 ]; then
+	echo "Turning Bluetooth off..."
+	rfkill block bluetooth || bounce "Failed to disable Bluetooth"
 fi
 
-echo 'Resetting values...'
-tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'balance_performance'
-tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '800000'
-tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq <<< '2000000'
-tee /sys/devices/system/cpu/cpufreq/boost <<< '0'
+echo "Resetting values..."
+printf "balance_performance" |
+	tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+printf "800000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
+printf "2000000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+printf "0" | tee /sys/devices/system/cpu/cpufreq/boost
 
-tee /sys/class/drm/card*/device/power_dpm_force_performance_level <<< 'auto'
-tee /sys/class/drm/card*/device/power_dpm_state <<< 'balanced'
-tee /sys/class/drm/card*/device/pp_power_profile_mode <<< '3'
+printf "auto" |
+	tee /sys/class/drm/card*/device/power_dpm_force_performance_level
+printf "balance" | tee /sys/class/drm/card*/device/power_dpm_state
+printf "3" | tee /sys/class/drm/card*/device/pp_power_profile_mode
 
-tee /sys/class/thermal/thermal_zone0/cdev*/cur_state <<< '1'
+printf "1" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
 sleep 1.101
 
-echo 'Applying new settings...'
-tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference <<< 'balance_power'
-tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq <<< '400000'
-tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq <<< '2600000'
-tee /sys/devices/system/cpu/cpufreq/boost <<< '1'
+echo "Applying new settings..."
+printf "balance_power" |
+	tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
+printf "400000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
+printf "2600000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+printf "1" | tee /sys/devices/system/cpu/cpufreq/boost
 
-tee /sys/class/drm/card*/device/power_dpm_force_performance_level <<< 'low'
-tee /sys/class/drm/card*/device/power_dpm_state <<< 'battery'
-tee /sys/class/drm/card*/device/pp_power_profile_mode <<< '1'
+printf "low" |
+	tee /sys/class/drm/card*/device/power_dpm_force_performance_level
+printf "battery" | tee /sys/class/drm/card*/device/power_dpm_state
+printf "1" | tee /sys/class/drm/card*/device/pp_power_profile_mode
 
-tee /sys/class/thermal/thermal_zone0/cdev*/cur_state <<< '3'
+printf "3" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
-tee /sys/class/power_supply/BAT0/charge_control_end_threshold <<< '80'
+printf "80" | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
 
-echo 'Hardware settings applied successfully <:'
+echo "Hardware settings applied successfully <:"
