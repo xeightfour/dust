@@ -44,12 +44,12 @@ config.set(
 
 # Fonts
 config.set("fonts.default_size", "13pt")
-config.set("fonts.statusbar", "13pt Monolisa Trial")
-config.set("fonts.tabs.selected", "13pt Monolisa Trial")
-config.set("fonts.tabs.unselected", "13pt Monolisa Trial")
-config.set("fonts.hints", "13pt Monolisa Trial")
-config.set("fonts.completion.entry", "13pt Monolisa Trial")
-config.set("fonts.completion.category", "13pt Monolisa Trial")
+config.set("fonts.statusbar", "13pt Cascadia Code")
+config.set("fonts.tabs.selected", "13pt Cascadia Code")
+config.set("fonts.tabs.unselected", "13pt Cascadia Code")
+config.set("fonts.hints", "13pt Cascadia Code")
+config.set("fonts.completion.entry", "13pt Cascadia Code")
+config.set("fonts.completion.category", "13pt Cascadia Code")
 
 # Key bindings
 config.bind("j", "cmd-run-with-count 4 scroll down")

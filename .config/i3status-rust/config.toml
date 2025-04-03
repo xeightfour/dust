@@ -14,8 +14,8 @@ icons = "none"
 block = "keyboard_layout"
 driver = "sway"
 [block.mappings]
-"English (US)" = "Eng"
-"Persian (N/A)" = "Per"
+"English (US)" = "EN"
+"Persian (N/A)" = "PE"
 [block.theme_overrides]
 idle_fg = "#89B4FA"
 
