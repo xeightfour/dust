@@ -9,14 +9,17 @@ homeDir = os.path.expanduser("~")
 downDir = os.path.join(homeDir, "Downloads")
 
 config.set("zoom.default", "125%")
-config.set("statusbar.padding", {"bottom": 2, "left": 0, "right": 0, "top": 0})
+
+# Status bar
+config.set("statusbar.padding", {"bottom": 2, "left": 0, "right": 0, "top": 2})
 
 # Tabs
 config.set("tabs.position", "right")
-config.set("tabs.favicons.scale", 0.8)
+config.set("tabs.favicons.scale", 0.9)
 config.set("tabs.show", "switching")
 config.set("tabs.show_switching_delay", 1400)
 config.set("tabs.title.format_pinned", "{audio}{index}: {current_title}")
+config.set("tabs.padding", {"bottom": 2, "left": 5, "right": 5, "top": 2})
 
 # Dark mode
 config.set("colors.webpage.bg", "black")
