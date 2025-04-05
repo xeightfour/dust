@@ -8,7 +8,7 @@ warning_fg = "#F9E2AF"
 critical_fg = "#F38BA8"
 
 [icons]
-icons = "none"
+icons = "material-nf"
 
 [[block]]
 block = "keyboard_layout"
@@ -21,16 +21,16 @@ idle_fg = "#89B4FA"
 
 [[block]]
 block = "temperature"
-format = " C $max "
-interval = 2
+format = " $icon $max "
+interval = 5
 chip = "coretemp-isa-*"
 info = 50
 warning = 65
 
 [[block]]
 block = "temperature"
-format = " G $max "
-interval = 2
+format = " +$icon $max "
+interval = 5
 chip = "amdgpu-pci-*"
 info = 50
 warning = 65
@@ -43,12 +43,12 @@ interval = 5
 [[block]]
 block = "amd_gpu"
 interval = 5
-format = " $icon $utilization.eng(w:1) "
+format = " $icon $utilization.eng(w:2) "
 
 [[block]]
 block = "cpu"
 interval = 5
-format = " $icon $utilization.eng(w:1) "
+format = " $icon $utilization.eng(w:2) "
 
 [[block]]
 block = "load"
@@ -64,7 +64,7 @@ format = " $icon $available.eng(w:1,prefix:Mi) "
 [[block]]
 block = "amd_gpu"
 interval = 5
-format = " VRAM $vram_used.eng(w:1,prefix:Mi)~$vram_used_percents.eng(w:1) "
+format = " $icon $vram_used.eng(w:1,prefix:Mi)~$vram_used_percents.eng(w:1) "
 
 [[block]]
 block = "memory"
@@ -83,5 +83,5 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "time"
-interval = 1
+interval = 5
 format = " $timestamp.datetime(f:'%b/%d %H:%M:%S') "
