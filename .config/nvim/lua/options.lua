@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.cmd("set notermguicolors")
+vim.cmd("set termguicolors")
 vim.cmd("color sorbet")
 
 opt.showcmd = true
@@ -8,7 +8,6 @@ opt.showcmd = true
 opt.virtualedit = "all"
 opt.foldmethod = "marker"
 
-opt.autoindent = true
 opt.smartindent = true
 
 opt.tabstop = 4
@@ -20,7 +19,7 @@ opt.cursorline = true
 opt.colorcolumn = { 80 }
 
 opt.numberwidth = 4
-opt.relativenumber = false
+opt.relativenumber = true
 opt.number = true
 
 opt.ignorecase = true
@@ -29,5 +28,3 @@ opt.smartcase = true
 opt.shortmess:append { I = true }
 opt.listchars:append { trail = "·", tab = "│  " }
 opt.list = true
-
-opt.lazyredraw = true

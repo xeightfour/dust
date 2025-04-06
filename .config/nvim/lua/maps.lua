@@ -26,6 +26,7 @@ nmap("<c-k>", "<c-w>k")
 nmap("H", ":tabprev<cr>")
 nmap("L", ":tabnext<cr>")
 
+nmap("<space>s", ":set spell!<cr>")
 nmap("<space><space>", ":nohlsearch<cr>")
 nmap("<space>tr", ":silent! %s/\\s\\+$//<cr> :nohlsearch<cr>")
 
@@ -34,10 +35,4 @@ vmap("j", "gj")
 nmap("k", "gk")
 vmap("k", "gk")
 
-nmap("B", "^")
-vmap("B", "^")
-nmap("E", "$")
-vmap("E", "$")
-
-nmap("<esc>", "<>")
 tmap("<esc>", "<c-\\><c-n>")
