@@ -4,7 +4,7 @@ set -e
 set -u
 
 bounce() {
-	printf "$1 \e[31m):\e[0m\n"
+	printf "${1:-Broken for a reason} \e[31m):\e[0m\n"
 	exit 1
 }
 
@@ -12,7 +12,7 @@ dust="$(CDPATH= cd -- "$(dirname -- "$0")" && cd .. && pwd -P)"
 
 printf "Low or high? [L/h] "
 read stat
-if [ "$stat" = "H" ] || [ "$stat" = "h" ]; then
+if [ "${stat:-}" = "H" ] || [ "${stat:-}" = "h" ]; then
 	setup="setup-hi"
 	picom="picom-hi.conf"
 else
@@ -36,4 +36,4 @@ else
 	bounce "Failed to create symlink for $picom"
 fi
 
-echo "Dsetted <:"
+echo "Dsetted!"

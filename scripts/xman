@@ -3,7 +3,7 @@
 set -u
 
 bounce() {
-	printf "$1 \e[31m):\e[0m\n"
+	printf "${1:-Broken for a reason} \e[31m):\e[0m\n"
 	exit 1
 }
 
@@ -16,9 +16,10 @@ pkill parre && {
 	done
 }
 
-for cmd in "\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85" "\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b"; do
+for cmd in "\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85" \
+	"\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b"; do
 	echo "$cmd" | tee /proc/acpi/call > /dev/null ||
 		bounce "Failed to execute $cmd"
 done
 
-echo "BIOS/ACPI Mode set successfully <:"
+echo "BIOS/ACPI Mode set successfully."

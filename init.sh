@@ -4,7 +4,7 @@ set -e
 set -u
 
 bounce() {
-	printf "$1 \e[31m):\e[0m\n"
+	printf "${1:-Broken for a reason} \e[31m):\e[0m\n"
 	exit 1
 }
 

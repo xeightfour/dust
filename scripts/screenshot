@@ -4,7 +4,7 @@ set -e
 set -u
 
 bounce() {
-	printf "$1 \e[31m):\e[0m\n"
+	printf "${1:-Broken for a reason} \e[31m):\e[0m\n"
 	exit 1
 }
 
@@ -13,7 +13,7 @@ fileName="$scdir/screenshot_$(date +'%Y-%b-%d_%H-%M-%S').jpg"
 
 mkdir -p "$scdir"
 
-if [ "$1" = "--select" || "$1" = "-s" ]; then
+if [ "${1:-}" = "--select" ] || [ "${1:-}" = "-s" ]; then
 	maim -m 8 -s -D "$fileName" ||
 		bounce "Failed to take selection screenshot"
 else
@@ -21,8 +21,8 @@ else
 		bounce "Failed to take full screenshot"
 fi
 
-[ -f "$fileName" ] && echo "Screenshot saved to $fileName <:" ||
-	bounce "Screenshot file not created >="
+[ -f "$fileName" ] && echo "Screenshot saved to $fileName." ||
+	bounce "Screenshot file not created"
 xclip -selection clipboard -t image/jpeg -i "$fileName" &&
-	echo "Screenshot copied to clipboard <:" ||
+	echo "Screenshot copied to clipboard." ||
 	bounce "Failed to copy screenshot to clipboard"

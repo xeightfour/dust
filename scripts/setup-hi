@@ -1,9 +1,10 @@
 #!/bin/sh
 
+set -e
 set -u
 
 bounce() {
-	printf "$1 \e[31m):\e[0m\n"
+	printf "${1:-Broken for a reason} \e[31m):\e[0m\n"
 	exit 1
 }
 
@@ -12,41 +13,41 @@ if [ "$(id -u)" -ne 0 ]; then
 	exec sudo "$0" "$@"
 fi
 
-if [ "$1" -eq 1 ]; then
+if [ "${1:-0}" -eq 1 ]; then
 	echo "Turning Bluetooth off..."
 	rfkill block bluetooth || bounce "Failed to disable Bluetooth"
 fi
 
 echo "Resetting values..."
-printf "balance_performance" |
+echo "balance_performance" |
 	tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
-printf "800000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
-printf "2000000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
-printf "0" | tee /sys/devices/system/cpu/cpufreq/boost
+echo "800000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
+echo "2000000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+echo "0" | tee /sys/devices/system/cpu/cpufreq/boost
 
-printf "auto" |
+echo "auto" |
 	tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-printf "balance" | tee /sys/class/drm/card*/device/power_dpm_state
-printf "3" | tee /sys/class/drm/card*/device/pp_power_profile_mode
+echo "balanced" | tee /sys/class/drm/card*/device/power_dpm_state
+echo "3" | tee /sys/class/drm/card*/device/pp_power_profile_mode
 
-printf "1" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
+echo "1" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
-sleep 1.101
+sleep 1
 
 echo "Applying new settings..."
-printf "balance_power" |
+echo "balance_power" |
 	tee /sys/devices/system/cpu/cpufreq/policy*/energy_performance_preference
-printf "400000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
-printf "2600000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
-printf "1" | tee /sys/devices/system/cpu/cpufreq/boost
+echo "400000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_min_freq
+echo "3000000" | tee /sys/devices/system/cpu/cpufreq/policy*/scaling_max_freq
+echo "1" | tee /sys/devices/system/cpu/cpufreq/boost
 
-printf "low" |
+echo "low" |
 	tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-printf "battery" | tee /sys/class/drm/card*/device/power_dpm_state
-printf "1" | tee /sys/class/drm/card*/device/pp_power_profile_mode
+echo "battery" | tee /sys/class/drm/card*/device/power_dpm_state
+echo "1" | tee /sys/class/drm/card*/device/pp_power_profile_mode
 
-printf "3" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
+echo "3" | tee /sys/class/thermal/thermal_zone0/cdev*/cur_state
 
-printf "80" | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
+echo "80" | tee /sys/class/power_supply/BAT0/charge_control_end_threshold
 
-echo "Hardware settings applied successfully <:"
+echo "Hardware settings applied successfully."
