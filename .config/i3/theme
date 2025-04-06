@@ -37,7 +37,7 @@ client.background $base
 # Bar settings
 bar {
 	id bar-1
-	font pango: Monolisa Trial 17
+	font pango: Cascadia Code 17
 	status_command i3status
 	separator_symbol "|"
 	mode hide

@@ -2,7 +2,7 @@ include theme
 
 set $mod Mod4
 
-font pango: MonoLisa Trial 17
+font pango: Cascadia Code 17
 
 # Volume and audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id \
