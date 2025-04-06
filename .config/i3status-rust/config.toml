@@ -1,0 +1,87 @@
+[theme]
+theme = "native"
+[theme.overrides]
+idle_fg = "#CDD6F4"
+info_fg = "#CDD6F4"
+good_fg = "#FAB387"
+warning_fg = "#F9E2AF"
+critical_fg = "#F38BA8"
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "keyboard_layout"
+driver = "sway"
+[block.mappings]
+"English (US)" = "EN"
+"Persian (N/A)" = "PE"
+[block.theme_overrides]
+idle_fg = "#89B4FA"
+
+[[block]]
+block = "temperature"
+format = " $icon $max "
+interval = 5
+chip = "coretemp-isa-*"
+info = 50
+warning = 65
+
+[[block]]
+block = "temperature"
+format = " +$icon $max "
+interval = 5
+chip = "amdgpu-pci-*"
+info = 50
+warning = 65
+
+[[block]]
+block = "net"
+format = " $icon $ip "
+interval = 5
+
+[[block]]
+block = "amd_gpu"
+interval = 5
+format = " $icon $utilization.eng(w:2) "
+
+[[block]]
+block = "cpu"
+interval = 5
+format = " $icon $utilization.eng(w:2) "
+
+[[block]]
+block = "load"
+interval = 5
+
+[[block]]
+block = "disk_space"
+interval = 20
+info_type = "available"
+alert_unit = "GB"
+format = " $icon $available.eng(w:1,prefix:Mi) "
+
+[[block]]
+block = "amd_gpu"
+interval = 5
+format = " $icon $vram_used.eng(w:1,prefix:Mi)~$vram_used_percents.eng(w:1) "
+
+[[block]]
+block = "memory"
+interval = 5
+format = """ $icon $mem_used.eng(w:3,prefix:Mi)~$mem_used_percents.eng(w:1) \
+	- $mem_avail.eng(w:3,prefix:Mi) """
+format_alt = """ $icon_swap \
+	$swap_used.eng(w:3,prefix:Mi)~$swap_used_percents.eng(w:1) \
+	- $swap_free.eng(w:4,prefix:Mi) """
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 5
+format = " $timestamp.datetime(f:'%b/%d %H:%M:%S') "
