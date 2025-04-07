@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.cmd("set notermguicolors")
+vim.cmd("set termguicolors")
 vim.cmd("color sorbet")
 
 opt.showcmd = true

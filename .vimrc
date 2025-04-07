@@ -13,12 +13,10 @@ Plug 'jasonccox/vim-wayland-clipboard'
 
 call plug#end()
 
-autocmd BufNewFile,BufRead *.mac set filetype=maxima
-
 filetype plugin on
 syn on
 
-set notermguicolors
+set termguicolors
 color sorbet
 
 set showcmd
@@ -27,7 +25,6 @@ set virtualedit=all
 set foldmethod=marker
 
 filetype indent on
-set autoindent
 set smartindent
 
 set tabstop=4
@@ -76,10 +73,4 @@ vnoremap j gj
 nnoremap k gk
 vnoremap k gk
 
-nnoremap B ^
-vnoremap B ^
-nnoremap E $
-vnoremap E $
-
-nnoremap <esc> <nop>
 tnoremap <esc> <c-\><c-n>

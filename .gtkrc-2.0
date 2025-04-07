@@ -1,3 +1,5 @@
-gtk-font-name="IBM Plex Sans 11"
-gtk-theme-name="Skeuos-Blue-Dark"
-gtk-icon-theme-name="Flat-Remix-Yellow-Dark"
+gtk-font-name = "IBM Plex Sans 13"
+gtk-theme-name = "Skeuos-Blue-Dark"
+gtk-icon-theme-name = "Flat-Remix-Yellow-Dark"
+gtk-cursor-theme-name = "Banana"
+gtk-cursor-theme-size = 40

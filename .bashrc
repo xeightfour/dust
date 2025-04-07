@@ -13,7 +13,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export GTK_THEME="Skeuos-Blue-Dark"
 export ICON_THEME="Flat-Remix-Yellow-Dark"
-export FONT_NAME="IBM Plex Sans 11"
+export FONT_NAME="IBM Plex Sans 13"
 export QT_QPA_PLATFORMTHEME="gtk3"
 
 # Wayland
@@ -44,7 +44,7 @@ alias la="ls --color=auto -A"
 alias ll="ls --color=auto -ltrh"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
-alias lck="swaylock -i ~/assets/lockscreen.png"
+alias lck="swaylock -i ~/assets/lockscreen"
 
 bounce() {
 	echo -e "$1 \e[31m):\e[0m"

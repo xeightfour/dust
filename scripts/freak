@@ -22,8 +22,8 @@ for my $file (@ARGV) {
 
 	open my $out, ">:raw", $file or bounce "Oops, looks like $file is not there";
 	binmode $out;
-	print $out $data or bounce "Wait, looks like $file is not writable";
+	print $out $data or bounce "Oops, looks like $file is not writable";
 	close $out or bounce "Aw, $file won't close after writing";
 
-	say "Sweet, processed ", length($data), " bytes from $file.";
+	say "Processed ", length($data), " bytes from $file.";
 }

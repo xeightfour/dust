@@ -1,4 +1,4 @@
-@theme "/usr/share/rofi/themes/Monokai.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
 
 window {
 	padding: 8px;
@@ -9,6 +9,6 @@ element-icon {
 }
 
 configuration {
-	dpi: 125;
+	dpi: 175;
 	show-icons: true;
 }
