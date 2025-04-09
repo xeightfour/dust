@@ -8,8 +8,13 @@ opt.showcmd = true
 opt.virtualedit = "all"
 opt.foldmethod = "marker"
 
-opt.autoindent = true
 opt.smartindent = true
+
+opt.scrolloff = 4
+opt.sidescrolloff = 4
+
+opt.splitbelow = true
+opt.splitright = true
 
 opt.tabstop = 4
 opt.shiftwidth = 4

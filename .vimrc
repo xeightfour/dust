@@ -27,6 +27,12 @@ set foldmethod=marker
 filetype indent on
 set smartindent
 
+set scrolloff=4
+set sidescrolloff=4
+
+set splitbelow
+set splitright
+
 set tabstop=4
 set shiftwidth=4
 set cinoptions=g0,(s,us,U1,ks,m1
