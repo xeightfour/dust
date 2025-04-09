@@ -1,5 +1,3 @@
-# vim: set ft=systemd:
-
 [Unit]
 Description=Run Setup Script at Startup
 After=network.target
@@ -13,3 +11,5 @@ StandardError=file:/var/log/setup.log
 
 [Install]
 WantedBy=multi-user.target
+
+# vim: set ft=systemd:

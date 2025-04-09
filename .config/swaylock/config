@@ -1,5 +1,3 @@
-# vim: set ft=dosini:
-
 # Some customized Catppuccin Mocha
 color=1e1e2e
 bs-hl-color=f5e0dc
@@ -30,3 +28,5 @@ text-clear-color=f5e0dc
 text-caps-lock-color=fab387
 text-ver-color=89b4fa
 text-wrong-color=eba0ac
+
+# vim: set ft=dosini:
