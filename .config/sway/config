@@ -195,6 +195,11 @@ bindsym --locked XF86TouchpadToggle input type:touchpad events toggle
 bindsym --locked Print exec grim
 bindsym --locked Shift+Print exec slurp -d | grim -g -
 
+# Playerctl
+bindsym --locked $mod+p exec playerctl play-pause
+bindsym --locked $mod+period exec playerctl next
+bindsym --locked $mod+comma exec playerctl previous
+
 ### Status Bar
 bar 1 {
 	status_command i3status-rs
