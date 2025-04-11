@@ -199,6 +199,8 @@ bindsym --locked Shift+Print exec slurp -d | grim -g -
 bindsym --locked $mod+p exec playerctl play-pause
 bindsym --locked $mod+period exec playerctl next
 bindsym --locked $mod+comma exec playerctl previous
+bindsym --locked $mod+Shift+period exec playerctl position 5+
+bindsym --locked $mod+Shift+comma exec playerctl position 5-
 
 ### Status Bar
 bar 1 {
