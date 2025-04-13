@@ -192,8 +192,8 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
 
 bindsym --locked XF86TouchpadToggle input type:touchpad events toggle
 
-bindsym --locked Print exec grim
-bindsym --locked Shift+Print exec slurp -d | grim -g -
+bindsym --locked Print exec grim -t jpeg
+bindsym --locked Shift+Print exec slurp -d | grim -t jpeg -g -
 
 # Playerctl
 bindsym --locked $mod+p exec playerctl play-pause
