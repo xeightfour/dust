@@ -67,7 +67,6 @@ for_window [floating] move position center
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
 bindsym $mod+x exec rofi -show run
-bindsym $mod+q exec qutebrowser
 bindsym $mod+n exec nemo
 bindsym $mod+t exec telegram-desktop
 bindsym $mod+Escape exec swaylock -i ~/assets/lockscreen
