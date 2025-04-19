@@ -1,11 +1,11 @@
 [theme]
 theme = "native"
 [theme.overrides]
-idle_fg = "#cad3f5"
-info_fg = "#8caaee"
-good_fg = "#a6d189"
-warning_fg = "#e5c890"
-critical_fg = "#e78284"
+idle_fg = "#cdd6f4"
+info_fg = "#89b4fa"
+good_fg = "#a6e3a1"
+warning_fg = "#f9e2af"
+critical_fg = "#f38ba8"
 
 [icons]
 icons = "material-nf"
