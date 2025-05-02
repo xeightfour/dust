@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+
+import time, os, sys, signal, traceback, setproctitle, psutil
+
+passive = 55
+
+def call(command):
+    try:
+        with open('/proc/acpi/call', 'w') as acpi:
+            acpi.write(command)
+        with open('/proc/acpi/call', 'r') as acpi:
+            response = acpi.read().strip()
+        return response
+    except IOError as e:
+        print(f'[ERROR] Failed to communicate with /proc/acpi/call: {e}')
+        sys.exit(1)
+
+def get_temp():
+    try:
+        temp_hex = call('\\_SB.PCI0.SBRG.EC0.ECPU')[:4]
+        return int(temp_hex, 16)
+    except ValueError as e:
+        print(f'[ERROR] Failed to parse temperature: {e}')
+        sys.exit(1)
+
+def cleanup(signal=None, frame=None):
+    try:
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
+        call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
+        call('\\_SB.SGOV 0x11 1')
+        call('\\_SB.SGOV 0x18 1')
+        print('Resetting fan control to automatic...')
+    except Exception as e:
+        print(f'[ERROR] Failed to reset fan control: {e}')
+    finally:
+        sys.exit(0)
+
+def update_led():
+    try:
+        call('\\_SB.SGOV 0x18 0')
+        temp = get_temp()
+        if temp < 50:
+            call('\\_SB.SGOV 0x11 1')
+        else:
+            call('\\_SB.SGOV 0x11 0')
+            os.system('/home/soheil/scripts/setup')
+    except Exception as e:
+        print(f'[ERROR] Failed to update LED: {e}')
+
+def update_fan():
+    global passive
+    try:
+        temp = get_temp()
+        if temp <= passive:
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x90')
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x90')
+        else:
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x30 0x85')
+            call('\\_SB.PCI0.SBRG.EC0.WRAM 0xCD 0x37 0x8b')
+    except Exception as e:
+        print(f'[ERROR] Failed to update fan: {e}')
+
+def main():
+    signal.signal(signal.SIGTERM, cleanup)
+    print('Now parre controls the fans!')
+
+    try:
+        while True:
+            update_led()
+            update_fan()
+            time.sleep(8)
+    except KeyboardInterrupt:
+        print('Interrupted by user. Cleaning up...')
+    except Exception as e:
+        print(f'[ERROR] Unexpected error: {e}')
+    finally:
+        cleanup()
+
+if __name__ == '__main__':
+    for proc in psutil.process_iter(['pid', 'name']):
+        if 'parre' in proc.info['name'].lower() and proc.info['pid'] != os.getpid():
+            print('parre is already running!')
+            sys.exit(1)
+
+    time.sleep(10)
+    setproctitle.setproctitle('parre')
+    main()
