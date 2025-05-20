@@ -32,11 +32,13 @@ input type:touchpad {
 	dwtp enabled
 	tap enabled
 	tap_button_map lrm
+	pointer_accel 0.1
+	scroll_factor 0.5
 }
 
 ### Options
 # Font
-font pango: SF Mono 12
+font pango: JetBrainsMono Italic 12
 
 # Mouse
 focus_follows_mouse no
@@ -59,7 +61,8 @@ workspace 2 gaps outer 0
 workspace 3 gaps outer 0
 
 # Window class and behavior
-for_window [all] title_format "[%app_id] · %title"
+#for_window [all] title_format "[%app_id] · %title"
+for_window [all] title_format "%title"
 for_window [floating] move position center
 
 ### Key bindings
@@ -191,8 +194,12 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
 
 bindsym --locked XF86TouchpadToggle input type:touchpad events toggle
 
-bindsym --locked Print exec grim -t jpeg
-bindsym --locked Shift+Print exec slurp -d | grim -t jpeg -g -
+bindsym --locked Print exec grim -t jpeg - | tee \
+	"$HOME/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).jpeg" | \
+	wl-copy
+bindsym --locked Shift+Print exec slurp -d | grim -t jpeg -g - - | tee \
+	"$HOME/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).jpeg" | \
+	wl-copy
 
 # Playerctl
 bindsym --locked $mod+p exec playerctl play-pause
