@@ -1,0 +1,19 @@
+$include /etc/inputrc
+
+set show-all-if-ambiguous on
+set completion-query-items 150
+set mark-symlinked-directories on
+
+set visible-stats on
+set colored-stats on
+
+set page-completions off
+
+set completion-ignore-case on
+set match-hidden-files off
+
+# oh la la
+set skip-completed-text on
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward

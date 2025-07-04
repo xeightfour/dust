@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ! tmux has -t toodej 2>/dev/null; then
+	tmux new -d -s toodej -n bash \; \
+		splitw -h -b -t toodej:0 \; \
+		neww -t toodej:1 -n ranger bash -c 'ranger ; bash' \; \
+		neww -t toodej:2 -n temp \; \
+		selectw -t toodej:0
+fi
+
+tmux attach -t toodej

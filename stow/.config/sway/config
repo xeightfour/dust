@@ -1,0 +1,224 @@
+### Variables
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Default terminal
+set $term foot
+
+# Default application launcher
+set $menu rofi -show drun -show-icons
+
+### Output configuration
+output eDP-1 {
+	mode 1920x1200
+	bg ~/assets/wallpaper.jpeg fill
+}
+
+### Input configuration
+input type:keyboard {
+	xkb_layout us,ir
+	xkb_options grp:alt_shift_toggle
+}
+
+input type:touchpad {
+	dwt enabled
+	dwtp enabled
+	tap enabled
+	tap_button_map lrm
+	pointer_accel 0.1
+	scroll_factor 0.5
+	drag_lock disabled # wtf seriously
+}
+
+### Options
+# Font
+font pango: JetBrains Mono Italic 14
+
+# Mouse
+focus_follows_mouse no
+
+# Floating
+floating_maximum_size 1900 x 1000
+floating_minimum_size -1 x -1
+floating_modifier $mod normal
+
+# Borders
+default_border pixel 3
+hide_edge_borders smart_no_gaps
+
+# Gaps
+smart_gaps off
+gaps inner 5
+mode "gaps" {
+	bindsym i exec swaymsg gaps inner current set 5
+	bindsym Shift+i exec swaymsg gaps inner current set 0
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Shift+i mode "gaps"
+
+# Window class and behavior
+for_window [all] title_format "%title"
+for_window [floating] move position center
+for_window [class="oblivion-desktop"] floating enable, resize set 1200 960
+
+### Key bindings
+# Launch applications
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+x exec rofi -show run
+bindsym $mod+Escape exec swaylock -i ~/assets/lockscreen.jpeg
+
+# Manage windows
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f floating toggle
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m \
+	'You pressed the exit shortcut. Do you really want to exit sway? \
+This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window
+bindsym $mod+Shift+$left move left 100
+bindsym $mod+Shift+$down move down 100
+bindsym $mod+Shift+$up move up 100
+bindsym $mod+Shift+$right move right 100
+bindsym $mod+c move position center
+
+# Switch to workspace
+bindsym --to-code $mod+1 workspace number 1
+bindsym --to-code $mod+2 workspace number 2
+bindsym --to-code $mod+3 workspace number 3
+bindsym --to-code $mod+4 workspace number 4
+bindsym --to-code $mod+5 workspace number 5
+bindsym --to-code $mod+6 workspace number 6
+bindsym --to-code $mod+7 workspace number 7
+bindsym --to-code $mod+8 workspace number 8
+bindsym --to-code $mod+9 workspace number 9
+bindsym --to-code $mod+0 workspace number 10
+
+# Switch to workspace relatively
+bindsym $mod+BracketRight workspace next
+bindsym $mod+BracketLeft workspace prev
+
+# Move focused container to workspace
+bindsym --to-code $mod+Shift+1 move container to workspace number 1
+bindsym --to-code $mod+Shift+2 move container to workspace number 2
+bindsym --to-code $mod+Shift+3 move container to workspace number 3
+bindsym --to-code $mod+Shift+4 move container to workspace number 4
+bindsym --to-code $mod+Shift+5 move container to workspace number 5
+bindsym --to-code $mod+Shift+6 move container to workspace number 6
+bindsym --to-code $mod+Shift+7 move container to workspace number 7
+bindsym --to-code $mod+Shift+8 move container to workspace number 8
+bindsym --to-code $mod+Shift+9 move container to workspace number 9
+bindsym --to-code $mod+Shift+0 move container to workspace number 10
+
+# Layout stuff
+bindsym $mod+s split toggle
+bindsym $mod+Shift+s layout toggle stacking split
+bindsym $mod+Tab layout toggle tabbed split
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent/child container
+bindsym $mod+u focus parent
+bindsym $mod+Shift+u focus child
+
+# Scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Change opacity of focused window
+bindsym $mod+o opacity minus 0.08
+bindsym $mod+Shift+o opacity plus 0.08
+
+# Window decorations
+bindsym $mod+b border toggle
+
+# Resize mode
+mode "resize" {
+	bindsym $left resize grow left 10 px
+	bindsym $right resize grow right 10 px
+	bindsym $down resize grow down 10 px
+	bindsym $up resize grow up 10 px
+
+	bindsym Shift+$left resize shrink right 10 px
+	bindsym Shift+$right resize shrink left 10 px
+	bindsym Shift+$down resize shrink up 10 px
+	bindsym Shift+$up resize shrink down 10 px
+
+	bindsym Control+$left resize grow left 80 px
+	bindsym Control+$right resize grow right 80 px
+	bindsym Control+$down resize grow down 80 px
+	bindsym Control+$up resize grow up 80 px
+
+	bindsym Control+Shift+$left resize shrink right 80 px
+	bindsym Control+Shift+$right resize shrink left 80 px
+	bindsym Control+Shift+$down resize shrink up 80 px
+	bindsym Control+Shift+$up resize shrink down 80 px
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Utilities
+bindsym --locked XF86AudioMute exec \
+	pactl set-sink-mute \@DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec \
+	pactl set-sink-volume \@DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec \
+	pactl set-sink-volume \@DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec \
+	pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
+
+bindsym --locked XF86TouchpadToggle input type:touchpad events toggle
+
+bindsym --locked Print exec grim -t jpeg - | tee \
+	"$HOME/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).jpeg" | \
+	wl-copy
+bindsym --locked Shift+Print exec slurp -d | grim -t jpeg -g - - | tee \
+	"$HOME/Pictures/Screenshots/Screenshot_$(date +%Y-%m-%d_%H-%M-%S).jpeg" | \
+	wl-copy
+
+# Playerctl
+bindsym --locked $mod+p exec playerctl play-pause
+bindsym --locked $mod+period exec playerctl next
+bindsym --locked $mod+comma exec playerctl previous
+bindsym --locked $mod+Shift+period exec playerctl position 5+
+bindsym --locked $mod+Shift+comma exec playerctl position 5-
+
+# Clipman
+exec wl-paste -t text --watch clipman store
+bindsym $mod+v exec clipman pick -t rofi
+
+### Run programs
+exec sh -c 'pkill pipewire ; pidwait pipewire ; echo hi ; pipewire'
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec wlsunset -l 29.61 -L 52.53
+exec swaykbdd
+
+### Cursor theme
+seat seat0 xcursor_theme Banana 48
+
+### Theme
+include theme

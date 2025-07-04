@@ -1,0 +1,9 @@
+@theme "/usr/share/rofi/themes/arthur.rasi"
+
+element-icon {
+	size: 24px;
+}
+
+configuration {
+	dpi: 175;
+}

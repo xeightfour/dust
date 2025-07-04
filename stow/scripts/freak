@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+use 5.040;
+use strict;
+use warnings;
+
+my $key = "x";
+
+sub bounce {
+	say "\e[31m$_[0]\e[0m";
+	exit 1;
+}
+
+@ARGV or bounce 'Give me something to work on.';
+
+for my $file (@ARGV) {
+	open my $in, "<:raw", $file or bounce "Looks like '$file' is not there.";
+	binmode $in;
+	my $data = do { local $/; <$in> };
+	close $in;
+
+	$data ^.= ($key x length $data);
+
+	open my $out, ">:raw", $file;
+	binmode $out;
+	print $out $data;
+	close $out;
+
+	say "Processed ", length($data), " bytes from $file.";
+}
