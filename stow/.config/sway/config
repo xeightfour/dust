@@ -55,7 +55,7 @@ smart_gaps off
 gaps inner 5
 mode "gaps" {
 	bindsym i exec swaymsg gaps inner current set 5
-	bindsym Shift+i exec swaymsg gaps inner current set 0
+	bindsym o exec swaymsg gaps inner current set 0
 
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
@@ -210,6 +210,8 @@ bindsym --locked $mod+Shift+comma exec playerctl position 5-
 # Clipman
 exec wl-paste -t text --watch clipman store
 bindsym $mod+v exec clipman pick -t rofi
+
+exec dbus-update-activation-environment --all
 
 ### Run programs
 exec sh -c 'pkill pipewire ; pidwait pipewire ; echo hi ; pipewire'

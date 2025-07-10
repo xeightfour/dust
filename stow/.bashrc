@@ -87,8 +87,9 @@ win() {
 }
 
 hibernate() {
-	sudo zzz -Z
+	sudo echo
 	lck
+	sudo zzz -Z
 }
 
 ass() {

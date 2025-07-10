@@ -19,6 +19,10 @@ syn on
 set termguicolors
 color sorbet
 
+set directory=/tmp
+set backupdir=/tmp
+set undodir=/tmp
+
 set showcmd
 
 set virtualedit=all

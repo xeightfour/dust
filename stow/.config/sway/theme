@@ -1,38 +1,10 @@
-# Catppuccin Mocha
-set $rosewater #f5e0dc
-set $flamingo #f2cdcd
-set $pink #f5c2e7
-set $mauve #cba6f7
-set $red #f38ba8
-set $maroon #eba0ac
-set $peach #fab387
-set $yellow #f9e2af
-set $green #a6e3a1
-set $teal #94e2d5
-set $sky #89dceb
-set $sapphire #74c7ec
-set $blue #89b4fa
-set $lavender #b4befe
-set $text #cdd6f4
-set $subtext1 #bac2de
-set $subtext0 #a6adc8
-set $overlay2 #9399b2
-set $overlay1 #7f849c
-set $overlay0 #6c7086
-set $surface2 #585b70
-set $surface1 #45475a
-set $surface0 #313244
-set $base #1e1e2e
-set $mantle #181825
-set $crust #11111b
+client.focused #6272a4 #6272a4 #f8f8f2 #6272a4 #6272a4
+client.focused_inactive #44475a #44475a #f8f8f2 #44475a #44475a
+client.unfocused #282a36 #282a36 #bfbfbf #282a36 #282a36
+client.urgent #44475a #ff5555 #f8f8f2 #ff5555 #ff5555
+client.placeholder #282a36 #282a36 #f8f8f2 #282a36 #282a36
 
-# Dracula
-client.focused #6272A4 #6272A4 #F8F8F2 #6272A4 #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A #44475A
-client.unfocused #282A36 #282A36 #BFBFBF #282A36 #282A36
-client.urgent #44475A #FF5555 #F8F8F2 #FF5555 #FF5555
-client.placeholder #282A36 #282A36 #F8F8F2 #282A36 #282A36
-client.background #F8F8F2
+client.background #f8f8f2
 
 ### Status Bar
 bar {
@@ -50,15 +22,15 @@ bar {
 	tray_padding 8
 
 	colors {
-		background $base
-		statusline $text
-		focused_statusline $text
-		focused_separator $surface1
+		background #282a36
+		statusline #f8f8f2
+		separator #44475a
 
-		focused_workspace $base $mauve $crust
-		active_workspace $base $surface2 $text
-		inactive_workspace $base $base $text
-		urgent_workspace $base $red $crust
+		focused_workspace #44475a #44475a #f1fa8c
+		active_workspace #282a36 #44475a #bfbfbf
+		inactive_workspace #282a36 #282a36 #44475A
+		urgent_workspace #ff5555 #ff5555 #f8f8f2
+		binding_mode #50fa7b #50fa7b #282a36
 	}
 }
 

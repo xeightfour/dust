@@ -1,31 +1,22 @@
 [theme]
 theme = 'native'
 [theme.overrides]
-idle_fg = '#cdd6f4'
-info_fg = '#a6e3a1'
-good_fg = '#f9e2af'
-warning_fg = '#fab387'
-critical_fg = '#f38ba8'
+idle_fg = '#f8f8f2'
+info_fg = '#50fa7b'
+good_fg = '#f1fa8c'
+warning_fg = '#ffb86c'
+critical_fg = '#ff5555'
 [icons]
 icons = 'material-nf'
 [icons.overrides]
-backlight = [
-	'󰪞',
-	'󰪟',
-	'󰪠',
-	'󰪡',
-	'󰪢',
-	'󰪣',
-	'󰪤',
-	'󰪥'
-]
+backlight = [ '󰪞', '󰪟', '󰪠', '󰪡', '󰪢', '󰪣', '󰪤', '󰪥' ]
 cpu = ''
 memory_mem = ''
 
 [[block]]
 block = 'scratchpad'
 [block.theme_overrides]
-idle_fg = '#f8e2af'
+idle_fg = '#6272a4'
 
 [[block]]
 block = 'keyboard_layout'
@@ -34,7 +25,7 @@ driver = 'sway'
 'English (US)' = 'EN'
 'Persian (N/A)' = 'FA'
 [block.theme_overrides]
-idle_fg = '#cba6f7'
+idle_fg = '#8be9fd'
 
 [[block]]
 block = 'backlight'
@@ -50,7 +41,7 @@ warning = 50
 [[block]]
 block = 'net'
 device = 'wlp2s0'
-format = """ $speed_down.eng(w:1) ^icon_net_down \
+format = """ $icon $speed_down.eng(w:1) ^icon_net_down \
 	$speed_up.eng(w:1) ^icon_net_up """
 format_alt = ' ^icon_net_wireless $ssid '
 interval = 2
